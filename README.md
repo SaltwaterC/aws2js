@@ -35,11 +35,7 @@ More will come. Remember, this is under active development, but an early release
 <pre>
 var ec2 = require('./aws-js').ec2;
 
-ec2.init({ // Mandatory
-	accessKeyId: 'your-acces-key-id',
-	secretAccessKey: 'your-secret-access-key'
-});
-
+ec2.setCredentials('accessKeyId', 'secretAccessKey'); // Mandatory
 ec2.setRegion('eu-east-1'); // Optional. This is the default API entry point
 
 // action, query, callback - for the action and query parameters, check the EC2 API reference
@@ -53,4 +49,14 @@ ec2.call('DescribeVolumes', {}, function (error, response) {
 	}
 });
 </pre>
+
+A config() method is provided for the service client. You may invoke it as:
+
+ec2.config({
+	accessKeyId: 'accessKeyId',
+	secretAccessKey: 'secretAccessKey',
+	host: 'ec2.us-west-1.amazonaws.com'
+});
+
+This is the equivalent of calling setCredentials() and setRegion() but it is more verbose and error prone. However, it may change the internals of the service client, therefore usable for fine tuning the service client at a lower level.
 
