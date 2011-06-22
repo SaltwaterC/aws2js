@@ -1,6 +1,6 @@
 ## About
 
-Amazon Web Services node.js module. Currently under development. This is basically a fork of aws-lib ( https://github.com/livelycode/aws-lib/ ) which served as most of the inspiration for this module. While it resembles its original structure, some of the internal workings are changed due to obvious reasons. Currently it uses my patched xml2js fork ( https://github.com/SaltwaterC/node-xml2js ) that includes error reporting for broken XML responses. Hopefully the patch will be merged into the upstream as I sent a pull request.
+Amazon Web Services node.js module. Currently under development. This is basically a fork of aws-lib ( https://github.com/livelycode/aws-lib/ ) which served as most of the inspiration for this module. While it resembles its original structure, some of the internal workings are changed due to obvious reasons. Currently it uses my patched xml2js fork ( https://github.com/SaltwaterC/node-xml2js ) that includes error reporting for broken XML responses. Hopefully the patch will be merged into the upstream as I already sent a pull request.
 
 ## Design goals
 
@@ -17,12 +17,12 @@ exports.ec2 = client({
     query: {
     	Version: '2011-05-15',
     	SignatureMethod: 'HmacSHA256',
-		SignatureVersion: '2'
+	SignatureVersion: '2'
     }
 });
 </pre>
 
-Abstrating most of the AWS APIs plumbing is the actual goal behind the client simplicity.
+Abstracting most of the AWS APIs plumbing is the actual goal behind the client simplicity.
 
 ## Supported services
 
@@ -53,4 +53,3 @@ ec2.call('DescribeVolumes', {}, function (error, response) {
 	}
 });
 </pre>
-
