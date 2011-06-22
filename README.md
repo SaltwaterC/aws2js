@@ -51,12 +51,13 @@ ec2.call('DescribeVolumes', {}, function (error, response) {
 </pre>
 
 A config() method is provided for the service client. You may invoke it as:
-
+<pre>
 ec2.config({
 	accessKeyId: 'accessKeyId',
 	secretAccessKey: 'secretAccessKey',
 	host: 'ec2.us-west-1.amazonaws.com'
 });
+</pre>
 
 This is the equivalent of calling setCredentials() and setRegion() but it is more verbose and error prone. However, it may change the internals of the service client, therefore usable for fine tuning the service client at a lower level.
 
