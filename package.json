@@ -2,7 +2,10 @@
 	"name": "aws-js",
 	"main": "./lib/aws.js",
 	"dependencies": {
-		"xml2js": "0.1.x",
-		"sax": "0.1.x"
+		"xml2js": ">=0.1.x",
+		"sax": ">=0.1.x"
+	},
+	"engines": {
+		"node": ">=0.4.x"
 	}
 }
