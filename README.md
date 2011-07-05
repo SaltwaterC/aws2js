@@ -34,6 +34,7 @@ Abstracting most of the AWS APIs plumbing is the actual goal behind the client s
 
  * EC2 (require('aws2js').ec2)
  * RDS (require('aws2js').rds)
+ * SES (require('aws2js').ses)
 
 More will come. Remember, this is under active development, but an early release. I still need S3 support (at least) for my own usage.
 
