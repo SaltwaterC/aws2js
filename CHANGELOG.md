@@ -1,3 +1,8 @@
+## v0.2.2
+ * Updates the libxml-to-js dependency to v0.2.
+ * Fixes the client.setRegion() call as it is currently broken.
+ * Disables client.setRegion() for SES.
+
 ## v0.2.1
  * Implements the Amazon Simple Email Service (SES) client.
 

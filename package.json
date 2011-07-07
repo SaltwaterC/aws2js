@@ -1,11 +1,11 @@
 {
 	"name": "aws2js",
 	"main": "./lib/aws.js",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
 		"libxmljs": ">=0.x",
-		"libxml-to-js": ">=0.1.x"
+		"libxml-to-js": ">=0.2.x"
 	},
 	"engines": {
 		"node": ">=0.4.x"
