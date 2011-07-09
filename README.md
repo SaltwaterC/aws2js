@@ -32,4 +32,4 @@ More will come. Remember, this is under active development.
  * [the SES client](https://github.com/SaltwaterC/aws2js/wiki/SES-Client)
  * [the S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
 
-If a specific client doesn't meet your needs, you may implement your own methods via the [config() method](https://github.com/SaltwaterC/aws2js/wiki/The-config()-method).
+If a specific client doesn't meet your needs, you may implement your own methods via the [config() method](https://github.com/SaltwaterC/aws2js/wiki/The-config%28%29-method).
