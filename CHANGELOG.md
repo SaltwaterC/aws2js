@@ -4,6 +4,7 @@
  * Amazon ELB support.
  * Made the Amazon RDS API version to be the latest 2011-04-01 by default.
  * Made the Amazon SES API version to be the latest 2010-12-01 by default.
+ * Adds mime as dependency due to mime.type auto-detection.
 
 ## v0.2.2
  * Updates the libxml-to-js dependency to v0.2.
