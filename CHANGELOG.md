@@ -1,4 +1,4 @@
-## v0.2.3
+## v0.3
  * Amazon S3 support.
 
 ## v0.2.2
