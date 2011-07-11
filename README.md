@@ -22,14 +22,17 @@ Either manually clone this repository into your node_modules directory, or the r
  * Amazon EC2 (Amazon Elastic Compute Cloud)
  * Amazon RDS (Amazon Relational Database Service)
  * Amazon SES (Amazon Simple Email Service)
+ * Amazon ELB (Amazon Elastic Load Balancing)
  * Amazon S3 (Amazon Simple Storage Service)
 
 More will come. Remember, this is under active development.
 
 ## Usage mode
+
  * [the EC2 client](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client)
  * [the RDS client](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client)
  * [the SES client](https://github.com/SaltwaterC/aws2js/wiki/SES-Client)
+ * [the ELB client](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client)
  * [the S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
 
 If a specific client doesn't meet your needs, you may implement your own methods via the [config() method](https://github.com/SaltwaterC/aws2js/wiki/The-config%28%29-method).
