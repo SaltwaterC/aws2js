@@ -1,6 +1,6 @@
 ## About
 
-Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/). While it resembles some of the aws-lib structure, the internals are moving forward.
+Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/), but it started to draw its own lines.
 
 ## Installation
 
@@ -12,9 +12,9 @@ Either manually clone this repository into your node_modules directory, or the r
 
  * HTTPS-only APIs communication
  * Proper error reporting
- * Simple to write clients for a specific AWS service
+ * Simple to write clients for a specific AWS service (abstracts most of the low level plumbing)
  * Simple to use AWS API calls
- * Higher level clients for specific work flows (proposed)
+ * Higher level clients for specific work flows
  * Proper documentation
 
 ## Supported services
@@ -25,7 +25,7 @@ Either manually clone this repository into your node_modules directory, or the r
  * Amazon ELB (Amazon Elastic Load Balancing)
  * Amazon S3 (Amazon Simple Storage Service)
 
-More will come. Remember, this is under active development.
+More will come. This module is under active development.
 
 ## Usage mode
 
@@ -35,4 +35,3 @@ More will come. Remember, this is under active development.
  * [the ELB client](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client)
  * [the S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
 
-If a specific client doesn't meet your needs, you may implement your own methods via the [config() method](https://github.com/SaltwaterC/aws2js/wiki/The-config%28%29-method).
