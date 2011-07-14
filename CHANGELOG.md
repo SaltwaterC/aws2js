@@ -1,5 +1,8 @@
+## v0.3.2
+ * If the WriteStream fails when the file response handler is in use by the GET request, the HTTPS request itself is aborted. Previously it was continued, therefore it might waste a lot of bandwidth, that you're going to pay for. This task was not trivial as a bug in node.js complicates the implementation of this feature: https://github.com/joyent/node/issues/1085 . In the future, aws2js will require specifically node 0.5.x if the abort() patches are accepted into the upstream. The garbage that makes the workarounds for the abort() issues (1085, 1304) will be removed.
+
 ## v0.3.1
- * Changes file the GET request handler to receive an object indicating the file path instead the file path itself in order to introduce more flexibility. Unfortunately this introduces a slight backward incompatibility. Hate doing it, but it's a must.
+ * Changes file the GET response handler to receive an object indicating the file path instead the file path itself in order to introduce more flexibility. Unfortunately this introduces a slight backward incompatibility. Hate doing it, but it's a must.
  * Fixes the acl checker that did not accept a false value in order to go with the default 'private'.
 
 ## v0.3
