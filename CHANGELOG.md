@@ -1,3 +1,7 @@
+## v0.3.1
+ * Changes file the GET request handler to receive an object indicating the file path instead the file path itself in order to introduce more flexibility. Unfortunately this introduces a slight backward incompatibility. Hate doing it, but it's a must.
+ * Fixes the acl checker that did not accept a false value in order to go with the default 'private'.
+
 ## v0.3
  * The README relies on Wiki pages in order to provide the docs.
  * Client loader. Previously all the clients were loaded when aws2js was required. Now a specific client is loaded when executing the exported load() method. Unfortunately, this introduces backward incompatibility.
