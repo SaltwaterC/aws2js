@@ -1,5 +1,6 @@
 ## v0.3.3
  * Adds [backport-0.4](https://github.com/SaltwaterC/backport-0.4) as module dependency in order to properly fix the broken request.abort() support. This version is crappy workaround-free.
+ * Adds support for Amazon Identity and Access Management (IAM).
 
 ## v0.3.2
  * If the WriteStream fails when the file response handler is in use by the GET request, the HTTPS request itself is aborted. Previously it was continued, therefore it might waste a lot of bandwidth, that you're going to pay for. This task was not trivial as a bug in node.js complicates the implementation of this feature: https://github.com/joyent/node/issues/1085 . In the future, aws2js will require specifically node 0.5.x if the abort() patches are accepted into the upstream. The garbage that makes the workarounds for the abort() issues (1085, 1304) will be removed.

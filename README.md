@@ -19,19 +19,20 @@ Either manually clone this repository into your node_modules directory, or the r
 
 ## Supported services
 
- * Amazon EC2 (Amazon Elastic Compute Cloud)
- * Amazon RDS (Amazon Relational Database Service)
- * Amazon SES (Amazon Simple Email Service)
- * Amazon ELB (Amazon Elastic Load Balancing)
- * Amazon S3 (Amazon Simple Storage Service)
+ * Amazon EC2 (Elastic Compute Cloud)
+ * Amazon RDS (Relational Database Service)
+ * Amazon SES (Simple Email Service)
+ * Amazon ELB (Elastic Load Balancing)
+ * Amazon S3 (Simple Storage Service)
+ * Amazon IAM (Identity and Access Management)
 
 More will come. This module is under active development.
 
 ## Usage mode
 
- * [the EC2 client](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client)
- * [the RDS client](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client)
- * [the SES client](https://github.com/SaltwaterC/aws2js/wiki/SES-Client)
- * [the ELB client](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client)
- * [the S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
-
+ * [[EC2 client]]
+ * [[RDS client]]
+ * [[SES client]]
+ * [[ELB client]]
+ * [[S3 client]]
+ * [[IAM client]]
