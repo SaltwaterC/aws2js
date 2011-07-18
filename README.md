@@ -30,9 +30,9 @@ More will come. This module is under active development.
 
 ## Usage mode
 
- * [[EC2 client]]
- * [[RDS client]]
- * [[SES client]]
- * [[ELB client]]
- * [[S3 client]]
- * [[IAM client]]
+ * [EC2 client](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client)
+ * [RDS client](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client)
+ * [SES client](https://github.com/SaltwaterC/aws2js/wiki/SES-Client)
+ * [ELB client](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client)
+ * [S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
+ * [IAM client](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client)
