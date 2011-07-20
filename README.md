@@ -1,6 +1,6 @@
 ## About
 
-Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/), but it started to draw its own lines.
+Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/).
 
 ## Installation
 
@@ -25,6 +25,7 @@ Either manually clone this repository into your node_modules directory, or the r
  * Amazon ELB (Elastic Load Balancing)
  * Amazon S3 (Simple Storage Service)
  * Amazon IAM (Identity and Access Management)
+ * Amazon Auto Scaling
 
 More will come. This module is under active development.
 
@@ -36,3 +37,4 @@ More will come. This module is under active development.
  * [ELB client](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client)
  * [S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
  * [IAM client](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client)
+ * [Auto Scaling client](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)

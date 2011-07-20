@@ -1,3 +1,8 @@
+## v0.3.4
+ * Drops the [backport-0.4](https://github.com/SaltwaterC/backport-0.4) dependency. node.js v0.4.10 finally came around with the desired fixes. Only node 0.4.10 and above is supported.
+ * Adds support for Amazon Auto Scaling.
+ * Exposes the client.setMaxSockets() method for changing the https.Agent.defaultMaxSockets property.
+
 ## v0.3.3
  * Adds [backport-0.4](https://github.com/SaltwaterC/backport-0.4) as module dependency in order to properly fix the broken request.abort() support. This version is crappy workaround-free.
  * Adds support for Amazon Identity and Access Management (IAM).

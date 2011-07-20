@@ -1,20 +1,25 @@
 {
 	"name": "aws2js",
 	"main": "./lib/aws.js",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
-		"backport-0.4": ">=0.4.x",
 		"libxmljs": ">=0.x",
 		"libxml-to-js": ">=0.2.x",
 		"mime": ">=1.x"
 	},
 	"engines": {
-		"node": ">=0.4.x"
+		"node": ">=0.4.10"
 	},
 	"homepage": "https://github.com/SaltwaterC/aws2js",
 	"author": {
 		"name": "Stefan Rusu",
 		"url": "http://www.saltwaterc.eu/"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/SaltwaterC/aws2js.git"
+	},
+	"keywords": ["amazon", "aws", "rest", "api", "https", "query api", "ec2",
+		"rds", "ses", "elb", "s3", "iam", "auto scaling"]
 }
