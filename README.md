@@ -38,3 +38,7 @@ More will come. This module is under active development.
  * [S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
  * [IAM client](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client)
  * [Auto Scaling client](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)
+
+## Misc
+
+The clients expose the client.setMaxSockets() method for chainging the https.Agent.defaultMaxSockets property. Note that this method changes the property for all the clients if you use multiple aws2js clients into a single application. Calling it multiple times sets the value to the last input. This is useful for use cases where the default limit of 5 sockets that's provided by default by the HTTP Agent proves to be insufficient.
