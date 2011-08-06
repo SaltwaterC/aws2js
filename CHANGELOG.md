@@ -1,3 +1,7 @@
+## v0.3.6
+ * Returns the error argument as null in case of success in order to follow the node.js convention instead of undefined. This may break some code if the evaluation was made against 'undefined'.
+ * Removed the empty object from the response argument. The response is returned only when the AWS API returned an error XML document.
+
 ## v0.3.5
  * Adds again the [backport-0.4](https://github.com/SaltwaterC/backport-0.4) dependency, v0.4.10-1, that targets issue [#1399](https://github.com/joyent/node/issues/1399) from node v0.4.10. This release fixes a rare race condition that may appear when doing S3 PUT requests with bodies that are streamed from files.
 
