@@ -42,3 +42,7 @@ More will come. This module is under active development.
 ## Misc
 
 The clients expose the client.setMaxSockets() method for changing the https.Agent.defaultMaxSockets property. Note that this method changes the property for all the clients if you use multiple aws2js clients into a single application. Calling it multiple times sets the value to the last input. This is useful for use cases where the default limit of 5 sockets that's provided by default by the HTTP Agent proves to be insufficient.
+
+## Gotcha
+
+Currently the used [mime](https://github.com/bentomas/node-mime) module works by making a file extension lookup. aws2js will eventually integrate the [mime-magic](https://github.com/SaltwaterC/mime-magic) module that provides proper mime auto-detection. Currently mime-magic doesn't work portably.
