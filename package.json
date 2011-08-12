@@ -6,7 +6,7 @@
 	"dependencies": {
 		"backport-0.4": ">=0.4.10-2",
 		"libxmljs": ">=0.x",
-		"libxml-to-js": ">=0.3.1",
+		"libxml-to-js": ">=0.3.3",
 		"mime": ">=1.x"
 	},
 	"engines": {
