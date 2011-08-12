@@ -1,3 +1,6 @@
+## v0.4.1
+ * Fixes the broken handling of error reporting of the XML parsing.
+
 ## v0.4
  * Returns the error argument as null in case of success in order to follow the node.js convention instead of undefined. This may break some code if the evaluation was made against 'undefined'.
  * Removed the response argument in case of error. If there's an error document returned by the AWS API itself, it is exposed as error.document. This may break some code that expects the error document to be returned as the response argument. This change unifies the error reporting that won't expect the result argument anymore.
