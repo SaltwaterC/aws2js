@@ -1,6 +1,6 @@
 ## v0.4.2
  * Adds s3.renameObject().
- * Fixes the error reporting. When an AWS API doesn't return XML as response body, the callback wasn't called.
+ * Fixes the error reporting. When an AWS API didn't return XML as response body, the callback wasn't called.
 
 ## v0.4.1
  * Fixes the broken handling of error reporting of the XML parsing.
