@@ -1,3 +1,6 @@
+## v0.4.3
+ * Proper support for the fsync(2) wrapper. If s3.get() is used for downloading the objects to the disk, the ENOENT errors that could happened from time to time should now be gone.
+
 ## v0.4.2
  * Adds s3.renameObject().
  * Fixes the error reporting. When an AWS API didn't return XML as response body, the callback wasn't called.
