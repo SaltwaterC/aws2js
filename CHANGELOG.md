@@ -1,3 +1,6 @@
+## v0.4.4
+ * Fixes a possible race condition that could appear into the fsync(2) wrapper.
+
 ## v0.4.3
  * Proper support for the fsync(2) wrapper. If s3.get() is used for downloading the objects to the disk, the ENOENT errors that could happened from time to time should now be gone.
 
