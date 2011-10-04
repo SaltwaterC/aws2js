@@ -39,10 +39,14 @@ More will come. This module is under active development.
  * [IAM client](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client)
  * [Auto Scaling client](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)
 
+## API versions
+
+The clients try to use the latest available API version. This applies for the query APIs. If this breaks due to backward incompatibility (although the AWS guys should not do this), use the specific API version that applies to the case. The [client.setApiVersion()](https://github.com/SaltwaterC/aws2js/wiki/client.setApiVersion%28%29) helper should be very handy for this specific case.
+
 ## Misc
 
 The clients expose the client.setMaxSockets() method for changing the https.Agent.defaultMaxSockets property. Note that this method changes the property for all the clients if you use multiple aws2js clients into a single application. Calling it multiple times sets the value to the last input. This is useful for use cases where the default limit of 5 sockets that's provided by default by the HTTP Agent proves to be insufficient.
 
 ## Gotcha
 
-Currently the used [mime](https://github.com/bentomas/node-mime) module works by making a file extension lookup. aws2js will eventually integrate the [mime-magic](https://github.com/SaltwaterC/mime-magic) module that provides proper mime auto-detection. Currently mime-magic doesn't work portably.
+Currently the used [mime](https://github.com/bentomas/node-mime) module works by making a file extension lookup. The S3 client is affected by this issue. aws2js will eventually integrate the [mime-magic](https://github.com/SaltwaterC/mime-magic) module that provides proper mime auto-detection. Currently mime-magic doens't have binary integration with node.js while spawning file(1) commands under OS X might be slower than a native integration.

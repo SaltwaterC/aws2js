@@ -1,3 +1,12 @@
+## v0.4.5
+ * The 'closed' events of the HTTPS response are treated as errors. The AWS APIs should end the request cleanly. Normally they do.
+ * Avoids the node.js issue [#1399](https://github.com/joyent/node/issues/1399), which is still undecided, by having a state indicating that the HTTPS request isn't aborted. Basically this workaround removes the  backport-0.4 dependency as crashing the process can be avoided without bundling my own http.js + https.js.
+ * Adds the client.getApiVersion() method in order to indicate which is the default or defined API version. The query APIs support this feature. This is an elegant way of wrapping client.query.Version which may be an arcane methodology for outsiders. Usually useful for debugging.
+ * Adds the client.setApiVersion() method for setting the API version. The query APIs support this feature. 
+ * Updates the EC2 API client to default to version 2011-07-15.
+ * Updates the ELB API client to default to version 2011-08-15.
+ * Updates the AutoScaling API client to default to version 2011-01-01.
+
 ## v0.4.4
  * Fixes a possible race condition that could appear into the fsync(2) wrapper.
 
