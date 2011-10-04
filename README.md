@@ -27,8 +27,6 @@ Either manually clone this repository into your node_modules directory, or the r
  * Amazon IAM (Identity and Access Management)
  * Amazon Auto Scaling
 
-More will come. This module is under active development.
-
 ## Usage mode
 
  * [EC2 client](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client)
@@ -43,10 +41,10 @@ More will come. This module is under active development.
 
 The clients try to use the latest available API version. This applies for the query APIs. If this breaks due to backward incompatibility (although the AWS guys should not do this), use the specific API version that applies to the case. The [client.setApiVersion()](https://github.com/SaltwaterC/aws2js/wiki/client.setApiVersion%28%29) helper should be very handy for this specific case.
 
-## Misc
+## HTTP Agent setting
 
-The clients expose the client.setMaxSockets() method for changing the https.Agent.defaultMaxSockets property. Note that this method changes the property for all the clients if you use multiple aws2js clients into a single application. Calling it multiple times sets the value to the last input. This is useful for use cases where the default limit of 5 sockets that's provided by default by the HTTP Agent proves to be insufficient.
+The clients expose the [client.setMaxSockets()](https://github.com/SaltwaterC/aws2js/wiki/client.setMaxSockets%28%29) helper for changing the https.Agent.defaultMaxSockets property.
 
 ## Gotcha
 
-Currently the used [mime](https://github.com/bentomas/node-mime) module works by making a file extension lookup. The S3 client is affected by this issue. aws2js will eventually integrate the [mime-magic](https://github.com/SaltwaterC/mime-magic) module that provides proper mime auto-detection. Currently mime-magic doens't have binary integration with node.js while spawning file(1) commands under OS X might be slower than a native integration.
+Currently the used [mime](https://github.com/bentomas/node-mime) module works by making a file extension lookup. The S3 client is affected by this issue. aws2js will eventually integrate the [mime-magic](https://github.com/SaltwaterC/mime-magic) module that provides proper mime auto-detection. Currently mime-magic doens't have binary integration with node.js while spawning file(1) commands under OS X is slower than a native integration.
