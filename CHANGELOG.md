@@ -4,6 +4,7 @@
  * Adds the client.getApiVersion() method in order to indicate which is the default or defined API version. The query APIs support this feature. This is an elegant way of wrapping client.query.Version which may be an arcane methodology for outsiders. Usually useful for debugging.
  * Adds the client.setApiVersion() method for setting the API version. The query APIs support this feature.
  * Adds s3.setEndpoint() helper for the S3 client.
+ * Adds Amazon CloudWatch support.
  * Updates the EC2 API client to default to version 2011-07-15.
  * Updates the ELB API client to default to version 2011-08-15.
  * Updates the AutoScaling API client to default to version 2011-01-01.
