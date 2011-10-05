@@ -1,13 +1,19 @@
-## v0.4.5
- * The 'closed' events of the HTTPS response are treated as errors. The AWS APIs should end the request cleanly. Normally they do.
+## v0.5
+ * [MIGHT BREAK COMPAT] The S3 paths are now escaped. The chars that normally aren't part of an S3 path are now URL encoded.
+ * The 'closed' events of the HTTPS response are treated as errors. The AWS APIs should end the request cleanly. Normally they do. This fixes possible hangs of the HTTPS support.
  * Avoids the node.js issue [#1399](https://github.com/joyent/node/issues/1399), which is still undecided, by having a state indicating that the HTTPS request isn't aborted. Basically this workaround removes the [backport-0.4](https://github.com/SaltwaterC/backport-0.4) dependency as crashing the process can be avoided without bundling my own http.js + https.js.
  * Adds the client.getApiVersion() method in order to indicate which is the default or defined API version. The query APIs support this feature. This is an elegant way of wrapping client.query.Version which may be an arcane methodology for outsiders. Usually useful for debugging.
  * Adds the client.setApiVersion() method for setting the API version. The query APIs support this feature.
- * Adds s3.setEndpoint() helper for the S3 client.
+ * Adds s3.setEndPoint() helper for the S3 client.
  * Adds Amazon CloudWatch support.
+ * Adds Amazon ElastiCache support.
+ * Enables the client.getEndPoint() for all the query API clients, regardless of the region support.
  * Updates the EC2 API client to default to version 2011-07-15.
  * Updates the ELB API client to default to version 2011-08-15.
  * Updates the AutoScaling API client to default to version 2011-01-01.
+ * The input query for the query argument of the query APIs takes precendence over the query parameters that are configured into the client itself. This allows per API call custom configuration (eg: Version - indicates the API version).
+ * Integrates with [mime-magic](https://github.com/SaltwaterC/mime-magic) to provide the automatic MIME type detenction when the Content-Type header for the S3 PUT operation is undefined. This method does a bit of I/O, it is slower than the previous method for computing the MIMEs, but the results are more reliable. The libmagic functionality returns the MIME type by reading the file itself.
+ * Changed the internal structure of the library.
 
 ## v0.4.4
  * Fixes a possible race condition that could appear into the fsync(2) wrapper.
@@ -23,8 +29,8 @@
  * Fixes the broken handling of error reporting of the XML parsing.
 
 ## v0.4
- * Returns the error argument as null in case of success in order to follow the node.js convention instead of undefined. This may break some code if the evaluation was made against 'undefined'.
- * Removed the response argument in case of error. If there's an error document returned by the AWS API itself, it is exposed as error.document. This may break some code that expects the error document to be returned as the response argument. This change unifies the error reporting that won't expect the result argument anymore.
+ * [BREAKS COMPAT] Removed the response argument in case of error. If there's an error document returned by the AWS API itself, it is exposed as error.document. This may break some code that expects the error document to be returned as the response argument. This change unifies the error reporting that won't expect the result argument anymore.
+ * [MIGHT BREAK COMPAT] Returns the error argument as null in case of success in order to follow the node.js convention instead of undefined. This may break some code if the evaluation was made against 'undefined'.
  * Exposes client.getEndPoint() method if the client.setRegion() method is available.
  * Calls [fsync(2)](http://linux.die.net/man/2/fsync) after each downloaded file via s3.get() in order to make sure that the application has a consistent behavior when the s3.get() callback is called.
 
@@ -41,21 +47,21 @@
  * Adds support for Amazon Identity and Access Management (IAM).
 
 ## v0.3.2
- * If the WriteStream fails when the file response handler is in use by the GET request, the HTTPS request itself is aborted. Previously it was continued, therefore it might waste a lot of bandwidth, that you're going to pay for. This task was not trivial as a bug in node.js complicates the implementation of this feature: https://github.com/joyent/node/issues/1085 . In the future, aws2js will require specifically node 0.5.x if the abort() patches are accepted into the upstream. The garbage that makes the workarounds for the abort() issues (1085, 1304) will be removed.
+ * If the WriteStream fails when the file response handler is in use by the GET request, the HTTPS request itself is aborted. Previously it was continued, therefore it might waste a lot of bandwidth, that you're going to pay for. This task was not trivial as a bug in node.js complicates the implementation of this feature. See [#1085](https://github.com/joyent/node/issues/1085).
 
 ## v0.3.1
  * Changes file the GET response handler to receive an object indicating the file path instead the file path itself in order to introduce more flexibility. Unfortunately this introduces a slight backward incompatibility. Hate doing it, but it's a must.
  * Fixes the acl checker that did not accept a false value in order to go with the default 'private'.
 
 ## v0.3
+ * [BREAKS COMPAT] Client loader. Previously all the clients were loaded when aws2js was required. Now a specific client is loaded when executing the exported load() method. Unfortunately, this introduces backward incompatibility.
+ * [BREAKS COMPAT] Removed the client.config() method as it may break more stuff than it introduces.
  * The README relies on Wiki pages in order to provide the docs.
- * Client loader. Previously all the clients were loaded when aws2js was required. Now a specific client is loaded when executing the exported load() method. Unfortunately, this introduces backward incompatibility.
  * Amazon S3 support.
  * Amazon ELB support.
  * Made the Amazon RDS API version to be the latest 2011-04-01 by default.
  * Made the Amazon SES API version to be the latest 2010-12-01 by default.
- * Adds mime as dependency due to mime/type auto-detection for S3 uploads.
- * Removed the client.config() method as it may break more stuff than it introduces.
+ * Adds [mime](https://github.com/bentomas/node-mime) as dependency due to mime/type auto-detection for S3 uploads.
 
 ## v0.2.2
  * Updates the libxml-to-js dependency to v0.2.
@@ -66,7 +72,7 @@
  * Implements the Amazon Simple Email Service (SES) client.
 
 ## v0.2
- * Migrated to a cleaner XML to JS implementation (my own libxml-to-js wrapper).
+ * Migrated to a cleaner XML to JS implementation (my own [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) wrapper).
  * Initial public release with versioning and npm support.
 
 ## v0.1

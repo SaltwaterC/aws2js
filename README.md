@@ -10,7 +10,7 @@ Either manually clone this repository into your node_modules directory, or the r
 
 ## Project and Design goals
 
- * HTTPS-only APIs communication
+ * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
  * Proper error reporting
  * Simple to write clients for a specific AWS service (abstracts most of the low level plumbing)
  * Simple to use AWS API calls
@@ -26,6 +26,8 @@ Either manually clone this repository into your node_modules directory, or the r
  * Amazon S3 (Simple Storage Service)
  * Amazon IAM (Identity and Access Management)
  * Amazon Auto Scaling
+ * Amazon CloudWatch
+ * Amazon ElastiCache
 
 ## Usage mode
 
@@ -36,15 +38,5 @@ Either manually clone this repository into your node_modules directory, or the r
  * [S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
  * [IAM client](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client)
  * [Auto Scaling client](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)
-
-## API versions
-
-The clients try to use the latest available API version. This applies for the query APIs. If this breaks due to backward incompatibility (although the AWS guys should not do this), use the specific API version that applies to the case. The [client.setApiVersion()](https://github.com/SaltwaterC/aws2js/wiki/client.setApiVersion%28%29) helper should be very handy for this specific case.
-
-## HTTP Agent setting
-
-The clients expose the [client.setMaxSockets()](https://github.com/SaltwaterC/aws2js/wiki/client.setMaxSockets%28%29) helper for changing the https.Agent.defaultMaxSockets property.
-
-## Gotcha
-
-Currently the used [mime](https://github.com/bentomas/node-mime) module works by making a file extension lookup. The S3 client is affected by this issue. aws2js will eventually integrate the [mime-magic](https://github.com/SaltwaterC/mime-magic) module that provides proper mime auto-detection. Currently mime-magic doens't have binary integration with node.js while spawning file(1) commands under OS X is slower than a native integration.
+ * [CloudWatch client](https://github.com/SaltwaterC/aws2js/wiki/CloudWatch-Client)
+ * [ElastiCache client](https://github.com/SaltwaterC/aws2js/wiki/ElastiCache-Client)
