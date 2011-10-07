@@ -17,26 +17,14 @@ Either manually clone this repository into your node_modules directory, or the r
  * Higher level clients for specific work flows
  * Proper documentation
 
-## Supported services
+## Supported
 
- * Amazon EC2 (Elastic Compute Cloud)
- * Amazon RDS (Relational Database Service)
- * Amazon SES (Simple Email Service)
- * Amazon ELB (Elastic Load Balancing)
- * Amazon S3 (Simple Storage Service)
- * Amazon IAM (Identity and Access Management)
- * Amazon Auto Scaling
- * Amazon CloudWatch
- * Amazon ElastiCache
-
-## Usage mode
-
- * [EC2 client](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client)
- * [RDS client](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client)
- * [SES client](https://github.com/SaltwaterC/aws2js/wiki/SES-Client)
- * [ELB client](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client)
- * [S3 client](https://github.com/SaltwaterC/aws2js/wiki/S3-Client)
- * [IAM client](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client)
- * [Auto Scaling client](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)
- * [CloudWatch client](https://github.com/SaltwaterC/aws2js/wiki/CloudWatch-Client)
- * [ElastiCache client](https://github.com/SaltwaterC/aws2js/wiki/ElastiCache-Client)
+ * [Amazon EC2](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client) (Elastic Compute Cloud)
+ * [Amazon RDS](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client) (Relational Database Service)
+ * [Amazon SES](https://github.com/SaltwaterC/aws2js/wiki/SES-Client) (Simple Email Service)
+ * [Amazon ELB](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client) (Elastic Load Balancing)
+ * [Amazon IAM](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client) (Identity and Access Management)
+ * [Amazon Auto Scaling](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)
+ * [Amazon CloudWatch](https://github.com/SaltwaterC/aws2js/wiki/CloudWatch-Client)
+ * [Amazon ElastiCache](https://github.com/SaltwaterC/aws2js/wiki/ElastiCache-Client)
+ * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
