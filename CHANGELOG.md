@@ -7,13 +7,14 @@
  * Adds s3.setEndPoint() helper for the S3 client.
  * Adds Amazon CloudWatch support.
  * Adds Amazon ElastiCache support.
- * Enables the client.getEndPoint() for all the query API clients, regardless of the region support.
+ * Enables the client.getEndPoint() for all the API clients.
  * Updates the EC2 API client to default to version 2011-07-15.
  * Updates the ELB API client to default to version 2011-08-15.
  * Updates the AutoScaling API client to default to version 2011-01-01.
  * The input query for the query argument of the query APIs takes precendence over the query parameters that are configured into the client itself. This allows per API call custom configuration (eg: Version - indicates the API version).
  * Integrates with [mime-magic](https://github.com/SaltwaterC/mime-magic) to provide the automatic MIME type detenction when the Content-Type header for the S3 PUT operation is undefined. This method does a bit of I/O, it is slower than the previous method for computing the MIMEs, but the results are more reliable. The libmagic functionality returns the MIME type by reading the file itself.
  * Changed the internal structure of the library.
+ * Unit testing coverage.
 
 ## v0.4.4
  * Fixes a possible race condition that could appear into the fsync(2) wrapper.
