@@ -1,4 +1,4 @@
-## About
+## About ![still maintained](http://stillmaintained.com/SaltwaterC/aws2js.png)
 
 Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/).
 
