@@ -5,8 +5,8 @@
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
 		"libxmljs": ">=0.x",
-		"libxml-to-js": ">=0.3.4",
-		"mime-magic": ">=0.2.1"
+		"libxml-to-js": ">=0.3.8",
+		"mime-magic": ">=0.2.2"
 	},
 	"engines": {
 		"node": ">=0.4.10"
