@@ -1,5 +1,5 @@
 ## v0.5
- * [MIGHT BREAK COMPAT] The S3 paths are now escaped. The chars that normally aren't part of an S3 path are now URL encoded.
+ * [MIGHT BREAK COMPAT] The S3 paths are now escaped. The chars that normally aren't part of an S3 path are now URL encoded. The s3.escapePath() is called automatically. Exposed as helper in order to be able to know exactly the input for the S3 REST API.
  * The 'closed' events of the HTTPS response are treated as errors. The AWS APIs should end the request cleanly. Normally they do. This fixes possible hangs of the HTTPS support.
  * Avoids the node.js issue [#1399](https://github.com/joyent/node/issues/1399), which is still undecided, by having a state indicating that the HTTPS request isn't aborted. Basically this workaround removes the [backport-0.4](https://github.com/SaltwaterC/backport-0.4) dependency as crashing the process can be avoided without bundling my own http.js + https.js.
  * Adds the client.getApiVersion() method in order to indicate which is the default or defined API version. The query APIs support this feature. This is an elegant way of wrapping client.query.Version which may be an arcane methodology for outsiders. Usually useful for debugging.
