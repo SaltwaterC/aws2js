@@ -5,7 +5,7 @@ var ses = require('../').load('ses');
 ses.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 
 try {
-	rds.setRegion('us-east-1');
+	ses.setRegion('us-east-1');
 } catch (e) {
 	assert.ok(e instanceof Error);
 }
