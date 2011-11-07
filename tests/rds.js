@@ -11,7 +11,7 @@ var callbacks = {
 	requestWithQuery: false
 };
 
-var rdsProcessResponse = function (err, res, cb) {
+var rdsProcessResponse = function (err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeDBInstancesResult.DBInstances);
 };
