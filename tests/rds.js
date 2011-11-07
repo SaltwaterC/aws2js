@@ -6,9 +6,9 @@ rds.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS
 rds.setRegion('us-east-1');
 
 var callbacks = {
-	call: false,
-	callWithoutQuery: false,
-	callWithQuery: false
+	request: false,
+	requestWithoutQuery: false,
+	requestWithQuery: false
 };
 
 var rdsProcessResponse = function (err, res, cb) {
@@ -17,17 +17,17 @@ var rdsProcessResponse = function (err, res, cb) {
 };
 
 rds.request('DescribeDBInstances', {}, function (err, res) {
-	callbacks.call = true;
+	callbacks.request = true;
 	rdsProcessResponse(err, res);
 });
 
 rds.request('DescribeDBInstances', function (err, res) {
-	callbacks.callWithoutQuery = true;
+	callbacks.requestWithoutQuery = true;
 	rdsProcessResponse(err, res);
 });
 
 rds.request('DescribeDBInstances', {MaxRecords: 20}, function (err, res) {
-	callbacks.callWithQuery = true;
+	callbacks.requestWithQuery = true;
 	rdsProcessResponse(err, res);
 });
 

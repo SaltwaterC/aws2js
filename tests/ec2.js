@@ -5,9 +5,9 @@ ec2.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS
 ec2.setRegion('us-east-1');
 
 var callbacks = {
-	call: false,
-	callWithoutQuery: false,
-	callWithFilter: false
+	request: false,
+	requestWithoutQuery: false,
+	requestWithFilter: false
 };
 
 var ec2ProcessResponse = function (err, res) {
@@ -16,17 +16,17 @@ var ec2ProcessResponse = function (err, res) {
 };
 
 ec2.request('DescribeInstances', {}, function (err, res) {
-	callbacks.call = true;
+	callbacks.request = true;
 	ec2ProcessResponse(err, res);
 });
 
 ec2.request('DescribeInstances', function (err, res) {
-	callbacks.callWithoutQuery = true;
+	callbacks.requestWithoutQuery = true;
 	ec2ProcessResponse(err, res);
 });
 
 ec2.request('DescribeInstances', {'Filter.1.Name': 'architecture', 'Filter.1.Value.1': 'i386'}, function (err, res) {
-	callbacks.callWithFilter = true;
+	callbacks.requestWithFilter = true;
 	ec2ProcessResponse(err, res);
 });
 
