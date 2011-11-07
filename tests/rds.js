@@ -16,17 +16,17 @@ var rdsProcessResponse = function (err, res, cb) {
 	assert.ok(res.DescribeDBInstancesResult.DBInstances);
 };
 
-rds.call('DescribeDBInstances', {}, function (err, res) {
+rds.request('DescribeDBInstances', {}, function (err, res) {
 	callbacks.call = true;
 	rdsProcessResponse(err, res);
 });
 
-rds.call('DescribeDBInstances', function (err, res) {
+rds.request('DescribeDBInstances', function (err, res) {
 	callbacks.callWithoutQuery = true;
 	rdsProcessResponse(err, res);
 });
 
-rds.call('DescribeDBInstances', {MaxRecords: 20}, function (err, res) {
+rds.request('DescribeDBInstances', {MaxRecords: 20}, function (err, res) {
 	callbacks.callWithQuery = true;
 	rdsProcessResponse(err, res);
 });

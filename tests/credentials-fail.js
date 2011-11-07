@@ -3,7 +3,7 @@ var assert = require('assert');
 
 var callback = false;
 
-ec2.call('DescribeInstances', {}, function (err, res) {
+ec2.request('DescribeInstances', {}, function (err, res) {
 	callback = true;
 	assert.ok(err instanceof Error);
 	assert.deepEqual(err.message, 'You must set the AWS credentials: accessKeyId + secretAccessKey');

@@ -13,8 +13,9 @@
  * Updates the AutoScaling API client to default to version 2011-01-01.
  * The input query for the query argument of the query APIs takes precendence over the query parameters that are configured into the client itself. This allows per API call custom configuration (eg: Version - indicates the API version).
  * Integrates with [mime-magic](https://github.com/SaltwaterC/mime-magic) to provide the automatic MIME type detenction when the Content-Type header for the S3 PUT operation is undefined. This method does a bit of I/O, it is slower than the previous method for computing the MIMEs, but the results are more reliable. The libmagic functionality returns the MIME type by reading the file itself.
- * The client.call() method makes the query argument to be optional.
+ * The client.request() method makes the query argument to be optional.
  * Changed the internal structure of the library.
+ * Deprecates client.call() in favor of client.request() for the query APIs.
  * Unit testing coverage.
 
 ## v0.4.4

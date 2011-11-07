@@ -15,17 +15,17 @@ var ec2ProcessResponse = function (err, res) {
 	assert.ok(res.reservationSet);
 };
 
-ec2.call('DescribeInstances', {}, function (err, res) {
+ec2.request('DescribeInstances', {}, function (err, res) {
 	callbacks.call = true;
 	ec2ProcessResponse(err, res);
 });
 
-ec2.call('DescribeInstances', function (err, res) {
+ec2.request('DescribeInstances', function (err, res) {
 	callbacks.callWithoutQuery = true;
 	ec2ProcessResponse(err, res);
 });
 
-ec2.call('DescribeInstances', {'Filter.1.Name': 'architecture', 'Filter.1.Value.1': 'i386'}, function (err, res) {
+ec2.request('DescribeInstances', {'Filter.1.Name': 'architecture', 'Filter.1.Value.1': 'i386'}, function (err, res) {
 	callbacks.callWithFilter = true;
 	ec2ProcessResponse(err, res);
 });
