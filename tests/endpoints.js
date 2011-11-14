@@ -30,5 +30,7 @@ assert.deepEqual(ec.getEndPoint(), 'elasticache.us-east-1' + suffix);
 
 var s3 = aws.load('s3');
 assert.deepEqual(s3.getEndPoint(), 's3' + suffix);
-s3.setEndPoint('foo');
+s3.setBucket('foo');
 assert.deepEqual(s3.getEndPoint(), 'foo.s3' + suffix);
+s3.setEndPoint('bar');
+assert.deepEqual(s3.getEndPoint(), 'bar.s3' + suffix);
