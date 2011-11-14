@@ -15,7 +15,8 @@
  * Integrates with [mime-magic](https://github.com/SaltwaterC/mime-magic) to provide the automatic MIME type detenction when the Content-Type header for the S3 PUT operation is undefined. This method does a bit of I/O, it is slower than the previous method for computing the MIMEs, but the results are more reliable. The libmagic functionality returns the MIME type by reading the file itself.
  * The client.request() method makes the query argument to be optional.
  * Changed the internal structure of the library.
- * Deprecates client.call() in favor of client.request() for the query APIs.
+ * Deprecates query.call() in favor of query.request() for the query APIs.
+ * Deprecates s3.putObject() in favor of s3.putFile().
  * Implements new GET response handlers: buffer - returns the response argument as the response body itself; stream - returns the HTTPS response itself which implements node.js's Readable Stream interface.
  * Unit testing coverage.
 
