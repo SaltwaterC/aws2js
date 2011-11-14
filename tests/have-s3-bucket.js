@@ -1,5 +1,5 @@
 var assert = require('assert');
-var s3 = require('aws2js').load('s3');
+var s3 = require('../').load('s3');
 var callback = false;
 
 assert.ok(process.env.AWS2JS_S3_BUCKET != undefined);
