@@ -16,7 +16,7 @@
  * The client.request() method makes the query argument to be optional.
  * Changed the internal structure of the library.
  * Deprecates client.call() in favor of client.request() for the query APIs.
- * Implements a new GET handler: buffer, which returns the response argument as the response body itself.
+ * Implements new GET handlers: buffer - returns the response argument as the response body itself; stream - returns the HTTPS response itself which implements node.js's Readable Stream interface.
  * Unit testing coverage.
 
 ## v0.4.4
