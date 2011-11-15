@@ -19,6 +19,7 @@
  * Deprecates s3.putObject() in favor of s3.putFile().
  * Implements new GET response handlers: buffer - returns the response argument as the response body itself; stream - returns the HTTPS response itself which implements node.js's Readable Stream interface.
  * Adds a new s3.putStream() helper for PUT'ing streams to S3.
+ * Adds a new s3.putBuffer() helper for PUT'ing buffers to S3.
  * Unit testing coverage.
 
 ## v0.4.4
