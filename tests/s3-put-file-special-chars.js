@@ -18,7 +18,7 @@ s3.putFile(path, './data/foo.txt', false, {}, function (err, res) {
 		callbacks.get = true;
 		assert.ifError(err);
 		assert.deepEqual(res.headers['content-type'], 'text/plain');
-		assert.deepEqual(res.buffer, 'bar\n');
+		assert.deepEqual(res.buffer.toString(), 'bar\n');
 		s3.del(path, function (err) {
 			callbacks.del = true;
 			assert.ifError(err);
