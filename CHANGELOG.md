@@ -12,10 +12,10 @@
  * Updates the ELB API client to default to version 2011-08-15.
  * Updates the AutoScaling API client to default to version 2011-01-01.
  * The input query for the query argument of the query APIs takes precendence over the query parameters that are configured into the client itself. This allows per API call custom configuration (eg: Version - indicates the API version).
- * Integrates with [mime-magic](https://github.com/SaltwaterC/mime-magic) to provide the automatic MIME type detenction when the Content-Type header for the S3 PUT operation is undefined. This method does a bit of I/O, it is slower than the previous method for computing the MIMEs, but the results are more reliable. The libmagic functionality returns the MIME type by reading the file itself.
- * The client.request() method makes the query argument to be optional.
- * Changed the internal structure of the library.
+ * Integrates with [mime-magic](https://github.com/SaltwaterC/mime-magic) to provide the automatic MIME type detenction when the Content-Type header for the S3 PUT operation is undefined. This method does a bit of I/O, it is slower than the previous method for computing the MIMEs, but the results are more reliable. The libmagic functionality returns the MIME type by reading the file itself instead of doing a dumb file extension lookup.
  * Deprecates query.call() in favor of query.request() for the query APIs.
+ * The query.request() method makes the query argument to be optional.
+ * Changed the internal structure of the library.
  * Deprecates s3.putObject() in favor of s3.putFile().
  * Implements new GET response handlers: buffer - the response contains a buffer key with the buffer contents; stream - returns the HTTPS response itself which implements node.js's Readable Stream interface.
  * Adds a new s3.putStream() helper for PUT'ing streams to S3.
