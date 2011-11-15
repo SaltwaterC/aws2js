@@ -1,7 +1,7 @@
 ## v0.5
  * [MIGHT BREAK COMPAT] The S3 paths are now escaped. The chars that normally aren't part of an S3 path are now URL encoded. The s3.escapePath() is called automatically. Exposed as helper in order to be able to know exactly the input for the S3 REST API.
  * The 'closed' events of the HTTPS response are treated as errors. The AWS APIs should end the request cleanly. Normally they do. This fixes possible hangs of the HTTPS support.
- * Avoids the node.js issue [#1399](https://github.com/joyent/node/issues/1399), which is still undecided, by having a state indicating that the HTTPS request isn't aborted. Basically this workaround removes the [backport-0.4](https://github.com/SaltwaterC/backport-0.4) dependency as crashing the process can be avoided without bundling my own http.js + https.js.
+ * Avoids the node.js issue [#1399](https://github.com/joyent/node/issues/1399) without my own http.js bundle.
  * Adds the client.getApiVersion() method in order to indicate which is the default or defined API version. The query APIs support this feature. This is an elegant way of wrapping client.query.Version which may be an arcane methodology for outsiders. Usually useful for debugging.
  * Adds the client.setApiVersion() method for setting the API version. The query APIs support this feature.
  * Adds s3.setEndPoint() helper for the S3 client.
@@ -18,6 +18,7 @@
  * Deprecates query.call() in favor of query.request() for the query APIs.
  * Deprecates s3.putObject() in favor of s3.putFile().
  * Implements new GET response handlers: buffer - returns the response argument as the response body itself; stream - returns the HTTPS response itself which implements node.js's Readable Stream interface.
+ * Adds a new s3.putStream() helper for PUT'ing streams to S3.
  * Unit testing coverage.
 
 ## v0.4.4
