@@ -1,3 +1,4 @@
+var Stream = require('stream').Stream;
 var assert = require('assert');
 var s3 = require('../').load('s3');
 var path = 'foo.txt';
@@ -17,8 +18,7 @@ s3.putFile(path, './data/foo.txt', false, {}, function (err, res) {
 	s3.get(path, 'stream', function (err, res) {
 		callbacks.get = true;
 		assert.ifError(err);
-		assert.deepEqual(res.readable, true);
-		assert.deepEqual(typeof res.pipe, 'function');
+		assert.ok(res instanceof Stream);
 		s3.del(path, function (err) {
 			callbacks.del = true;
 			assert.ifError(err);
