@@ -1,3 +1,8 @@
+## v0.5.1
+ * Revoked the ability to override Content-MD5 for s3.putFile().
+ * The body handlers are more forgiving by returning the Error() as the error argument of the callback insteaf of throwing it.
+ * Added Amazon SQS support.
+
 ## v0.5
  * [MIGHT BREAK COMPAT] The S3 paths are now escaped. The chars that normally aren't part of an S3 path are now URL encoded. The s3.escapePath() is called automatically. Exposed as helper in order to be able to know exactly the input for the S3 REST API.
  * The 'closed' events of the HTTPS response are treated as errors. The AWS APIs should end the request cleanly. Normally they do. This fixes possible hangs of the HTTPS support.
