@@ -1,5 +1,6 @@
 ## v0.5.2
  * s3.del() allows calling it without calling s3.setBucket(). If you really want to use that pesky path style addressing.
+ * Throws an Error() if the credentials aren't set. Wrapping the error handling into a callback is not practical here since it's clearly an user error.
 
 ## v0.5.1
  * Revoked the ability to override Content-MD5 for s3.putFile().
