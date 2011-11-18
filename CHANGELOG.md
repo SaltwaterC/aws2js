@@ -1,3 +1,6 @@
+## v0.5.2
+ * s3.del() allows calling it without calling s3.setBucket(). If you really want to use that pesky path style addressing.
+
 ## v0.5.1
  * Revoked the ability to override Content-MD5 for s3.putFile().
  * The body handlers are more forgiving by returning the Error() as the error argument of the callback insteaf of throwing it.
