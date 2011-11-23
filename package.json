@@ -16,6 +16,12 @@
 		"name": "Stefan Rusu",
 		"url": "http://www.saltwaterc.eu/"
 	},
+	"contributors": [
+		{
+			"name": "Dan Tillberg",
+			"url": "http://tillberg.us/"
+		}
+	],
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/SaltwaterC/aws2js.git"

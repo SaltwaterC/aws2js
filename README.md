@@ -29,3 +29,7 @@ Either manually clone this repository into your node_modules directory, or the r
  * [Amazon ElastiCache](https://github.com/SaltwaterC/aws2js/wiki/ElastiCache-Client)
  * [Amazon SQS](https://github.com/SaltwaterC/aws2js/wiki/SQS-Client) (Simple Queue Service)
  * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
+
+## Contributors
+
+ * [Dan Tillberg](https://github.com/tillberg) - deprecation of [query.call()](https://github.com/SaltwaterC/aws2js/wiki/query.call%28%29) in favor of [query.request()](https://github.com/SaltwaterC/aws2js/wiki/query.request%28%29)
