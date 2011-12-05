@@ -1,3 +1,6 @@
+## v0.5.4
+ * sqs.setQueue() in favor of sqs.queue(). Tells the story better if you look at how the aws2js API looks like.
+
 ## v0.5.3
  * sqs.queue() helper for calling a specific SQS queue.
 
