@@ -1,3 +1,6 @@
+## v0.5.6
+ * Fixes the broken Content-Length header if Content-Type was manually specified for the S3 PUT operation.
+
 ## v0.5.5
  * Added Amazon CloudFormation support.
 
