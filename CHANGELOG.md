@@ -1,3 +1,6 @@
+## v0.5.7
+ * Sending query parameters was broken for the S3 client into the previous v0.5.x releases due to automatic escaping.
+
 ## v0.5.6
  * Fixes the broken Content-Length header if Content-Type was manually specified for the S3 PUT operation.
 
