@@ -1,6 +1,6 @@
 var assert = require('assert');
 var s3 = require('../').load('s3');
-var path = 'foo~!@#$&*()=:,;?+\'.txt';
+var path = 'foo~!@#$&*()=:,;%3F+\'.txt';
 
 var callbacks = {
 	put: false,
