@@ -1,3 +1,7 @@
+## v0.6.1
+ * The client loader creates a new object on every invocation. This makes possible working with multiple clients having different internal states (such as: API endpoints, SQS queue paths, etc).
+ * Forces dependencies that include bugfixes which affect aws2js.
+
 ## v0.6.0
  * [BREAKS COMPAT] The automatic S3 path escaping implemented in v0.5.0 won't escape anymore the ? char. There's no proper technical solution for solving the ambiguities regarding this char, therefore, if it's part of the S3 file name / S3 file path, it has to be manually escaped. This situations happens due to the fact that this char is used for seding query params as well. This version enables the query params for all resources.
  * Deprecated the usage of s3.escapePath(). Use JavaScript's encodeURI() instead.
