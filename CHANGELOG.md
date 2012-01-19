@@ -1,3 +1,7 @@
+## v0.6.2
+ * Added Amazon SimpleDB support.
+ * Added sa-east-1 region (Brazil, Sao Paulo) support.
+
 ## v0.6.1
  * The client loader creates a new object on every invocation. This makes possible working with multiple clients having different internal states (such as: API endpoints, SQS queue paths, etc).
  * Forces dependencies that include bugfixes which affect aws2js.
