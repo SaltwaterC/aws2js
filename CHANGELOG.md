@@ -1,7 +1,8 @@
 ## v0.6.3
  * Uses the idea from [#16](https://github.com/livelycode/aws-lib/pull/16) of aws-lib in order to make the query APIs request signing more stable.
- * Added Amazon STS (Secure Token Service) support.
+ * Added Amazon STS (Security Token Service) support.
  * Added Amazon DynamoDB support.
+ * Updates the EC2 API client to default to version 2011-12-15.
 
 ## v0.6.2
  * Added Amazon SimpleDB support.
