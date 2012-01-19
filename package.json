@@ -36,5 +36,6 @@
 	},
 	"keywords": ["amazon", "aws", "rest", "api", "https", "query api", "ec2",
 		"rds", "ses", "elb", "s3", "iam", "auto scaling", "cloudwatch",
-		"elasticache", "sqs", "simpledb", "sdb"]
+		"elasticache", "sqs", "simpledb", "sdb", "secure token service", "sts",
+		"dynamodb"]
 }
