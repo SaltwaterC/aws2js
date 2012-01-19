@@ -1,3 +1,6 @@
+## v0.6.3
+ * Uses the idea from [#16](https://github.com/livelycode/aws-lib/pull/16) of aws-lib in order to make the query APIs request signing more stable.
+
 ## v0.6.2
  * Added Amazon SimpleDB support.
  * Added sa-east-1 region (Brazil, Sao Paulo) support.
