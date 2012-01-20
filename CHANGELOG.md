@@ -6,6 +6,8 @@
  * Added Amazon SNS (Simple Notification Service) support.
  * Added support for using STS credentials with the APIs that support this functionality: EC2, SQS, SNS, S3.
  * Patches in the client templates that don't have default API end points as expected. Now every client should work without the need of calling query.setRegion().
+ * Adds a new query API helper: query.setPath().
+ * All the setter helpers are chainable.
 
 ## v0.6.2
  * Added Amazon SimpleDB support.
