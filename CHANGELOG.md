@@ -1,3 +1,16 @@
+## v0.6.3
+ * Uses the idea from [#16](https://github.com/livelycode/aws-lib/pull/16) of aws-lib in order to make the query APIs request signing more stable.
+ * Added Amazon STS (Security Token Service) support.
+ * Added Amazon DynamoDB support.
+ * Updates the EC2 API client to default to version 2011-12-15.
+ * Updates the RDS API client to default to version 2011-12-19.
+ * Updates the ELB API client to default to version 2011-11-15.
+ * Added Amazon SNS (Simple Notification Service) support.
+ * Added support for using STS credentials with the APIs that support this functionality: EC2, SQS, SNS, S3.
+ * Patches in the client templates that don't have default API end points as expected. Now every client should work without the need of calling query.setRegion().
+ * Adds a new query API helper: query.setPath().
+ * All the setter helpers are chainable.
+
 ## v0.6.2
  * Added Amazon SimpleDB support.
  * Added sa-east-1 region (Brazil, Sao Paulo) support.

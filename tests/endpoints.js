@@ -7,8 +7,8 @@ var clients = {
 	ec2: config.clients.ec2.prefix,
 	rds: config.clients.rds.prefix,
 	elb: config.clients.elb.prefix,
-	autoscaling: config.clients.autoscaling.prefix,
-	cloudwatch: config.clients.cloudwatch.prefix
+	cloudwatch: config.clients.cloudwatch.prefix,
+	sdb: config.clients.sdb.prefix
 };
 
 for (var client in clients) {
@@ -25,8 +25,34 @@ assert.deepEqual(ses.getEndPoint(), 'email.us-east-1' + suffix);
 var iam = aws.load('iam');
 assert.deepEqual(iam.getEndPoint(), 'iam' + suffix);
 
+var autoscaling = aws.load('autoscaling');
+assert.deepEqual(autoscaling.getEndPoint(), 'autoscaling.us-east-1' + suffix);
+autoscaling.setRegion('us-west-1');
+assert.deepEqual(autoscaling.getEndPoint(), 'autoscaling.us-west-1' + suffix);
+
 var ec = aws.load('elasticache');
 assert.deepEqual(ec.getEndPoint(), 'elasticache.us-east-1' + suffix);
+
+var sqs = aws.load('sqs');
+assert.deepEqual(sqs.getEndPoint(), 'queue' + suffix);
+sqs.setRegion('us-west-1');
+assert.deepEqual(sqs.getEndPoint(), 'sqs.us-west-1' + suffix);
+
+var cf = aws.load('cloudformation');
+assert.deepEqual(cf.getEndPoint(), 'cloudformation.us-east-1' + suffix);
+cf.setRegion('us-west-1');
+assert.deepEqual(cf.getEndPoint(), 'cloudformation.us-west-1' + suffix);
+
+var ddb = aws.load('dynamodb');
+assert.deepEqual(ddb.getEndPoint(), 'dynamodb.us-east-1' + suffix);
+
+var sts = aws.load('sts');
+assert.deepEqual(sts.getEndPoint(), 'sts' + suffix);
+
+var sns = aws.load('sns');
+assert.deepEqual(sns.getEndPoint(), 'sns.us-east-1' + suffix);
+sns.setRegion('us-west-1');
+assert.deepEqual(sns.getEndPoint(), 'sns.us-west-1' + suffix);
 
 var s3 = aws.load('s3');
 assert.deepEqual(s3.getEndPoint(), 's3' + suffix);
