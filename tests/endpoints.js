@@ -1,3 +1,5 @@
+// TODO: update this test to reflect upon all the end points
+
 var assert = require('assert');
 var aws = require('../');
 var config = require('../lib/config.js');
@@ -7,7 +9,6 @@ var clients = {
 	ec2: config.clients.ec2.prefix,
 	rds: config.clients.rds.prefix,
 	elb: config.clients.elb.prefix,
-	autoscaling: config.clients.autoscaling.prefix,
 	cloudwatch: config.clients.cloudwatch.prefix
 };
 
