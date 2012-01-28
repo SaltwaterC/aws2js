@@ -1,3 +1,7 @@
+## v0.6.4
+ * s3.post() low level method for initiating / completing a multipart upload.
+ * s3.put() support for byte ranges in order to upload the parts of a multipart upload.
+
 ## v0.6.3
  * Uses the idea from [#16](https://github.com/livelycode/aws-lib/pull/16) of aws-lib in order to make the query APIs request signing more stable.
  * Added Amazon STS (Security Token Service) support.
