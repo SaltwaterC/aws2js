@@ -3,6 +3,7 @@
  * The file Request Body Handler now supports byte ranges in order to upload the parts of a multipart upload.
  * Removes some old 0.5 cruft. Requests to S3 with query parameters that didn't contained paths were not signed properly.
  * S3 multipart upload API: initUpload(), abortUpload, completeUpload(), putFilePart(), putStreamPart(), putBufferPart(), putFileMultipart().
+ * Temporarily disables all Expect: 100-continue request headers due to node.js 0.6.x being unable to handle it properly: [#2636](https://github.com/joyent/node/issues/2636).
 
 ## v0.6.3
  * Uses the idea from [#16](https://github.com/livelycode/aws-lib/pull/16) of aws-lib in order to make the query APIs request signing more stable.
