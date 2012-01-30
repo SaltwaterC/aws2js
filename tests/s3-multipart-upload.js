@@ -24,6 +24,9 @@ cp.execFile('../tools/createtemp.sh', function (err, res) {
 				assert.deepEqual(tempMd5, dlMd5);
 				fs.unlink('./10M.tmp', function (err) {
 					assert.ifError(err);
+					s3.del('10M.tmp', function (err, res) {
+						assert.ifError(err);
+					});
 				});
 			});
 			rs.on('error', function (err) {
