@@ -1,3 +1,10 @@
+## v0.6.4
+ * s3.post() low level method for initiating / completing a multipart upload.
+ * The file Request Body Handler now supports byte ranges in order to upload the parts of a multipart upload.
+ * Removes some old 0.5 cruft. Requests to S3 with query parameters that didn't contained paths were not signed properly.
+ * S3 multipart upload API: initUpload(), abortUpload, completeUpload(), putFilePart(), putStreamPart(), putBufferPart(), putFileMultipart().
+ * Disables node 0.6.9 from the supported version due to [#2636](https://github.com/joyent/node/issues/2636).
+
 ## v0.6.3
  * Uses the idea from [#16](https://github.com/livelycode/aws-lib/pull/16) of aws-lib in order to make the query APIs request signing more stable.
  * Added Amazon STS (Security Token Service) support.
