@@ -1,3 +1,8 @@
+## v0.6.5
+ * Enables node.js v0.6.10+ support since [#2636](https://github.com/joyent/node/issues/2636) is closed.
+ * Forces mime-magic v0.2.5 as dependency due to build issues of v0.2.4 with some npm versions.
+ * Makes the s3.putFileMultipart() to handle the partSize more elegant: optional parameter, defaults to 5242880 bytes, if invalid, it is forced as 5242880 bytes.
+
 ## v0.6.4
  * s3.post() low level method for initiating / completing a multipart upload.
  * The file Request Body Handler now supports byte ranges in order to upload the parts of a multipart upload.
