@@ -1,3 +1,6 @@
+## v0.6.6
+ * 'query' argument for the s3.get() method [#23](https://github.com/SaltwaterC/aws2js/pull/23).
+
 ## v0.6.5
  * Enables node.js v0.6.10+ support since [#2636](https://github.com/joyent/node/issues/2636) is closed.
  * Forces mime-magic v0.2.5 as dependency due to build issues of v0.2.4 with some npm versions.
