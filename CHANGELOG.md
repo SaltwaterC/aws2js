@@ -1,5 +1,6 @@
 ## v0.6.6
- * 'query' argument for the s3.get() method [#23](https://github.com/SaltwaterC/aws2js/pull/23).
+ * Fixes the query arguments handling due to backward incompatible changes into the S3 API request signing method. The aws2js implementation is backward compatible.
+ * 'query' optional argument for the s3.get() method [#23](https://github.com/SaltwaterC/aws2js/pull/23) for specifying request parameters if you would like to do it in a cleaner way.
 
 ## v0.6.5
  * Enables node.js v0.6.10+ support since [#2636](https://github.com/joyent/node/issues/2636) is closed.
