@@ -17,19 +17,16 @@ var sdbProcessResponse = function (err, res) {
 };
 
 sdb.request('ListDomains', {}, function (err, res) {
-	console.log(err,res)
 	callbacks.request = true;
 	sdbProcessResponse(err, res);
 });
 
 sdb.request('ListDomains', function (err, res) {
-	console.log(err,res)
 	callbacks.requestWithoutQuery = true;
 	sdbProcessResponse(err, res);
 });
 
 sdb.request('ListDomains', {MaxNumberOfDomains: 10}, function (err, res) {
-	console.log(err,res)
 	callbacks.requestWithQuery = true;
 	sdbProcessResponse(err, res);
 });
