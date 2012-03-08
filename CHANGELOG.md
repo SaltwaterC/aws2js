@@ -1,3 +1,6 @@
+## v0.6.7
+ * Fixes the broken encoding of query parameters sent through the optional query argument of s3.get().
+
 ## v0.6.6
  * Fixes the query arguments handling due to backward incompatible changes into the S3 API request signing method. The aws2js implementation is backward compatible.
  * 'query' optional argument for the s3.get() method [#23](https://github.com/SaltwaterC/aws2js/pull/23) for specifying request parameters if you would like to do it in a cleaner way.
