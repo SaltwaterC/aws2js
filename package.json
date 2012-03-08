@@ -8,6 +8,9 @@
 		"libxml-to-js": ">=0.3.9",
 		"mime-magic": ">=0.2.5"
 	},
+	"devDependencies": {
+		"http-get": ">=0.3.13"
+	},
 	"engines": {
 		"node": ">=0.4.10"
 	},
