@@ -9,19 +9,21 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.get('?uploads', {'max-uploads': 1}, 'xml', function (err, res) {
-	callbacks.query = true;
+var s3ProcessResponse = function (err, res) {
 	assert.ifError(err);
 	assert.deepEqual(res.Bucket, process.env.AWS2JS_S3_BUCKET);
 	assert.equal(res.MaxUploads, 1);
+};
+
+s3.get('?uploads', {'max-uploads': 1}, 'xml', function (err, res) {
+	callbacks.query = true;
+	s3ProcessResponse(err, res);
 });
 
 
 s3.get('?uploads&max-uploads=1', 'xml', function (err, res) {
 	callbacks.path = true;
-	assert.ifError(err);
-	assert.deepEqual(res.Bucket, process.env.AWS2JS_S3_BUCKET);
-	assert.equal(res.MaxUploads, 1);
+	s3ProcessResponse(err, res);
 });
 
 process.on('exit', function () {
