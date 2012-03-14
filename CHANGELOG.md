@@ -1,3 +1,6 @@
+## v0.6.8
+ * Fixes a global variable fix [#25](https://github.com/SaltwaterC/aws2js/pull/25).
+
 ## v0.6.7
  * Fixes the broken encoding of query parameters sent through the optional query argument of s3.get().
  * Updates the RDS API client to default to version 2012-01-15.
