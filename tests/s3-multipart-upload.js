@@ -35,3 +35,15 @@ cp.execFile('../tools/createtemp.sh', function (err, res) {
 		});
 	});
 });
+
+var caught = false;
+process.on('uncaughtException', function (err) {
+	fs.unlink('10M.tmp', function () {
+		if ( ! caught) {
+			caught = true;
+			throw err;
+		} else {
+			process.exit(1);
+		}
+	});
+});
