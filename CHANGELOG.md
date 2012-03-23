@@ -1,3 +1,6 @@
+## v0.6.10
+ * Support for the arguments without values into the optional query argument of s3.get().
+
 ## v0.6.9
  * Adds the possibility to pass HTTP options to the client loader [#26](https://github.com/SaltwaterC/aws2js/pull/26).
  * If the connection is prematurely closed, if there's an XML document as response body, its parsed version is attached to the error object [#26](https://github.com/SaltwaterC/aws2js/pull/26).
