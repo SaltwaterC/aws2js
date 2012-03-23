@@ -1,3 +1,8 @@
+## v0.6.9
+ * Adds the possibility to pass HTTP options to the client loader [#26](https://github.com/SaltwaterC/aws2js/pull/26).
+ * If the connection is prematurely closed, if there's an XML document as response body, its parsed version is attached to the error object.
+ * Updates the EC2 API client to default to version 2012-03-01.
+
 ## v0.6.8
  * Fixes a global variable fix [#25](https://github.com/SaltwaterC/aws2js/pull/25).
 
