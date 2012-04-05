@@ -1,3 +1,6 @@
+## v0.6.11
+ * Enables the region support for DynamoDB [#27](https://github.com/SaltwaterC/aws2js/pull/27).
+
 ## v0.6.10
  * Support for the arguments without values into the optional query argument of s3.get().
 
