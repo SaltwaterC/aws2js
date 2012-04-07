@@ -12,7 +12,7 @@ var docs = {
 	iam: 'http://docs.amazonwebservices.com/IAM/latest/APIReference/Welcome.html',
 	autoscaling: 'http://docs.amazonwebservices.com/AutoScaling/latest/APIReference/Welcome.html',
 	cloudwatch: 'http://docs.amazonwebservices.com/AmazonCloudWatch/latest/APIReference/Welcome.html',
-	elasticache: 'http://docs.amazonwebservices.com/AmazonElastiCache/latest/APIReference/_title.html',
+	elasticache: 'http://docs.amazonwebservices.com/AmazonElastiCache/latest/APIReference/Welcome.html',
 	sqs: 'http://docs.amazonwebservices.com/AWSSimpleQueueService/latest/APIReference/Welcome.html',
 	cloudformation: 'http://docs.amazonwebservices.com/AWSCloudFormation/latest/APIReference/Welcome.html',
 	sdb: 'http://docs.amazonwebservices.com/AmazonSimpleDB/latest/DeveloperGuide/Welcome.html',
