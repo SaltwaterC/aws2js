@@ -1,3 +1,6 @@
+## v0.6.12
+ * Corrected URL module's alias from 'url' to 'u' [#28](https://github.com/SaltwaterC/aws2js/pull/28).
+
 ## v0.6.11
  * Enables the region support for DynamoDB [#27](https://github.com/SaltwaterC/aws2js/pull/27).
 

@@ -9,3 +9,4 @@
  * [Carlos Guerreiro](http://perceptiveconstructs.com/) - the query argument for the [s3.get()](https://github.com/SaltwaterC/aws2js/wiki/s3.get%28%29) method
  * [Nikita](https://github.com/nab) - global variable leak fix
  * [AYUkawa,Yasuyuk](https://github.com/toomore-such) - enabled the multiregion support for DynamoDB
+ * [ske](https://github.com/ske) - corrected URL module's alias from 'url' to 'u'
