@@ -10,3 +10,4 @@
  * [Nikita](https://github.com/nab) - global variable leak fix
  * [AYUkawa,Yasuyuk](https://github.com/toomore-such) - enabled the multiregion support for DynamoDB
  * [ske](https://github.com/ske) - corrected URL module's alias from 'url' to 'u'
+ * [Joe Roberts](https://github.com/zefer) - global variables leak fix

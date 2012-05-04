@@ -1,3 +1,6 @@
+## v0.6.14
+ * Fixes global variables leak [#33](https://github.com/SaltwaterC/aws2js/pull/33).
+
 ## v0.6.13
  * Fixes The DynamoDB JSON conversion that did not support UTF-8 chars [#30](https://github.com/SaltwaterC/aws2js/issues/30).
  * Only strings and numbers are allowed to be a x-amz header value for the S3 API [#31](https://github.com/SaltwaterC/aws2js/pull/31). Prints a warning when things are unexpected. Most probably that's broken user input.
