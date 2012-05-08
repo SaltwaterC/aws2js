@@ -1,3 +1,8 @@
+## v0.6.15
+ * Fixes the broken host header for the S3 307 redirect [#36](https://github.com/SaltwaterC/aws2js/issues/36).
+ * Updates the EC2 API client to default to version 2012-04-01.
+ * Updates the RDS API client to default to version 2012-04-23.
+
 ## v0.6.14
  * Fixes global variables leak [#33](https://github.com/SaltwaterC/aws2js/pull/33).
 
