@@ -15,20 +15,20 @@ s3.putLifeCycleRule('id', 'prefix', 5, function (error, response) {
 	callbacks.putLifeCycleRule1 = true;
 	assert.ifError(error);
 	
-    s3.putLifeCycleRule('id2', 'otherprefix', 5, function (error, response) {
-        callbacks.putLifeCycleRule2 = true;
-        assert.ifError(error);
+	s3.putLifeCycleRule('id2', 'otherprefix', 5, function (error, response) {
+		callbacks.putLifeCycleRule2 = true;
+		assert.ifError(error);
 		
-        s3.delLifeCycleRule('id', function(error, response) {
-            callbacks.delLifeCycleRule1 = true;
-            assert.ifError(error);
+		s3.delLifeCycleRule('id', function(error, response) {
+			callbacks.delLifeCycleRule1 = true;
+			assert.ifError(error);
 			
-            s3.delLifeCycleRule('id2', function(error, response) {
-                callbacks.delLifeCycleRule2 = true;
-                assert.ifError(error);
-            });
-        });
-    });
+			s3.delLifeCycleRule('id2', function(error, response) {
+				callbacks.delLifeCycleRule2 = true;
+				assert.ifError(error);
+			});
+		});
+	});
 });
 
 process.on('exit', function () {
