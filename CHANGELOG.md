@@ -1,3 +1,6 @@
+## v0.6.16
+ * S3 lifecycle management API: s3.getLifeCycle(), s3.delLifeCycle(), s3.putLifeCycleRule(), s3.delLifeCycleRule() [#37](https://github.com/SaltwaterC/aws2js/pull/37).
+
 ## v0.6.15
  * Fixes the broken host header for the S3 307 redirect [#36](https://github.com/SaltwaterC/aws2js/issues/36).
  * Updates the EC2 API client to default to version 2012-04-01.

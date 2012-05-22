@@ -12,3 +12,4 @@
  * [ske](https://github.com/ske) - corrected URL module's alias from 'url' to 'u'
  * [Joe Roberts](https://github.com/zefer) - global variables leak fix
  * [sauvainr](https://github.com/sauvainr) - 307 Redirection host overwritten error
+ * [Thomas Bruyelle](https://github.com/tbruyelle) - The S3 lifecycle management API
