@@ -1,3 +1,7 @@
+## v0.6.17
+ * Fixes the double callback calling for the DynamoDB client [#41](https://github.com/SaltwaterC/aws2js/issues/41).
+ * Updates the EC2 API client to default to version 2012-05-01.
+
 ## v0.6.16
  * S3 lifecycle management API: s3.getLifeCycle(), s3.delLifeCycle(), s3.putLifeCycleRule(), s3.delLifeCycleRule() [#37](https://github.com/SaltwaterC/aws2js/pull/37).
 

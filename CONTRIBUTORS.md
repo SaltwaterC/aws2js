@@ -13,3 +13,4 @@
  * [Joe Roberts](https://github.com/zefer) - global variables leak fix
  * [sauvainr](https://github.com/sauvainr) - 307 Redirection host overwritten error
  * [Thomas Bruyelle](https://github.com/tbruyelle) - The S3 lifecycle management API
+ * [Dan Ordille](https://github.com/dordille) - fixes a double callback calling for the DynamoDB client
