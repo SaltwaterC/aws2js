@@ -7,7 +7,7 @@ var spawn = require('child_process').spawn;
 
 
 var npmInstall = function (pack, cb) {
-	var npm = spawn('/usr/bin/env', ['npm', 'install', pack]);
+	var npm = spawn('npm', ['install', pack]);
 	
 	npm.stdout.on('data', function (data) {
 		process.stdout.write(data);
