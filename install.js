@@ -7,7 +7,11 @@ var spawn = require('child_process').spawn;
 
 
 var npmInstall = function (pack, cb) {
-	var npm = spawn('npm', ['install', pack]);
+	if (process.platform == 'win32') {
+		var npm = spawn('cmd', ['/c', 'npm', 'install', pack]);
+	} else {
+		var npm = spawn('npm', ['install', pack]);
+	}
 	
 	npm.stdout.on('data', function (data) {
 		process.stdout.write(data);
