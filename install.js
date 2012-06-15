@@ -1,4 +1,5 @@
 // wrapper for supporting multiple backends for XML and MIME
+var fs = require('fs');
 var npm = require('npm');
 
 
@@ -30,11 +31,16 @@ npm.load({}, function (err) {
 		mime: false
 	}
 	
-	// remove itself from the local node_modules
+	// cleanup the installation and write the dependency bits
 	var cleanup = function () {
 		if (finished.xml && finished.mime) {
 			console.log('Removing the bootstrapped npm.');
 			npm.commands.uninstall(['npm']);
+			console.log('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
+			var ws = fs.createWriteStream('lib/dependencies.js');
+			var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
+			ws.write(depend);
+			ws.end();
 		}
 	};
 	

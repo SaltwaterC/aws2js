@@ -32,4 +32,4 @@ test-nobinary:
 purge: clean
 clean:
 	rm -rf node_modules
-	rm lib/dependencies.js
+	rm -f lib/dependencies.js
