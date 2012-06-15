@@ -1,3 +1,8 @@
+## v0.6.18
+ * Adds s3.signUrl() low level method for creating pre-signed URLs [#45](https://github.com/SaltwaterC/aws2js/issues/45).
+ * Updates the EC2 API client to default to version 2012-06-01.
+ * Updates the ELB API client to default to version 2012-06-01.
+
 ## v0.6.17
  * Fixes the double callback calling for the DynamoDB client [#41](https://github.com/SaltwaterC/aws2js/issues/41).
  * Updates the EC2 API client to default to version 2012-05-01.
