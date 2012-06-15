@@ -28,3 +28,8 @@ test-nobinary:
 	rm -rf node_modules
 	npm install --xml2js true --mime true
 	tools/test.sh
+
+purge: clean
+clean:
+	rm -rf node_modules
+	rm lib/dependencies.js
