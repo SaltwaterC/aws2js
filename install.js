@@ -1,76 +1,38 @@
 // wrapper for supporting multiple backends for XML and MIME
-var fs = require('fs');
-var spawn = require('child_process').spawn;
-
-
-// a small npm helper
-
-
-var npmInstall = function (pack, cb) {
-	if (process.platform == 'win32') {
-		var npm = spawn('cmd', ['/c', 'npm', 'install', pack]);
-	} else {
-		var npm = spawn('npm', ['install', pack]);
-	}
-	
-	npm.stdout.on('data', function (data) {
-		process.stdout.write(data);
-	});
-	
-	npm.stderr.on('data', function (data) {
-		process.stderr.write(data);
-	});
-	
-	npm.on('exit', function (code) {
-		cb(code);
-	});
-};
+var npm = require('npm');
 
 
 // setting the depencines vars
-
-
-var xml2js = false;
+var xmlMod = 'libxml-to-js';
 if (process.env.npm_config_xml2js === 'true') {
-	xml2js = true;
+	xmlMod = 'xml2js';
 }
 if (process.platform == 'win32') {
-	xml2js = true;
+	xmlMod = 'xml2js';
 }
 
-var mime = false;
+var mimeMod = 'mime-magic';
 if (process.env.npm_config_mime === 'true') {
-	mime = true;
+	mimeMod = 'mime';
 }
 
 
 // install the dependencies
-
-
-var xmlMod = 'libxml-to-js';
-if (xml2js) {
-	xmlMod = 'xml2js';
-}
-console.log('Installing: %s.', xmlMod);
-npmInstall(xmlMod, function (code) {
-	if (code === 0) {
-		var mimeMod = 'mime-magic';
-		if (mime) {
-			mimeMod = 'mime';
-		}
-		console.log('Installing: %s.', mimeMod);
-		npmInstall(mimeMod, function (code) {
-			if (code === 0) {
-				console.log('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
-				var ws = fs.createWriteStream('lib/dependencies.js');
-				var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
-				ws.write(depend);
-				ws.end();
-			} else {
-				console.error('ERROR: Failed to install %s.', mimeMod);
-			}
-		});
-	} else {
-		console.error('ERROR: Failed to install %s.', xmlMod);
+npm.load({}, function (err) {
+	if (err) {
+		console.error(err);
+		console.error(err.stack);
+		process.exit(1);
 	}
+	
+	// install the XML and MIME modules
+	npm.commands.install([xmlMod]);
+	npm.commands.install([mimeMod]);
+});
+
+
+// remove itself from the local node_modules
+process.on('exit', function (code) {
+	
+	npm.commands.uninstall(['npm']);
 });
