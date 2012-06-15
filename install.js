@@ -25,14 +25,27 @@ npm.load({}, function (err) {
 		process.exit(1);
 	}
 	
-	// install the XML and MIME modules
-	npm.commands.install([xmlMod]);
-	npm.commands.install([mimeMod]);
-});
-
-
-// remove itself from the local node_modules
-process.on('exit', function (code) {
+	var finished = {
+		xml: false,
+		mime: false
+	}
 	
-	npm.commands.uninstall(['npm']);
+	// remove itself from the local node_modules
+	var cleanup = function () {
+		if (finished.xml && finished.mime) {
+			console.log('Removing the bootstrapped npm.');
+			npm.commands.uninstall(['npm']);
+		}
+	};
+	
+	// install the XML and MIME modules
+	npm.commands.install([xmlMod], function (err, data) {
+		finished.xml = true;
+		cleanup();
+	});
+	
+	npm.commands.install([mimeMod], function (err, data) {
+		finished.mime = true;
+		cleanup();
+	});
 });
