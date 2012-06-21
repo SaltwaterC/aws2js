@@ -1,3 +1,8 @@
+## v0.6.19
+ * New S3 helpers: s3.copyObject(), s3.moveObject(), s3.getBucket().
+ * Improved the S3 helper s3.renameObject() by adding the optional headers argument. Deprecated s3.renameObject in favor of s3.moveObject().
+ * New optional headers argument to the s3.del() low level method.
+
 ## v0.6.18
  * Adds s3.signUrl() low level method for creating pre-signed URLs [#45](https://github.com/SaltwaterC/aws2js/issues/45).
  * Updates the EC2 API client to default to version 2012-06-01.

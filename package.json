@@ -1,7 +1,7 @@
 {
 	"name": "aws2js",
 	"main": "./lib/aws.js",
-	"version": "0.6.18",
+	"version": "0.6.19",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
 		"libxmljs": ">=0.5.0",
@@ -63,6 +63,10 @@
 		{
 			"name": "Dan Ordille",
 			"url": "https://github.com/dordille"
+		},
+		{
+			"name": "ubert",
+			"url": "https://github.com/ubert"
 		}
 	],
 	"repository": {
