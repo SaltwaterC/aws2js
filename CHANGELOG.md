@@ -1,3 +1,8 @@
+## v0.6.20
+ * Adds Amazon Elastic MapReduce (EMR) support.
+ * Updates the EC2 API client to default to version 2012-06-15.
+ * jslint compliant code (library and tests).
+
 ## v0.6.19
  * New S3 helpers: s3.copyObject(), s3.moveObject(), s3.getBucket().
  * Improved the S3 helper s3.renameObject() by adding the optional headers argument. Deprecated s3.renameObject in favor of s3.moveObject().

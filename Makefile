@@ -5,8 +5,7 @@ publish: all
 	/usr/bin/env npm publish
 
 lint:
-	find lib -name *.js -print0 | xargs -0 jslint --plusplus --white --var --node --goodparts
-	@echo
+	tools/lint.sh
 
 tests: test
 check: test

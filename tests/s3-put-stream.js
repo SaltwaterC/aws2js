@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var assert = require('assert');
 var s3 = require('../').load('s3');
@@ -29,7 +31,10 @@ s3.putStream(path, stream, false, {'content-length': 4, 'content-type': 'text/pl
 });
 
 process.on('exit', function () {
-	for (var i in callbacks) {
-		assert.ok(callbacks[i]);
+	var i;
+	for (i in callbacks) {
+		if (callbacks.hasOwnProperty(i)) {
+			assert.ok(callbacks[i]);
+		}
 	}
 });

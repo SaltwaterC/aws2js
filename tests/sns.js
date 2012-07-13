@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 
 var sns = require('../').load('sns');
@@ -26,7 +28,10 @@ sns.request('ListSubscriptions', function (err, res) {
 });
 
 process.on('exit', function () {
-	for (var i in callbacks) {
-		assert.ok(callbacks[i]);
+	var i;
+	for (i in callbacks) {
+		if (callbacks.hasOwnProperty(i)) {
+			assert.ok(callbacks[i]);
+		}
 	}
 });
