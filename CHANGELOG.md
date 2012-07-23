@@ -1,3 +1,7 @@
+## v0.6.21
+ * Enabled the ?delete subresource for S3 [#51](https://github.com/SaltwaterC/aws2js/issues/51).
+ * Added a new S3 helper: s3.delMultiObjects() that makes use of the ?delete subresource.
+
 ## v0.6.20
  * Adds Amazon Elastic MapReduce (EMR) support.
  * Updates the EC2 API client to default to version 2012-06-15.

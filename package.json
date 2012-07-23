@@ -1,7 +1,7 @@
 {
 	"name": "aws2js",
 	"main": "./lib/aws.js",
-	"version": "0.6.20",
+	"version": "0.6.21",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
 		"libxmljs": ">=0.5.0",
@@ -67,6 +67,10 @@
 		{
 			"name": "ubert",
 			"url": "https://github.com/ubert"
+		},
+		{
+			"name": "Jacky Jiang",
+			"url": "https://github.com/t83714"
 		}
 	],
 	"repository": {
