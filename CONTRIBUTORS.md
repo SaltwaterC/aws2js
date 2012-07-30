@@ -16,3 +16,4 @@
  * [Dan Ordille](https://github.com/dordille) - fixes a double callback calling for the DynamoDB client
  * [ubert](https://github.com/ubert) - [s3.copyObject()](https://github.com/SaltwaterC/aws2js/wiki/s3.copyObject%28%29)
  * [Jacky Jiang](https://github.com/t83714) - enabled the ?delete S3 subresource
+ * [Alon Burg](http://burg-alon.9folds.com/) - reverted the usage of Stream.pipe() for the Stream Request Body Handler.

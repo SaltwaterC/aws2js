@@ -1,3 +1,6 @@
+## v0.6.22
+ * Reverted the usage of Stream.pipe() for the Stream Request Body Handler [#49](https://github.com/SaltwaterC/aws2js/issues/49), [#50](https://github.com/SaltwaterC/aws2js/pull/50).
+
 ## v0.6.21
  * Enabled the ?delete subresource for S3 [#51](https://github.com/SaltwaterC/aws2js/issues/51).
  * Added a new S3 helper: s3.delMultiObjects() that makes use of the ?delete subresource.
