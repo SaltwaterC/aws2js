@@ -17,13 +17,13 @@ clean:
 
 tests: test
 check: test
-test: lint purge
+test: lint
 	$(MAKE) test-default
 	$(MAKE) test-xml2js
 	$(MAKE) test-mime
 	$(MAKE) test-nobinary
 
-test-default: lint
+test-default: purge
 	@npm install > /dev/null 2>&1
 	tools/test.sh
 
@@ -37,4 +37,7 @@ test-mime: purge
 
 test-nobinary: purge
 	@npm install --xml2js true --mime true > /dev/null 2>&1
+	tools/test.sh
+
+simpletest: lint
 	tools/test.sh
