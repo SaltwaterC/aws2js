@@ -56,4 +56,4 @@ For the moment, this project is largely a one man show. Bear with me if things d
 
 If you'd like to contribute your line of code (or more), please send a pull request against the future branch. This makes things to be easier on my side. Feature branches are also acceptable. Even commits in your master branch are acceptable. I don't rely on GitHub's merge functionality as I always pull from remotes and manually issue the merge command.
 
-I ask you to patch against the future branch since that's the place where all the development happens, therefore it should be the least conflicts when merging your code. I use the master only for itegrating the releases. The master branch always contains the latest stable release.
+I ask you to patch against the future branch since that's the place where all the development happens, therefore it should be the least conflicts when merging your code. I use the master only for integrating the releases. The master branch always contains the latest stable release.
