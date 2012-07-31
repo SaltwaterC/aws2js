@@ -50,6 +50,10 @@ The '--xml2js true' and '--mime true' are boolean flags, therefore you may use t
  * [Amazon EMR](https://github.com/SaltwaterC/aws2js/wiki/EMR-Client) (Elastic MapReduce)
  * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
 
-## Contributors
+## Contributions
 
-You should also send your special thanks to the [aws2js contributors](https://github.com/SaltwaterC/aws2js/blob/master/CONTRIBUTORS.md).
+For the moment, this project is largely a one man show. Bear with me if things don't move as fast as it should. There are a handful of [aws2js contributors](https://github.com/SaltwaterC/aws2js/blob/master/CONTRIBUTORS.md) as well. The community makes things to be better for everyone.
+
+If you like to contribute your line of code (or more), please send a pull request against the future branch. This makes things to be easier on my side. Feature branches are also acceptable. Even commits in your master branch are acceptable. I don't rely on GitHub's merge functionality as I always pull from remotes and manually issue the merge command.
+
+I ask you to patch against the future branch since that's the place where all the development happens, therefore it should be the least conflicts when merging your code. I use the master only for itegrating the releases. The master branch always contains the latest stable release.
