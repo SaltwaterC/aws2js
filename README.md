@@ -4,7 +4,7 @@ Amazon Web Services node.js module. Originally a fork of [aws-lib](https://githu
 
 ## Installation
 
-Either manually clone this repository into your node_modules directory, or the recommended method:
+Either manually clone this repository into your node_modules directory, then run `node install.js` on the aws2js directory, or the recommended method:
 
 > npm install aws2js
 
