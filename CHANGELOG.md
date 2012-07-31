@@ -1,3 +1,7 @@
+## v0.7
+ * Added the possibility to pick the library dependencies: libxml-to-js or xml2js for XML parsing, mime-magic or mime for MIME type detection. libxml-to-js and mime-magic are still the defaults. This adds the possibility to install the library without binary dependencies [#22](https://github.com/SaltwaterC/aws2js/issues/22) - by using the xml2js and mime modules.
+ * Added Windows support. By default, under Windows, aws2js installs with xml2js and mime-magic as dependencies.
+
 ## v0.6.22
  * Reverted the usage of Stream.pipe() for the Stream Request Body Handler [#49](https://github.com/SaltwaterC/aws2js/issues/49), [#50](https://github.com/SaltwaterC/aws2js/pull/50).
 

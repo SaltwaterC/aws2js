@@ -8,6 +8,20 @@ Either manually clone this repository into your node_modules directory, or the r
 
 > npm install aws2js
 
+By default, the module installs as dependencies the [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) and the [mime-magic](https://github.com/SaltwaterC/mime-magic) libraries. Under Windows, it installs by default with [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) and mime-magic.
+
+Basically, under Windows the default installation is the equivalent of:
+
+> npm install aws2js --xml2js true
+
+If you want to install the library without binary dependencies, you can issue this npm command:
+
+> npm install aws2js --xml2js true --mime true
+
+This installs the library with xml2js and [mime](https://github.com/broofa/node-mime) as dependencies. Please notice that the mime library detects the MIME type by doing a file extension lookup, while mime-magic does it the proper way by wrapping the functionality of libmagic. You have been warned.
+
+The '--xml2js true' and '--mime true' are boolean flags, therefore you may use them in any combination, if applicable.
+
 ## Project and Design goals
 
  * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
