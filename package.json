@@ -1,7 +1,7 @@
 {
 	"name": "aws2js",
 	"main": "./lib/aws.js",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"scripts": {
 		"install": "node install.js"
