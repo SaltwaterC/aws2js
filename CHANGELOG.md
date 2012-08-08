@@ -1,3 +1,6 @@
+## v0.7.2
+ * Using the s3.put() String Request Body Handler may silently result in truncated data due to inconsistent use of the default 'utf8' encoding [#55](https://github.com/SaltwaterC/aws2js/issues/55), [#56](https://github.com/SaltwaterC/aws2js/pull/56). Updated the documentation to reflect this default.
+
 ## v0.7.1
  * Fixes the install script that wiped npm for global installations. Reported via email, therefore no issue number.
  * Updates the EC2 API client to default to version 2012-07-20.

@@ -17,3 +17,4 @@
  * [ubert](https://github.com/ubert) - [s3.copyObject()](https://github.com/SaltwaterC/aws2js/wiki/s3.copyObject%28%29)
  * [Jacky Jiang](https://github.com/t83714) - enabled the ?delete S3 subresource
  * [Alon Burg](http://burg-alon.9folds.com/) - reverted the usage of Stream.pipe() for the Stream Request Body Handler.
+ * [Matt Monson](https://github.com/mattmonson) - fixed the inconsistent use of the default 'utf8' encoding for the String Request Body Handler of the s3.put() method.
