@@ -29,18 +29,11 @@ npm.load({}, function (err) {
 	var finished = {
 		xml: false,
 		mime: false
-	}
+	};
 	
-	// cleanup the installation and write the dependency bits
-	var cleanup = function () {
+	// write the dependencies file in order to idicate to the internals which modules to use
+	var finish = function () {
 		if (finished.xml && finished.mime) {
-			// remove the bootstrapped npm for local installations
-//			if (npm.config.get('global') === false) {
-//				console.log('Removing the bootstrapped npm.');
-//				npm.commands.uninstall(['npm']);
-//			}
-			
-			// write the dependencies file in order to idicate to the internals which modules to use
 			console.log('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
 			var ws = fs.createWriteStream('lib/dependencies.js');
 			var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
@@ -52,11 +45,11 @@ npm.load({}, function (err) {
 	// install the XML and MIME modules
 	npm.commands.install([xmlMod], function (err, data) {
 		finished.xml = true;
-		cleanup();
+		finish();
 	});
 	
 	npm.commands.install([mimeMod], function (err, data) {
 		finished.mime = true;
-		cleanup();
+		finish();
 	});
 });
