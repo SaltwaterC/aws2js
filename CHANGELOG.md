@@ -1,3 +1,6 @@
+## v0.7.3
+ * Removed the npm purging functionality [#57](https://github.com/SaltwaterC/aws2js/pull/57).
+
 ## v0.7.2
  * Using the s3.put() String Request Body Handler may silently result in truncated data due to inconsistent use of the default 'utf8' encoding [#55](https://github.com/SaltwaterC/aws2js/issues/55), [#56](https://github.com/SaltwaterC/aws2js/pull/56). Updated the documentation to reflect this default.
 

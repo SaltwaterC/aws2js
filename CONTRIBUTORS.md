@@ -18,3 +18,4 @@
  * [Jacky Jiang](https://github.com/t83714) - enabled the ?delete S3 subresource
  * [Alon Burg](http://burg-alon.9folds.com/) - reverted the usage of Stream.pipe() for the Stream Request Body Handler.
  * [Matt Monson](https://github.com/mattmonson) - fixed the inconsistent use of the default 'utf8' encoding for the String Request Body Handler of the s3.put() method.
+ * [Stephen Lynn](https://github.com/lynns) - removed the npm purging code that breaks npm rebuild on environments like Heroku.
