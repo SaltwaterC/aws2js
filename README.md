@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/SaltwaterC/aws2js.png)](http://travis-ci.org/SaltwaterC/aws2js)
 ## About
 
 Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/).
