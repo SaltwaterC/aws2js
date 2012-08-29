@@ -14,6 +14,7 @@ purge: clean
 clean:
 	rm -rf node_modules
 	rm -f lib/dependencies.js
+	cp package.json.tpl package.json
 
 tests: test
 check: test

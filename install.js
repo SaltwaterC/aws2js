@@ -26,6 +26,12 @@ npm.load({}, function (err) {
 		process.exit(1);
 	}
 	
+	// enabling the npm --save flag in order to enable shrinkwrap
+	var haveSave = npm.config.get('save');
+	if ( ! haveSave) {
+		npm.config.set('save', true);
+	}
+	
 	var finished = {
 		xml: false,
 		mime: false
@@ -34,6 +40,10 @@ npm.load({}, function (err) {
 	// write the dependencies file in order to idicate to the internals which modules to use
 	var finish = function () {
 		if (finished.xml && finished.mime) {
+			if ( ! haveSave) {
+				npm.config.set('save', false);
+			}
+			
 			console.log('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
 			var ws = fs.createWriteStream('lib/dependencies.js');
 			var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
