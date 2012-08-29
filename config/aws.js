@@ -78,7 +78,7 @@ exports.clients = {
 	rds: {
 		prefix: 'rds',
 		query: {
-			Version: '2012-04-23',
+			Version: '2012-07-31',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}
