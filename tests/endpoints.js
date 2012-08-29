@@ -2,7 +2,7 @@
 
 var assert = require('assert');
 var aws = require('../');
-var config = require('../lib/config.js');
+var config = require('../config/aws.js');
 var suffix = config.suffix; 
 
 var clients = {

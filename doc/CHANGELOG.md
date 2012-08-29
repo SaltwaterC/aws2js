@@ -1,3 +1,6 @@
+## v0.7.4
+ * Enables the usage of `npm shrinkwrap` [#58](https://github.com/SaltwaterC/aws2js/issues/58).
+
 ## v0.7.3
  * Removed the npm purging functionality [#57](https://github.com/SaltwaterC/aws2js/pull/57).
 

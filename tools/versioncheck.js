@@ -24,7 +24,7 @@ var docs = {
 	emr: 'http://docs.amazonwebservices.com/ElasticMapReduce/latest/API/Welcome.html'
 };
 
-var config = require('../lib/config.js');
+var config = require('../config/aws.js');
 
 var check = function (service, url, current) {
 	http.get({url: url}, function (err, res) {

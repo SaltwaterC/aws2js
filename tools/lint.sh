@@ -2,7 +2,7 @@
 
 function lint
 {
-	output=$(find $1 -name "*.js" -print0 | xargs -0 jslint --plusplus --white --var --node --goodparts | grep -v "is OK." | grep '[^[:space:]]')
+	output=$(find $1 -name "*.js" -print0 | xargs -0 jslint --plusplus --white --var --goodparts --node | grep -v "is OK." | grep '[^[:space:]]')
 	exit=$?
 	echo "$output"
 	
@@ -12,5 +12,6 @@ function lint
 	fi
 }
 
+lint config
 lint lib
 lint tests

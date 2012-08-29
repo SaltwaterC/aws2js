@@ -4,9 +4,6 @@
 all:
 	/usr/bin/env npm install
 
-publish: all
-	/usr/bin/env npm publish
-
 lint:
 	tools/lint.sh
 
@@ -14,7 +11,10 @@ purge: clean
 clean:
 	rm -rf node_modules
 	rm -f lib/dependencies.js
-	cp package.json.tpl package.json
+	cp config/package.json package.json
+
+publish: clean
+	/usr/bin/env npm publish
 
 tests: test
 check: test

@@ -4,6 +4,7 @@
  * Common suffix for the API endpoints
  */
 exports.suffix = '.amazonaws.com';
+
 /**
  * The supported regions. The values patch the SNAFU of the S3 API.
  */
@@ -16,6 +17,7 @@ exports.regions = {
 	'ap-northeast-1': 'ap-northeast-1', // Tokyo,
 	'sa-east-1': 'sa-east-1' // Sao Paulo
 };
+
 /**
  * Services without region support and default endpoints
  */
@@ -26,27 +28,29 @@ exports.noRegion = {
 	elasticache: null,
 	sts: null
 };
+
 /**
  * The S3 subresources that must be part of the signed string
  */
 exports.subResource = {
-	acl: null,
-	lifecycle: null,
-	location: null,
-	logging: null,
-	notification: null,
-	partNumber: null,
-	policy: null,
-	requestPayment: null,
-	torrent: null,
-	uploadId: null,
-	uploads: null,
-	versionId: null,
-	versioning: null,
-	versions: null,
-	website: null,
-	delete: null
+	'acl': null,
+	'lifecycle': null,
+	'location': null,
+	'logging': null,
+	'notification': null,
+	'partNumber': null,
+	'policy': null,
+	'requestPayment': null,
+	'torrent': null,
+	'uploadId': null,
+	'uploads': null,
+	'versionId': null,
+	'versioning': null,
+	'versions': null,
+	'website': null,
+	'delete': null
 };
+
 /**
  * Canned ACLs
  */
@@ -58,8 +62,9 @@ exports.cannedAcls = {
 	'bucket-owner-read' : null,
 	'bucket-owner-full-control' : null
 };
+
 /**
- * The actual clients with the default config. Loaded on demand by aws.js's load() method.
+ * The AWS clients with the default config. Loaded on demand by aws.js's load() method.
  */
 exports.clients = {
 	ec2: {

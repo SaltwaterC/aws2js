@@ -2,6 +2,9 @@
 
 Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/).
 
+ * [Changelog](https://github.com/SaltwaterC/aws2js/blob/master/doc/CHANGELOG.md)
+ * [License](https://github.com/SaltwaterC/aws2js/blob/master/doc/LICENSE.md)
+
 ## Installation
 
 Either manually clone this repository into your node_modules directory, then run `npm install` on the aws2js top directory, or the recommended method:
@@ -29,7 +32,7 @@ In order to use these flags when this package is referenced from a package.json 
  * edit the ~/.npmrc file, add these values xml2js = true and / or mime = true
  * define the appropriate environment variables: npm_config_xml2js=true and / or npm_config_mime=true
 
-The above methods are equivalent.
+The above methods are equivalent. You need to pick just one.
 
 ## Project and Design goals
 
@@ -40,7 +43,7 @@ The above methods are equivalent.
  * Higher level clients for specific work flows
  * Proper documentation
 
-## Supported
+## Supported Amazon Web Services
 
  * [Amazon EC2](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client) (Elastic Compute Cloud)
  * [Amazon RDS](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client) (Relational Database Service)
@@ -61,7 +64,7 @@ The above methods are equivalent.
 
 ## Contributions
 
-For the moment, this project is largely a one man show. Bear with me if things don't move as fast as they should. There are a handful of [aws2js contributors](https://github.com/SaltwaterC/aws2js/blob/master/CONTRIBUTORS.md) as well. The community makes things to be better for everyone.
+For the moment, this project is largely a one man show. Bear with me if things don't move as fast as they should. There are a handful of [aws2js contributors](https://github.com/SaltwaterC/aws2js/blob/master/doc/CONTRIBUTORS.md) as well. The community makes things to be better for everyone.
 
 If you'd like to contribute your line of code (or more), please send a pull request against the future branch. This makes things to be easier on my side. Feature branches are also acceptable. Even commits in your master branch are acceptable. I don't rely on GitHub's merge functionality as I always pull from remotes and manually issue the merge command.
 
