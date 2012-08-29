@@ -24,6 +24,13 @@ This installs the library with xml2js and [mime](https://github.com/broofa/node-
 
 The '--xml2js true' and '--mime true' are boolean flags, therefore you may use them in any combination, if applicable.
 
+In order to use these flags when this package is referenced from a package.json file, the recommendations are:
+
+ * edit the ~/.npmrc file, add these values xml2js = true and / or mime = true
+ * define the appropriate environment variables: npm_config_xml2js=true and / or npm_config_mime=true
+
+The above methods are equivalent.
+
 ## Project and Design goals
 
  * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
