@@ -7,9 +7,7 @@
     "install": "node tools/install.js"
   },
   "dependencies": {
-    "npm": ">=1.0.x",
-    "mime": "~1.2.7",
-    "xml2js": "~0.1.14"
+    "npm": ">=1.0.x"
   },
   "devDependencies": {
     "http-get": ">=0.4.0"
