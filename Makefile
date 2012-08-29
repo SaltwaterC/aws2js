@@ -7,11 +7,13 @@ all:
 lint:
 	tools/lint.sh
 
+pclean:
+	cp config/package.json package.json
+
 purge: clean
-clean:
+clean: pclean
 	rm -rf node_modules
 	rm -f lib/dependencies.js
-	cp config/package.json package.json
 
 publish: clean
 	/usr/bin/env npm publish

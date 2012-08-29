@@ -11,7 +11,7 @@ Either manually clone this repository into your node_modules directory, then run
 
 > npm install aws2js
 
-[npm](https://github.com/isaacs/npm) is the only direct dependency of this library. It is used programmatically to install the dependencies.
+[npm](https://github.com/isaacs/npm) is a direct dependency of this library. It is used programmatically to install the dependencies for XML and MIME parsing.
 
 By default, the module installs as dependencies the [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) and the [mime-magic](https://github.com/SaltwaterC/mime-magic) libraries. Under Windows, it installs by default with [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) and mime-magic.
 
