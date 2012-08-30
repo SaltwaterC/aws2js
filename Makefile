@@ -13,7 +13,7 @@ pclean:
 purge: clean
 clean: pclean
 	rm -rf node_modules
-	rm -f lib/dependencies.js
+	rm -f config/dependencies.js
 
 publish: clean
 	/usr/bin/env npm publish

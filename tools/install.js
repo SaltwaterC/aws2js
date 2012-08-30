@@ -45,7 +45,7 @@ npm.load({}, function (err) {
 			}
 			
 			console.log('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
-			var ws = fs.createWriteStream('lib/dependencies.js');
+			var ws = fs.createWriteStream('config/dependencies.js');
 			var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
 			ws.write(depend);
 			ws.end();
