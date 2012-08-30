@@ -1,5 +1,6 @@
 ## v0.7.4
  * Deprecates the usage of node.js v0.4.10+. The support for node.js v0.4.10+ will be removed in aws2js v0.8.
+ * Refactored the internals to depend of lodash (underscore.js drop-in replacement) instead of various custom solutions.
  * Enables the usage of `npm shrinkwrap` with the install.js dependencies [#58](https://github.com/SaltwaterC/aws2js/issues/58).
  * Fixes the improperly signed header for DynamoDB when request body contains UTF-8 characters [#60](https://github.com/SaltwaterC/aws2js/pull/60).
  * Updates the RDS API client to default to version 2012-07-31.
