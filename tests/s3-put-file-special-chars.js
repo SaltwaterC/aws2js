@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var s3 = require('../').load('s3');
 var path = 'foo~!@#$&*()=:,;%3F+\'.txt';
@@ -27,7 +29,10 @@ s3.putFile(path, './data/foo.txt', false, {}, function (err, res) {
 });
 
 process.on('exit', function () {
-	for (var i in callbacks) {
-		assert.ok(callbacks[i]);
+	var i;
+	for (i in callbacks) {
+		if (callbacks.hasOwnProperty(i)) {
+			assert.ok(callbacks[i]);
+		}
 	}
 });

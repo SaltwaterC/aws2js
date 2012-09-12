@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var ec2 = require('../').load('ec2');
 

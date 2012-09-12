@@ -1,7 +1,10 @@
+'use strict';
+
 /**
  * Common suffix for the API endpoints
  */
 exports.suffix = '.amazonaws.com';
+
 /**
  * The supported regions. The values patch the SNAFU of the S3 API.
  */
@@ -14,6 +17,7 @@ exports.regions = {
 	'ap-northeast-1': 'ap-northeast-1', // Tokyo,
 	'sa-east-1': 'sa-east-1' // Sao Paulo
 };
+
 /**
  * Services without region support and default endpoints
  */
@@ -24,26 +28,29 @@ exports.noRegion = {
 	elasticache: null,
 	sts: null
 };
+
 /**
  * The S3 subresources that must be part of the signed string
  */
 exports.subResource = {
-	acl: null,
-	lifecycle: null,
-	location: null,
-	logging: null,
-	notification: null,
-	partNumber: null,
-	policy: null,
-	requestPayment: null,
-	torrent: null,
-	uploadId: null,
-	uploads: null,
-	versionId: null,
-	versioning: null,
-	versions: null,
-	website: null
+	'acl': null,
+	'lifecycle': null,
+	'location': null,
+	'logging': null,
+	'notification': null,
+	'partNumber': null,
+	'policy': null,
+	'requestPayment': null,
+	'torrent': null,
+	'uploadId': null,
+	'uploads': null,
+	'versionId': null,
+	'versioning': null,
+	'versions': null,
+	'website': null,
+	'delete': null
 };
+
 /**
  * Canned ACLs
  */
@@ -55,22 +62,23 @@ exports.cannedAcls = {
 	'bucket-owner-read' : null,
 	'bucket-owner-full-control' : null
 };
+
 /**
- * The actual clients with the default config. Loaded on demand by aws.js's load() method.
+ * The AWS clients with the default config. Loaded on demand by aws.js's load() method.
  */
 exports.clients = {
 	ec2: {
 		prefix: 'ec2',
 	    query: {
-	    	Version: '2012-05-01',
-	    	SignatureMethod: 'HmacSHA256',
+			Version: '2012-07-20',
+			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 	    }
 	},
 	rds: {
 		prefix: 'rds',
 		query: {
-			Version: '2012-04-23',
+			Version: '2012-07-31',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}
@@ -86,7 +94,7 @@ exports.clients = {
 	elb: {
 		prefix: 'elasticloadbalancing',
 		query: {
-			Version: '2011-11-15',
+			Version: '2012-06-01',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}
@@ -186,6 +194,15 @@ exports.clients = {
 		host: 'sns.us-east-1.amazonaws.com',
 		query: {
 			Version: '2010-03-31',
+			SignatureMethod: 'HmacSHA256',
+			SignatureVersion: '2'
+		}
+	},
+	emr: {
+		prefix: 'elasticmapreduce',
+		host: 'elasticmapreduce.us-east-1.amazonaws.com',
+		query: {
+			Version: '2009-03-31',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}

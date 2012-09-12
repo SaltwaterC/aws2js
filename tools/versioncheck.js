@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 // Checks the AWS docs for newer API versions
 
 var http = require('http-get');
@@ -18,10 +20,11 @@ var docs = {
 	sdb: 'http://docs.amazonwebservices.com/AmazonSimpleDB/latest/DeveloperGuide/Welcome.html',
 	sts: 'http://docs.amazonwebservices.com/STS/latest/APIReference/Welcome.html',
 	dynamodb: 'http://docs.amazonwebservices.com/amazondynamodb/latest/developerguide/Introduction.html',
-	sns: 'http://docs.amazonwebservices.com/sns/latest/api/Welcome.html'
+	sns: 'http://docs.amazonwebservices.com/sns/latest/api/Welcome.html',
+	emr: 'http://docs.amazonwebservices.com/ElasticMapReduce/latest/API/Welcome.html'
 };
 
-var config = require('../lib/config.js');
+var config = require('../config/aws.js');
 
 var check = function (service, url, current) {
 	http.get({url: url}, function (err, res) {
@@ -44,6 +47,9 @@ var check = function (service, url, current) {
 	});
 };
 
-for (var service in docs) {
-	check(service, docs[service], config.clients[service].query.Version);
+var service;
+for (service in docs) {
+	if (docs.hasOwnProperty(service)) {
+		check(service, docs[service], config.clients[service].query.Version);
+	}
 }

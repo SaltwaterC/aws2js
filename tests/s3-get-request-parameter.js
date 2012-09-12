@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var s3 = require('../').load('s3');
 

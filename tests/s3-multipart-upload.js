@@ -1,3 +1,5 @@
+'use strict';
+
 var cp = require('child_process');
 var assert = require('assert');
 var crypto = require('crypto');

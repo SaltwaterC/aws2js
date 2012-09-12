@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var ec2 = require('../').load('ec2');
 
@@ -31,7 +33,10 @@ ec2.request('DescribeInstances', {'Filter.1.Name': 'architecture', 'Filter.1.Val
 });
 
 process.on('exit', function () {
-	for (var i in callbacks) {
-		assert.ok(callbacks[i]);
+	var i;
+	for (i in callbacks) {
+		if (callbacks.hasOwnProperty(i)) {
+			assert.ok(callbacks[i]);
+		}
 	}
 });

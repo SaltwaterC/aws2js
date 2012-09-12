@@ -1,6 +1,8 @@
+'use strict';
+
 var assert = require('assert');
 var aws = require('../');
-var config = require('../lib/config.js');
+var config = require('../config/aws.js');
 var suffix = config.suffix; 
 
 var clients = {
@@ -11,12 +13,15 @@ var clients = {
 	sdb: config.clients.sdb.prefix
 };
 
-for (var client in clients) {
-	var prefix = clients[client];
-	var cl = aws.load(client);
-	assert.deepEqual(cl.getEndPoint(), prefix + suffix);
-	cl.setRegion('eu-west-1');
-	assert.deepEqual(cl.getEndPoint(), prefix + '.eu-west-1' + suffix);
+var client;
+for (client in clients) {
+	if (clients.hasOwnProperty(client)) {
+		var prefix = clients[client];
+		var cl = aws.load(client);
+		assert.deepEqual(cl.getEndPoint(), prefix + suffix);
+		cl.setRegion('eu-west-1');
+		assert.deepEqual(cl.getEndPoint(), prefix + '.eu-west-1' + suffix);
+	}
 }
 
 var ses = aws.load('ses');
@@ -53,6 +58,11 @@ var sns = aws.load('sns');
 assert.deepEqual(sns.getEndPoint(), 'sns.us-east-1' + suffix);
 sns.setRegion('us-west-1');
 assert.deepEqual(sns.getEndPoint(), 'sns.us-west-1' + suffix);
+
+var emr = aws.load('emr');
+assert.deepEqual(emr.getEndPoint(), 'elasticmapreduce.us-east-1' + suffix);
+emr.setRegion('us-west-1');
+assert.deepEqual(emr.getEndPoint(), 'elasticmapreduce.us-west-1' + suffix);
 
 var s3 = aws.load('s3');
 assert.deepEqual(s3.getEndPoint(), 's3' + suffix);

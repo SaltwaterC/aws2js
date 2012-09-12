@@ -1,3 +1,46 @@
+## v0.7.4
+ * Deprecates the usage of node.js v0.4.10+. The support for node.js v0.4.10+ will be removed in aws2js v0.8.
+ * Refactored the internals to depend of lodash (underscore.js drop-in replacement) instead of various custom solutions.
+ * Enables the usage of `npm shrinkwrap` with the install.js dependencies [#58](https://github.com/SaltwaterC/aws2js/issues/58).
+ * Fixes the improperly signed header for DynamoDB when request body contains UTF-8 characters [#60](https://github.com/SaltwaterC/aws2js/pull/60).
+ * Updates the RDS API client to default to version 2012-07-31.
+
+## v0.7.3
+ * Removed the npm purging functionality [#57](https://github.com/SaltwaterC/aws2js/pull/57).
+
+## v0.7.2
+ * Using the s3.put() String Request Body Handler may silently result in truncated data due to inconsistent use of the default 'utf8' encoding [#55](https://github.com/SaltwaterC/aws2js/issues/55), [#56](https://github.com/SaltwaterC/aws2js/pull/56). Updated the documentation to reflect this default.
+
+## v0.7.1
+ * Fixes the install script that wiped npm for global installations. Reported via email, therefore no issue number.
+ * Updates the EC2 API client to default to version 2012-07-20.
+
+## v0.7
+ * Added the possibility to pick the library dependencies: libxml-to-js or xml2js for XML parsing, mime-magic or mime for MIME type detection. libxml-to-js and mime-magic are still the defaults. This adds the possibility to install the library without binary dependencies [#22](https://github.com/SaltwaterC/aws2js/issues/22) - by using the xml2js and mime modules.
+ * Added Windows support. By default, under Windows, aws2js installs with xml2js and mime-magic as dependencies.
+
+## v0.6.22
+ * Reverted the usage of Stream.pipe() for the Stream Request Body Handler [#49](https://github.com/SaltwaterC/aws2js/issues/49), [#50](https://github.com/SaltwaterC/aws2js/pull/50).
+
+## v0.6.21
+ * Enabled the ?delete subresource for S3 [#51](https://github.com/SaltwaterC/aws2js/issues/51).
+ * Added a new S3 helper: s3.delMultiObjects() that makes use of the ?delete subresource.
+
+## v0.6.20
+ * Adds Amazon Elastic MapReduce (EMR) support.
+ * Updates the EC2 API client to default to version 2012-06-15.
+ * jslint compliant code (library and tests).
+
+## v0.6.19
+ * New S3 helpers: s3.copyObject(), s3.moveObject(), s3.getBucket().
+ * Improved the S3 helper s3.renameObject() by adding the optional headers argument. Deprecated s3.renameObject in favor of s3.moveObject().
+ * New optional headers argument to the s3.del() low level method.
+
+## v0.6.18
+ * Adds s3.signUrl() low level method for creating pre-signed URLs [#45](https://github.com/SaltwaterC/aws2js/issues/45).
+ * Updates the EC2 API client to default to version 2012-06-01.
+ * Updates the ELB API client to default to version 2012-06-01.
+
 ## v0.6.17
  * Fixes the double callback calling for the DynamoDB client [#41](https://github.com/SaltwaterC/aws2js/issues/41).
  * Updates the EC2 API client to default to version 2012-05-01.
