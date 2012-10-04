@@ -56,7 +56,7 @@ s3.delLifeCycle(function (error, response) {
 						assert.ifError(error);
 					});
 				});
-			}, 10000);
+			}, 18000);
 		});
 	});
 });
