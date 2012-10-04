@@ -1,7 +1,7 @@
 {
   "name": "aws2js",
   "main": "./lib/aws.js",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "AWS (Amazon Web Services) APIs client implementation for node.js",
   "scripts": {
     "install": "node tools/install.js"
@@ -9,7 +9,9 @@
   "dependencies": {
     "lodash": ">=0.6.x",
     "semver": ">=1.0.x",
-    "npm": ">=1.0.x"
+    "npm": ">=1.0.x",
+    "libxml-to-js": "~0.3.10",
+    "mime-magic": "~0.4.0"
   },
   "devDependencies": {
     "http-get": ">=0.4.0"
