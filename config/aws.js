@@ -199,3 +199,12 @@ exports.clients = {
 		}
 	}
 };
+
+/**
+ * The configuration that's in use when the xml2js parser is preferred
+ */
+exports.xml2jsConfig = {
+	mergeAttrs: true,
+	explicitRoot: false,
+	explicitArray: false
+};
