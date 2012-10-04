@@ -1,5 +1,7 @@
 ## v0.7.5
  * Small changes to the MIME detection code that relies on mime-magic due to the deprecation of mime.fileWrapper() [#7](https://github.com/SaltwaterC/mime-magic/issues/7).
+ * Updates the RDS API client to default to version 2012-09-17.
+ * Updates the EC2 API client to default to version 2012-08-15.
 
 ## v0.7.4
  * Deprecates the usage of node.js v0.4.10+. The support for node.js v0.4.10+ will be removed in aws2js v0.8.
