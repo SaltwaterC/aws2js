@@ -1,3 +1,7 @@
+## v0.7.6
+ * Does not pass the S3 CreateBucketConfiguration document on bucket creation with s3.createBucket() into the default zone [#64](https://github.com/SaltwaterC/aws2js/issues/64).
+ * Allowing empty string for indicating the default zone (US East 1, N. Virginia) for s3.createBucket().
+
 ## v0.7.5
  * Small changes to the MIME detection code that relies on mime-magic due to the deprecation of mime.fileWrapper() [#7](https://github.com/SaltwaterC/mime-magic/issues/7).
  * Updates the RDS API client to default to version 2012-09-17.
