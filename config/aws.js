@@ -102,7 +102,7 @@ exports.clients = {
 	s3: {
 		prefix: 's3'
 	},
-        iam: {
+	iam: {
 		prefix: 'iam',
 		host: 'iam.amazonaws.com',
 		query: {
