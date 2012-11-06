@@ -32,6 +32,7 @@ cloudfront.invalidate(distributionId, '/no-such-path-but-never-mind', new Date()
   cloudfront.getInvalidations(distributionId, function(err, res) {
     assert.ifError(err);
     assert.ok(res.Quantity > 0);
+    console.log(res.Items.InvalidationSummary)
     var found = res.Items.InvalidationSummary.filter(function (summary) {return summary.Id === invalidationId}).length;
     assert.ok(found === 1);
     callbacks.getInvalidations = true;
