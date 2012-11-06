@@ -102,16 +102,7 @@ exports.clients = {
 	s3: {
 		prefix: 's3'
 	},
-  cloudfront: {
-    prefix: 'cloudfront',
-    host: 'cloudfront.amazonaws.com',
-    query: {
-      Version: '2012-05-05',
-      SignatureMethod: 'HmacSHA256',
-      SignatureVersion: '2'
-    }
-  },
-  iam: {
+        iam: {
 		prefix: 'iam',
 		host: 'iam.amazonaws.com',
 		query: {
