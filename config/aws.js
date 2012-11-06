@@ -70,7 +70,7 @@ exports.clients = {
 	ec2: {
 		prefix: 'ec2',
 	    query: {
-			Version: '2012-07-20',
+			Version: '2012-08-15',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 	    }
@@ -78,7 +78,7 @@ exports.clients = {
 	rds: {
 		prefix: 'rds',
 		query: {
-			Version: '2012-07-31',
+			Version: '2012-09-17',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}
@@ -207,4 +207,13 @@ exports.clients = {
 			SignatureVersion: '2'
 		}
 	}
+};
+
+/**
+ * The configuration that's in use when the xml2js parser is preferred
+ */
+exports.xml2jsConfig = {
+	mergeAttrs: true,
+	explicitRoot: false,
+	explicitArray: false
 };
