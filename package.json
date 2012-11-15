@@ -1,7 +1,7 @@
 {
   "name": "aws2js",
   "main": "./lib/aws.js",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "AWS (Amazon Web Services) APIs client implementation for node.js",
   "scripts": {
     "install": "node tools/install.js"
@@ -20,12 +20,12 @@
   "homepage": "https://github.com/SaltwaterC/aws2js",
   "author": {
     "name": "Stefan Rusu",
-    "url": "http://www.saltwaterc.eu/"
+    "url": "http://www.saltwaterc.eu"
   },
   "contributors": [
     {
       "name": "Dan Tillberg",
-      "url": "http://tillberg.us/"
+      "url": "http://tillberg.us"
     },
     {
       "name": "Andrew Paulin",
@@ -37,7 +37,7 @@
     },
     {
       "name": "Carlos Guerreiro",
-      "url": "http://perceptiveconstructs.com/"
+      "url": "http://perceptiveconstructs.com"
     },
     {
       "name": "Nikita",
@@ -77,7 +77,7 @@
     },
     {
       "name": "Alon Burg",
-      "url": "http://burg-alon.9folds.com/"
+      "url": "http://burg-alon.9folds.com"
     },
     {
       "name": "Matt Monson",
@@ -90,6 +90,10 @@
     {
       "name": "Dan Ordille",
       "url": "https://github.com/dordille"
+    },
+    {
+      "name": "Stephen Veit",
+      "url": "http://stephen-veit.blogspot.com"
     }
   ],
   "repository": {

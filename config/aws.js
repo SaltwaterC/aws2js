@@ -70,7 +70,7 @@ exports.clients = {
 	ec2: {
 		prefix: 'ec2',
 	    query: {
-			Version: '2012-08-15',
+			Version: '2012-10-01',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 	    }
@@ -141,7 +141,7 @@ exports.clients = {
 		prefix: 'sqs',
 		host: 'queue.amazonaws.com',
 		query: {
-			Version: '2011-10-01',
+			Version: '2012-11-05',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}

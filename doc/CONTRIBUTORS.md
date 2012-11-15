@@ -6,6 +6,7 @@
   * client loader creates a new object on invocation.
   * passing HTTP options to the client loader.
   * attached a parsed XML document when the connection is prematurely closed.
+  * don't error on close with status code 204
  * [Carlos Guerreiro](http://perceptiveconstructs.com/) - the query argument for the [s3.get()](https://github.com/SaltwaterC/aws2js/wiki/s3.get%28%29) method.
  * [Nikita](https://github.com/nab) - global variable leak fix.
  * [AYUkawa,Yasuyuk](https://github.com/toomore-such) - enabled the multiregion support for DynamoDB.
@@ -20,3 +21,4 @@
  * [Matt Monson](https://github.com/mattmonson) - fixed the inconsistent use of the default 'utf8' encoding for the String Request Body Handler of the s3.put() method.
  * [Stephen Lynn](https://github.com/lynns) - removed the npm purging code that breaks npm rebuild on environments like Heroku.
  * [Dan Ordille](https://github.com/dordille) - fixed the broken header signing for DynamoDB when the request body contains UTF-8 chars.
+ * [Stephen Veit](http://stephen-veit.blogspot.com/) - fixed the S3 bucket fail when specifying us-east-1
