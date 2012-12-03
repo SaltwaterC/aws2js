@@ -9,13 +9,14 @@ exports.suffix = '.amazonaws.com';
  * The supported regions. The values patch the SNAFU of the S3 API.
  */
 exports.regions = {
-	'us-east-1': '', // Virginia
+	'us-east-1': '', // N. Virginia aka US Standard
 	'us-west-1': 'us-west-1', // N. California
 	'us-west-2': 'us-west-2', // Oregon
 	'eu-west-1': 'EU', // Ireland
 	'ap-southeast-1': 'ap-southeast-1', // Singapore
-	'ap-northeast-1': 'ap-northeast-1', // Tokyo,
-	'sa-east-1': 'sa-east-1' // Sao Paulo
+	'ap-northeast-1': 'ap-northeast-1', // Tokyo
+	'sa-east-1': 'sa-east-1', // Sao Paulo
+	'ap-southeast-2': 'ap-southeast-2' // Sydney
 };
 
 /**
@@ -25,7 +26,6 @@ exports.noRegion = {
 	s3: null, // S3 sets the region per bucket when the bucket is created
 	email: null,
 	iam: null,
-	elasticache: null,
 	sts: null
 };
 
@@ -132,7 +132,7 @@ exports.clients = {
 		prefix: 'elasticache',
 		host: 'elasticache.us-east-1.amazonaws.com',
 		query: {
-			Version: '2012-03-09',
+			Version: '2012-08-01',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}

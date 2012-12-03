@@ -1,3 +1,8 @@
+## v0.7.8
+ * Added the Australian region to the config.
+ * Removed the noRegion flag for ElastiCache. For the moment, [unavailable for Sydney, Australia](http://aws.amazon.com/about-aws/globalinfrastructure/regional-product-services/).
+ * Updates the ElastiCache API client to default to version 2012-08-01.
+
 ## v0.7.7
  * Don't error out on close events with 204 status code [#67](https://github.com/SaltwaterC/aws2js/pull/67).
  * Updates the EC2 API client to default to version 2012-10-01.
