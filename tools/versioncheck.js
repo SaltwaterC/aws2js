@@ -27,11 +27,11 @@ var docs = {
 var config = require('../config/aws.js');
 
 var check = function (service, url, current) {
-	http.get({url: url}, function (err, res) {
+	http.get({url: url, bufferType: 'buffer'}, function (err, res) {
 		if (err) {
 			console.error('The %s service returned error: %s', service, err.message);
 		} else {
-			var version = res.buffer.match(/API Version (\d{4}-\d{2}-\d{2})/);
+			var version = res.buffer.toString('utf8').match(/API Version (\d{4}-\d{2}-\d{2})/);
 			if (version && version[1]) {
 				if (version[1] != current) {
 					console.log('%s has a newer version: %s', service, version[1]);
