@@ -25,7 +25,7 @@ s3.putFile(path, './data/foo.png', false, {}, function (err, res) {
 		assert.ifError(err);
 		assert.deepEqual(res.headers['content-type'], 'image/png');
 		
-		http.head({url: 'https://' + s3.getEndPoint() + '/' + path}, function (err, res) {
+		http.head({url: 'https://s3.amazonaws.com' + '/' + s3.getBucket() + '/' + path}, function (err, res) {
 			assert.ok(err instanceof Error);
 			assert.deepEqual(err.code, 403);
 			
