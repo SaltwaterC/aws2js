@@ -42,5 +42,5 @@ test-nobinary: purge
 	@npm install --xml2js true --mime true > /dev/null 2>&1
 	tools/test.sh
 
-simpletest: lint
+simpletest: all lint
 	tools/test.sh
