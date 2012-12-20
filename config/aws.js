@@ -132,7 +132,7 @@ exports.clients = {
 		prefix: 'elasticache',
 		host: 'elasticache.us-east-1.amazonaws.com',
 		query: {
-			Version: '2012-08-01',
+			Version: '2012-11-15',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}
