@@ -1,5 +1,6 @@
 # v0.7.9
  * Signs x-amz-date if present as request header instead of Date [#71](https://github.com/SaltwaterC/aws2js/pull/71).
+ * Adds s3.putFiles() method to upload multiple files [#70](https://github.com/SaltwaterC/aws2js/pull/70).
  * s3.signUrl() returns the URL with path based addressing if the protocol is HTTPS. The host based addressing breaks HTTPS due to [the reasons explained here](https://github.com/SaltwaterC/aws2js/wiki/Bucket-Name) for the HTTPS naming limitations.
  * Updates the EC2 API client to default to version 2012-12-01.
  * Updates the ElastiCache API client to default to version 2012-11-15.
