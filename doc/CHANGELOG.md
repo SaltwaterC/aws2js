@@ -1,3 +1,6 @@
+## v0.7.10
+ * Removes the deep cloning of httpOptions as it breaks custom HTTP Agents [#72](https://github.com/SaltwaterC/aws2js/issues/72).
+
 # v0.7.9
  * Signs x-amz-date if present as request header instead of Date [#71](https://github.com/SaltwaterC/aws2js/pull/71).
  * Adds s3.putFiles() method to upload multiple files [#70](https://github.com/SaltwaterC/aws2js/pull/70).
