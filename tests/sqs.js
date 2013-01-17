@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var sqs = require('../').load('sqs');
@@ -8,8 +10,8 @@ sqs.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS
 sqs.setRegion('us-east-1');
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var sqsProcessResponse = function (err, res) {
@@ -18,20 +20,13 @@ var sqsProcessResponse = function (err, res) {
 };
 
 sqs.request('ListQueues', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	sqsProcessResponse(err, res);
 });
 
 sqs.request('ListQueues', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	sqsProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

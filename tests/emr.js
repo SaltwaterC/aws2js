@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var emr = require('../').load('emr');
@@ -7,8 +9,8 @@ var emr = require('../').load('emr');
 emr.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var emrProcessResponse = function (err, res) {
@@ -17,20 +19,13 @@ var emrProcessResponse = function (err, res) {
 };
 
 emr.request('DescribeJobFlows', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	emrProcessResponse(err, res);
 });
 
 emr.request('DescribeJobFlows', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	emrProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var fs = require('fs');
 var assert = require('assert');
 
@@ -9,7 +11,9 @@ var dependencies = require('../config/dependencies.js');
 var xmlDep = require(dependencies.xml);
 var mimeDep = require(dependencies.mime);
 
-var callback = false;
+var callbacks = {
+	parser: 0
+};
 
 var parser;
 if (dependencies.xml === 'libxml-to-js') {
@@ -23,13 +27,11 @@ fs.readFile('data/ec2-describeimages.xml', function (err, data) {
 	
 	var xml = new Buffer(data).toString();
 	parser(xml, function (err, res) {
-		callback = true;
+		callbacks.parser++;
 		assert.ifError(err);
 		assert.equal(res.imagesSet.item[0].imageId, 'ami-be3adfd7');
 		assert.equal(res.imagesSet.item[1].imageId, 'ami-be3adfd9');
 	});
 });
 
-process.on('exit', function () {
-	assert.ok(callback);
-});
+common.teardown(callbacks);

@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var sns = require('../').load('sns');
@@ -8,8 +10,8 @@ sns.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS
 sns.setRegion('us-east-1');
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var snsProcessResponse = function (err, res) {
@@ -18,20 +20,13 @@ var snsProcessResponse = function (err, res) {
 };
 
 sns.request('ListSubscriptions', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	snsProcessResponse(err, res);
 });
 
 sns.request('ListSubscriptions', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	snsProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

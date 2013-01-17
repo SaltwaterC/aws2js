@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var ses = require('../').load('ses');
@@ -13,8 +15,8 @@ try {
 }
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var sesProcessResponse = function (err, res) {
@@ -23,20 +25,13 @@ var sesProcessResponse = function (err, res) {
 };
 
 ses.request('ListVerifiedEmailAddresses', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	sesProcessResponse(err, res);
 });
 
 ses.request('ListVerifiedEmailAddresses', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	sesProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

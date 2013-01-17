@@ -1,11 +1,13 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var s3 = require('../').load('s3');
 
 var callbacks = {
-	query: false,
-	path: false
+	query: 0,
+	path: 0
 };
 
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
@@ -18,21 +20,14 @@ var s3ProcessResponse = function (err, res) {
 };
 
 s3.get('/', {'max-keys': 1, prefix: '/'}, 'xml', function (err, res) {
-	callbacks.query = true;
+	callbacks.query++;
 	s3ProcessResponse(err, res);
 });
 
 
 s3.get('/?max-keys=1&prefix=/', 'xml', function (err, res) {
-	callbacks.path = true;
+	callbacks.path++;
 	s3ProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

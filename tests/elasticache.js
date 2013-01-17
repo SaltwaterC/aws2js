@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var elasticache = require('../').load('elasticache');
 
@@ -12,8 +14,8 @@ try {
 }
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var elasticacheProcessResponse = function (err, res) {
@@ -22,20 +24,13 @@ var elasticacheProcessResponse = function (err, res) {
 };
 
 elasticache.request('DescribeCacheClusters', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	elasticacheProcessResponse(err, res);
 });
 
 elasticache.request('DescribeCacheClusters', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	elasticacheProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

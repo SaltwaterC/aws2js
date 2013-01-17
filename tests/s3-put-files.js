@@ -1,14 +1,18 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var s3 = require('../').load('s3');
 
 var callbacks = {
-	put: false,
-	del: false
+	put: 0,
+	del: 0,
+	idx0: 0,
+	idx1: 0
 };
 
-var callbacksHead = [false, false];
+var callbacksHead = [0, 0];
 
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
@@ -25,7 +29,7 @@ var files = [
 ];
 
 s3.putFiles(files, false, {}, function (errors, results) {
-	callbacks.put = true;
+	callbacks.put++;
 	
 	var idx;
 	for (idx in errors) {
@@ -48,14 +52,14 @@ s3.putFiles(files, false, {}, function (errors, results) {
 			];
 			s3.delMultiObjects(objects, function (err, res) {
 				assert.ifError(err);
-				callbacks.del = true;
+				callbacks.del++;
 			});
 		}
 	};
 	
 	files.forEach(function (element, index) {
 		s3.head(element.path, function (err, res) {
-			callbacksHead[index] = true;
+			callbacks['idx' + index]++;
 			assert.ifError(err);
 			headCount--;
 			cleanup();
@@ -63,17 +67,4 @@ s3.putFiles(files, false, {}, function (errors, results) {
 	});
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-	
-	for (i in callbacksHead) {
-		if (callbacksHead.hasOwnProperty(i)) {
-			assert.ok(callbacksHead[i]);
-		}
-	}
-});
+common.teardown(callbacks);

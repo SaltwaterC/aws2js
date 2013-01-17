@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var autoscaling = require('../').load('autoscaling');
 
@@ -7,8 +9,8 @@ autoscaling.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRE
 autoscaling.setRegion('us-east-1');
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var autoscalingProcessResponse = function (err, res) {
@@ -17,20 +19,13 @@ var autoscalingProcessResponse = function (err, res) {
 };
 
 autoscaling.request('DescribeScalingActivities', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	autoscalingProcessResponse(err, res);
 });
 
 autoscaling.request('DescribeScalingActivities', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	autoscalingProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var rds = require('../').load('rds');
@@ -8,9 +10,9 @@ rds.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS
 rds.setRegion('us-east-1');
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false,
-	requestWithQuery: false
+	request: 0,
+	requestWithoutQuery: 0,
+	requestWithQuery: 0
 };
 
 var rdsProcessResponse = function (err, res) {
@@ -19,25 +21,18 @@ var rdsProcessResponse = function (err, res) {
 };
 
 rds.request('DescribeDBInstances', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	rdsProcessResponse(err, res);
 });
 
 rds.request('DescribeDBInstances', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	rdsProcessResponse(err, res);
 });
 
 rds.request('DescribeDBInstances', {MaxRecords: 20}, function (err, res) {
-	callbacks.requestWithQuery = true;
+	callbacks.requestWithQuery++;
 	rdsProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

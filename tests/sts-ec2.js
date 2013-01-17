@@ -1,14 +1,16 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var aws = require('../');
 var sts = aws.load('sts', process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 var ec2 = aws.load('ec2');
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false,
-	requestWithFilter: false
+	request: 0,
+	requestWithoutQuery: 0,
+	requestWithFilter: 0
 };
 
 var ec2ProcessResponse = function (err, res) {
@@ -24,26 +26,19 @@ sts.request('GetSessionToken', function (err, res) {
 	ec2.setRegion('us-east-1');
 	
 	ec2.request('DescribeInstances', {}, function (err, res) {
-		callbacks.request = true;
+		callbacks.request++;
 		ec2ProcessResponse(err, res);
 	});
 	
 	ec2.request('DescribeInstances', function (err, res) {
-		callbacks.requestWithoutQuery = true;
+		callbacks.requestWithoutQuery++;
 		ec2ProcessResponse(err, res);
 	});
 	
 	ec2.request('DescribeInstances', {'Filter.1.Name': 'architecture', 'Filter.1.Value.1': 'i386'}, function (err, res) {
-		callbacks.requestWithFilter = true;
+		callbacks.requestWithFilter++;
 		ec2ProcessResponse(err, res);
 	});
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

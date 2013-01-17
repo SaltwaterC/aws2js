@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var sdbEast = require('../').load('sdb');
@@ -12,12 +14,12 @@ sdbWest.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_AC
 sdbWest.setRegion('us-west-1');
 
 var callbacks = {
-	requestEast: false,
-	requestEastWithoutQuery: false,
-	requestEastWithQuery: false,
-	requestWest: false,
-	requestWestWithoutQuery: false,
-	requestWestWithQuery: false
+	requestEast: 0,
+	requestEastWithoutQuery: 0,
+	requestEastWithQuery: 0,
+	requestWest: 0,
+	requestWestWithoutQuery: 0,
+	requestWestWithQuery: 0
 };
 
 var sdbProcessResponse = function (err, res) {
@@ -26,40 +28,33 @@ var sdbProcessResponse = function (err, res) {
 };
 
 sdbEast.request('ListDomains', {}, function (err, res) {
-	callbacks.requestEast = true;
+	callbacks.requestEast++;
 	sdbProcessResponse(err, res);
 });
 
 sdbEast.request('ListDomains', function (err, res) {
-	callbacks.requestEastWithoutQuery = true;
+	callbacks.requestEastWithoutQuery++;
 	sdbProcessResponse(err, res);
 });
 
 sdbEast.request('ListDomains', {MaxNumberOfDomains: 10}, function (err, res) {
-	callbacks.requestEastWithQuery = true;
+	callbacks.requestEastWithQuery++;
 	sdbProcessResponse(err, res);
 });
 
 sdbWest.request('ListDomains', {}, function (err, res) {
-	callbacks.requestWest = true;
+	callbacks.requestWest++;
 	sdbProcessResponse(err, res);
 });
 
 sdbWest.request('ListDomains', function (err, res) {
-	callbacks.requestWestWithoutQuery = true;
+	callbacks.requestWestWithoutQuery++;
 	sdbProcessResponse(err, res);
 });
 
 sdbWest.request('ListDomains', {MaxNumberOfDomains: 10}, function (err, res) {
-	callbacks.requestWestWithQuery = true;
+	callbacks.requestWestWithQuery++;
 	sdbProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

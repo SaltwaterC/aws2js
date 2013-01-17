@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var cp = require('child_process');
 var assert = require('assert');
 var crypto = require('crypto');
@@ -7,6 +9,9 @@ var fs = require('fs');
 var s3 = require('../').load('s3');
 
 var file = '6M.tmp';
+var callbacks = {
+	putFileMultipart: 0
+};
 
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
@@ -18,6 +23,7 @@ cp.execFile('../tools/createtemp.sh', function (err, res) {
 	
 	s3.putFileMultipart(file, file, false, {}, 5242880, function (err, res) {
 		assert.ifError(err);
+		callbacks.putFileMultipart++;
 		
 		s3.get(file, {file: file}, function (err, res) {
 			assert.ifError(err);
@@ -58,3 +64,5 @@ process.on('uncaughtException', function (err) {
 		}
 	});
 });
+
+common.teardown(callbacks);

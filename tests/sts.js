@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var sts = require('../').load('sts');
 
@@ -12,8 +14,8 @@ try {
 }
 
 var callbacks = {
-	request: false,
-	requestWithoutQuery: false
+	request: 0,
+	requestWithoutQuery: 0
 };
 
 var stsProcessResponse = function (err, res) {
@@ -22,20 +24,13 @@ var stsProcessResponse = function (err, res) {
 };
 
 sts.request('GetSessionToken', {}, function (err, res) {
-	callbacks.request = true;
+	callbacks.request++;
 	stsProcessResponse(err, res);
 });
 
 sts.request('GetSessionToken', function (err, res) {
-	callbacks.requestWithoutQuery = true;
+	callbacks.requestWithoutQuery++;
 	stsProcessResponse(err, res);
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

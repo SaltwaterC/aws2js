@@ -1,5 +1,7 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 
 var aws = require('../');
@@ -13,8 +15,8 @@ try {
 }
 
 var callbacks = {
-	request: false,
-	requestWithoutBody: false
+	request: 0,
+	requestWithoutBody: 0
 };
 
 sts.request('GetSessionToken', function (err, res) {
@@ -24,23 +26,16 @@ sts.request('GetSessionToken', function (err, res) {
 	dynamodb.setCredentials(credentials.AccessKeyId, credentials.SecretAccessKey, credentials.SessionToken);
 	
 	dynamodb.request('ListTables', function (err, res) {
-		callbacks.requestWithoutBody = true;
+		callbacks.requestWithoutBody++;
 		assert.ifError(err);
 		assert.ok(res.TableNames);
 	});
 	
 	dynamodb.request('ListTables', {}, function (err, res) {
-		callbacks.request = true;
+		callbacks.request++;
 		assert.ifError(err);
 		assert.ok(res.TableNames);
 	});
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);

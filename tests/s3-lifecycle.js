@@ -1,13 +1,15 @@
 'use strict';
 
+var common = require('./includes/common.js');
+
 var assert = require('assert');
 var s3 = require('../').load('s3');
 
 var callbacks = {
-	putLifeCycleRule1: false,
-	putLifeCycleRule2: false,
-	delLifeCycleRule1: false,
-	delLifeCycleRule2: false
+	putLifeCycleRule1: 0,
+	putLifeCycleRule2: 0,
+	delLifeCycleRule1: 0,
+	delLifeCycleRule2: 0
 };
 
 var timestamp = new Date().getTime();
@@ -27,14 +29,14 @@ s3.delLifeCycle(function (error, response) {
 	assert.ifError(error);
 	
 	s3.putLifeCycleRule('id', 'prefix-' + timestamp, 5, function (error, response) {
-		callbacks.putLifeCycleRule1 = true;
+		callbacks.putLifeCycleRule1++;
 		
 		console.log('s3.putLifeCycleRule: id, prefix-' + timestamp);
 		showError(error);
 		assert.ifError(error);
 		
 		s3.putLifeCycleRule('id2', 'otherprefix-' + timestamp, 5, function (error, response) {
-			callbacks.putLifeCycleRule2 = true;
+			callbacks.putLifeCycleRule2++;
 			
 			console.log('s3.putLifeCycleRule: id2, otherprefix-' + timestamp);
 			showError(error);
@@ -42,14 +44,14 @@ s3.delLifeCycle(function (error, response) {
 			
 			setTimeout(function () {
 				s3.delLifeCycleRule('id', function(error, response) {
-					callbacks.delLifeCycleRule1 = true;
+					callbacks.delLifeCycleRule1++;
 					
 					console.log('s3.delLifeCycleRule: id');
 					showError(error);
 					assert.ifError(error);
 					
 					s3.delLifeCycleRule('id2', function(error, response) {
-						callbacks.delLifeCycleRule2 = true;
+						callbacks.delLifeCycleRule2++;
 						
 						console.log('s3.delLifeCycleRule: id2');
 						showError(error);
@@ -61,11 +63,4 @@ s3.delLifeCycle(function (error, response) {
 	});
 });
 
-process.on('exit', function () {
-	var i;
-	for (i in callbacks) {
-		if (callbacks.hasOwnProperty(i)) {
-			assert.ok(callbacks[i]);
-		}
-	}
-});
+common.teardown(callbacks);
