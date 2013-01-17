@@ -1,3 +1,6 @@
+## v0.7.11
+ * Changes the npm installation of the dependencies to a cli wrapper due to bugs in npm with older node versions [#61](https://github.com/SaltwaterC/aws2js/issues/61).
+
 ## v0.7.10
  * Removes the deep cloning of httpOptions as it breaks custom HTTP Agents [#72](https://github.com/SaltwaterC/aws2js/issues/72).
 
