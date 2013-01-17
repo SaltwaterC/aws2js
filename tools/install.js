@@ -1,7 +1,9 @@
 // wrapper for supporting multiple backends for XML and MIME
 var fs = require('fs');
-var npm = require('npm');
+var spawn = require('child_process').spawn;
 
+// how many modules to install
+var modules = 2;
 
 // setting the depencines vars
 var xmlMod = 'libxml-to-js';
@@ -18,48 +20,39 @@ if (process.env.npm_config_mime === 'true') {
 }
 
 
-// install the dependencies
-npm.load({}, function (err) {
-	if (err) {
-		console.error(err);
-		console.error(err.stack);
-		process.exit(1);
+var finish = function () {
+	if (modules === 0) {
+		console.error('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
+		var ws = fs.createWriteStream('config/dependencies.js');
+		var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
+		ws.write(depend);
+		ws.end();
 	}
+};
+
+var npmInstall = function (module, cb) {
+	var npmCli = spawn('/usr/bin/env', ['npm', '--save', 'install', module]);
 	
-	// enabling the npm --save flag in order to enable shrinkwrap
-	var haveSave = npm.config.get('save');
-	if ( ! haveSave) {
-		npm.config.set('save', true);
-	}
+	npmCli.stdout.on('data', function (data) {
+		process.stdout.write(data);
+	});
 	
-	var finished = {
-		xml: false,
-		mime: false
-	};
+	npmCli.stderr.on('data', function (data) {
+		process.stderr.write(data);
+	});
 	
-	// write the dependencies file in order to idicate to the internals which modules to use
-	var finish = function () {
-		if (finished.xml && finished.mime) {
-			if ( ! haveSave) {
-				npm.config.set('save', false);
-			}
-			
-			console.log('Finished to install the dependencies. XML: %s; MIME: %s.', xmlMod, mimeMod);
-			var ws = fs.createWriteStream('config/dependencies.js');
-			var depend = "module.exports = {xml: '" + xmlMod + "', mime: '" + mimeMod + "'};";
-			ws.write(depend);
-			ws.end();
+	npmCli.on('exit', function (code) {
+		if (code === 0) {
+			modules--;
+			console.error('aws2js installed its dependency: %s', module);
+			finish();
+		} else {
+			console.error('npm failed to install %s', module)
+			process.exit(code);
 		}
-	};
-	
-	// install the XML and MIME modules
-	npm.commands.install([xmlMod], function (err, data) {
-		finished.xml = true;
-		finish();
 	});
-	
-	npm.commands.install([mimeMod], function (err, data) {
-		finished.mime = true;
-		finish();
-	});
-});
+};
+
+// install the dependencies
+npmInstall(xmlMod);
+npmInstall(mimeMod);
