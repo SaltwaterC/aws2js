@@ -1,5 +1,7 @@
 ## v0.7.11
- * Changes the npm installation of the dependencies to a cli wrapper due to bugs in npm with older node versions [#61](https://github.com/SaltwaterC/aws2js/issues/61).
+ * Changes the npm installation of the dependencies to a CLI wrapper due to bugs in npm with older node versions [#61](https://github.com/SaltwaterC/aws2js/issues/61).
+ * All the requests with HTTP request body are sent after status code 100 Continue, if possible. Impossible for SNS, STS, and DynamoDB as they simply bail out with 500 Internal Server Error. The request body is sent when the `continue` event is emitted. Should mitigate or fix [#39](https://github.com/SaltwaterC/aws2js/issues/39). Can't declare this issue closed since there's not reliable way to reproduce all the errors, but should at least avoid EPIPE.
+ * Updates the RDS API client to default to version 2013-01-10.
 
 ## v0.7.10
  * Removes the deep cloning of httpOptions as it breaks custom HTTP Agents [#72](https://github.com/SaltwaterC/aws2js/issues/72).

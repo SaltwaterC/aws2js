@@ -78,7 +78,7 @@ exports.clients = {
 	rds: {
 		prefix: 'rds',
 		query: {
-			Version: '2012-09-17',
+			Version: '2013-01-10',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}
@@ -169,7 +169,8 @@ exports.clients = {
 		signHeader: true,
 		query: {
 			Version: '2011-12-05'
-		}
+		},
+		noContinue: true
 	},
 	sts: {
 		prefix: 'sts',
@@ -178,7 +179,8 @@ exports.clients = {
 			Version: '2011-06-15',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
-		}
+		},
+		noContinue: true
 	},
 	sns: {
 		prefix: 'sns',
@@ -187,7 +189,8 @@ exports.clients = {
 			Version: '2010-03-31',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
-		}
+		},
+		noContinue: true
 	},
 	emr: {
 		prefix: 'elasticmapreduce',
