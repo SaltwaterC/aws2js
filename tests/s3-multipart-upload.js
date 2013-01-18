@@ -1,5 +1,10 @@
 'use strict';
 
+if (process.platform === 'win32') {
+	console.error('skipping s3-multipart-upload under Windows due to lack of patience with it');
+	process.exit(0);
+}
+
 var common = require('./includes/common.js');
 
 var fs = require('fs');
