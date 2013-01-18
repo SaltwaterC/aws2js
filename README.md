@@ -7,11 +7,11 @@ Amazon Web Services node.js module. Originally a fork of [aws-lib](https://githu
 
 ## Installation
 
-Either manually clone this repository into your node_modules directory, then run `npm install` on the aws2js top directory, or the recommended method:
+Either manually clone this repository into your `node_modules` directory, then run `npm install` on the aws2js top directory, or the recommended method:
 
 > npm install aws2js
 
-[npm](https://github.com/isaacs/npm) is a direct dependency of this library. It is used programmatically to install the dependencies for XML and MIME parsing.
+The installation depends on [npm](https://github.com/isaacs/npm). You need to have npm in PATH. npm is invoked by the `tools/install.js` script.
 
 By default, the module installs as dependencies the [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) and the [mime-magic](https://github.com/SaltwaterC/mime-magic) libraries. Under Windows, it installs by default with [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) and mime-magic.
 
@@ -33,6 +33,10 @@ In order to use these flags when this package is referenced from a package.json 
  * define the appropriate environment variables: npm_config_xml2js=true and / or npm_config_mime=true
 
 The above methods are equivalent. You need to pick just one.
+
+The library installations under root is problematic due to how npm handles [installations under root](https://npmjs.org/doc/scripts.html#USER). npm chokes on running `node tools/install.js`, therefore you need to invoke the installation command with:
+
+> npm install aws2js --unsafe-perm
 
 ## Project and Design goals
 
