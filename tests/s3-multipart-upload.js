@@ -18,6 +18,7 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
+util.log('running the tools/createtemp.sh script for generating the 6M.tmp file');
 cp.execFile('../tools/createtemp.sh', function (err, res) {
 	assert.ifError(err);	
 	util.log('generated the 6M.tmp file');
