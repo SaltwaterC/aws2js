@@ -9,7 +9,7 @@ var assert = require('assert');
  */
 exports.teardown = function (callbacks) {
 	assert.ok(callbacks instanceof Object);
-	process.on('exit', function () {
+	process.on('exit', function (code) {
 		var i;
 		for (i in callbacks) {
 			if (callbacks.hasOwnProperty(i)) {
@@ -17,5 +17,6 @@ exports.teardown = function (callbacks) {
 				util.log(util.format('callback %s executed succesfully', i));
 			}
 		}
+		util.log('exiting with code ' + code);
 	});
 };

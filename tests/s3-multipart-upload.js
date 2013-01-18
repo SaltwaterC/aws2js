@@ -2,10 +2,12 @@
 
 var common = require('./includes/common.js');
 
-var cp = require('child_process');
+var fs = require('fs');
+var util = require('util');
 var assert = require('assert');
 var crypto = require('crypto');
-var fs = require('fs');
+var cp = require('child_process');
+
 var s3 = require('../').load('s3');
 
 var file = '6M.tmp';
@@ -17,7 +19,8 @@ s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
 cp.execFile('../tools/createtemp.sh', function (err, res) {
-	assert.ifError(err);
+	assert.ifError(err);	
+	util.log('generated the 6M.tmp file');
 	
 	var tempMd5 = res.replace(/\s/g, '');
 	
@@ -25,8 +28,12 @@ cp.execFile('../tools/createtemp.sh', function (err, res) {
 		assert.ifError(err);
 		callbacks.putFileMultipart++;
 		
+		util.log('uploaded the 6M.tmp file to S3');
+		
 		s3.get(file, {file: file}, function (err, res) {
 			assert.ifError(err);
+			
+			util.log('got the file back from S3');
 			
 			var md5 = crypto.createHash('md5');
 			
@@ -42,6 +49,7 @@ cp.execFile('../tools/createtemp.sh', function (err, res) {
 					assert.ifError(err);
 					s3.del(file, function (err, res) {
 						assert.ifError(err);
+						util.log('cleaned up the S3 remote');
 					});
 				});
 			});
