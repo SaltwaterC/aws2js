@@ -31,17 +31,21 @@ var finish = function () {
 };
 
 var npmInstall = function (module, cb) {
-	var npmCli = spawn('/usr/bin/env', ['npm', '--save', 'install', module]);
+	if (process.platform === 'win32') {
+		var npm = spawn('cmd', ['/c', 'npm', '--save', 'install', module]);
+	} else {
+		var npm = spawn('/usr/bin/env', ['npm', '--save', 'install', module]);
+	}
 	
-	npmCli.stdout.on('data', function (data) {
+	npm.stdout.on('data', function (data) {
 		process.stdout.write(data);
 	});
 	
-	npmCli.stderr.on('data', function (data) {
+	npm.stderr.on('data', function (data) {
 		process.stderr.write(data);
 	});
 	
-	npmCli.on('exit', function (code) {
+	npm.on('exit', function (code) {
 		if (code === 0) {
 			modules--;
 			console.error('aws2js installed its dependency: %s', module);
