@@ -1,3 +1,8 @@
+## v0.8.0
+ * Dropped the node.js v0.4.x support due to lack of support in npm 1.1.x.
+ * All the dependencies are listed as optional dependencies. The library does feature detection. It fails on runtime if none of the depdendencies are installed.
+* Implemented debug mode which can be enabled by using NODE_ENV=development.
+
 ## v0.7.11
  * Changes the npm installation of the dependencies to a CLI wrapper due to bugs in npm with older node versions [#61](https://github.com/SaltwaterC/aws2js/issues/61).
  * All the requests with HTTP request body are sent after status code 100 Continue, if possible. Impossible for SNS, STS, and DynamoDB as they simply bail out with 500 Internal Server Error. The request body is sent when the `continue` event is emitted. Should mitigate or fix [#39](https://github.com/SaltwaterC/aws2js/issues/39). Can't declare this issue closed since there's not reliable way to reproduce all the errors, but should at least avoid EPIPE.
