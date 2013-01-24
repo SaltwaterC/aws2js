@@ -11,32 +11,16 @@ Either manually clone this repository into your `node_modules` directory, then r
 
 > npm install aws2js
 
-The installation depends on [npm](https://github.com/isaacs/npm). You need to have npm in PATH. npm is invoked by the `tools/install.js` script.
+The installation depends on [npm](https://github.com/isaacs/npm) 1.1.x+ as it uses the optionalDependencies feature which means that node.js v0.4.x isn't supported. Technically, it still works, but you need to manually install an XML parser and a MIME library that aws2js can use.
 
-By default, the module installs as dependencies the [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) and the [mime-magic](https://github.com/SaltwaterC/mime-magic) libraries. Under Windows, it installs by default with [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) and mime-magic.
+Since v0.8 all the dependencies are installed (if possible), then the library uses its feature detection to try its best. Picking your favorite isn't possible, unless you actually uninstall the modules you don't want the library to use. I had it implemented in v0.7. It was a maintenance nightmare.
 
-Basically, under Windows the default installation is the equivalent of:
+The optional dependencies are:
 
-> npm install aws2js --xml2js true
+ * libxml-to-js, xml2js - for XML parsing
+ * mime-magic, mime - for automatically setting the Content-Type for S3 uploads, if the header is missing
 
-If you want to install the library without binary dependencies, you can issue this npm command:
-
-> npm install aws2js --xml2js true --mime true
-
-This installs the library with xml2js and [mime](https://github.com/broofa/node-mime) as dependencies. Please notice that the mime library detects the MIME type by doing a file extension lookup, while mime-magic does it the proper way by wrapping the functionality of libmagic. You have been warned.
-
-The '--xml2js true' and '--mime true' are boolean flags, therefore you may use them in any combination, if applicable.
-
-In order to use these flags when this package is referenced from a package.json file, the recommendations are:
-
- * edit the ~/.npmrc file, add these values xml2js = true and / or mime = true
- * define the appropriate environment variables: npm_config_xml2js=true and / or npm_config_mime=true
-
-The above methods are equivalent. You need to pick just one.
-
-The library installations under root is problematic due to how npm handles [installations under root](https://npmjs.org/doc/scripts.html#USER). npm chokes on running `node tools/install.js`, therefore you need to invoke the installation command with:
-
-> npm install aws2js --unsafe-perm
+aws2js prefers libxml-to-js and mime-magic for various reasons. Under Windows, the libxml-to-js installation should fail, therefore it uses xml2js. Please notice that the mime library detects the MIME type by doing a file extension lookup, while mime-magic does it the proper way by wrapping the functionality of libmagic. You have been warned.
 
 ## Project and Design goals
 

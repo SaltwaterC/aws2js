@@ -1,7 +1,7 @@
 ## v0.8.0
  * Dropped the node.js v0.4.x support due to lack of support in npm 1.1.x.
  * All the dependencies are listed as optional dependencies. The library does feature detection. It fails on runtime if none of the depdendencies are installed.
-* Implemented debug mode which can be enabled by using NODE_ENV=development.
+ * Implemented debug mode which can be enabled by using NODE_ENV=development.
 
 ## v0.7.11
  * Changes the npm installation of the dependencies to a CLI wrapper due to bugs in npm with older node versions [#61](https://github.com/SaltwaterC/aws2js/issues/61).
