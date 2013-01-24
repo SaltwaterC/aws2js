@@ -17,8 +17,8 @@ Since v0.8 all the dependencies are installed (if possible), then the library us
 
 The optional dependencies are:
 
- * libxml-to-js, xml2js - for XML parsing
- * mime-magic, mime - for automatically setting the Content-Type for S3 uploads, if the header is missing
+ * [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js), [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) - for XML parsing
+ * [mime-magic](https://github.com/SaltwaterC/mime-magic), [mime](https://github.com/broofa/node-mime) - for automatically setting the Content-Type for S3 uploads, if the header is missing
 
 aws2js prefers libxml-to-js and mime-magic for various reasons. Under Windows, the libxml-to-js installation should fail, therefore it uses xml2js. Please notice that the mime library detects the MIME type by doing a file extension lookup, while mime-magic does it the proper way by wrapping the functionality of libmagic. You have been warned.
 
