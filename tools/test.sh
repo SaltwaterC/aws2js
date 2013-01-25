@@ -22,7 +22,7 @@ do
 	then
 		TEST_FILE=$(basename $TEST .js)
 		PERCENT=$(echo "$CURRENT / $TOTAL * 100" | bc -l | awk '{printf("%d\n",$1 + 0.5)}')
-		OUTPUT="\r[$PERCENT% | $CURRENT/$TOTAL | + $SUCCESS | - $FAIL] $TEST_FILE"
+		OUTPUT="\r[$PERCENT% | $CURRENT/$TOTAL | + $SUCCESS | - $FAIL] $TEST_FILE "
 		echo -ne $OUTPUT
 		$NODE_BIN $TEST > /dev/null
 		EXIT_CODE=$?
