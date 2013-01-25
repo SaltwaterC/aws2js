@@ -10,7 +10,9 @@ lint:
 publish:
 	/usr/bin/env npm publish
 
+simpletest:
+	tools/test.sh
+
 tests: test
 check: test
-test: lint all
-	tools/test.sh
+test: lint all simpletest
