@@ -22,3 +22,4 @@
  * [Stephen Lynn](https://github.com/lynns) - removed the npm purging code that breaks npm rebuild on environments like Heroku.
  * [Dan Ordille](https://github.com/dordille) - fixed the broken header signing for DynamoDB when the request body contains UTF-8 chars.
  * [Stephen Veit](http://stephen-veit.blogspot.com/) - fixed the S3 bucket fail when specifying us-east-1
+ * [Marcus Westin](http://marcuswest.in/) - Do not silently return early if both content-type and content-length is specified.

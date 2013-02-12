@@ -1,3 +1,6 @@
+## v0.8.1
+ * Fixes the do not silently return early if both content-type and content-length is specified issue [#79](https://github.com/SaltwaterC/aws2js/pull/78).
+
 ## v0.8.0
  * [BREAKS COMPAT] Dropped the node.js v0.4.x support due to lack of support in npm 1.1.x.
  * All the dependencies are listed as optional dependencies. The library does feature detection. It fails on runtime if none of the depdendencies are installed.
