@@ -22,7 +22,10 @@ s3.putFile(path, './data/foo.txt', false, {}, function (err, res) {
 	s3.get(path, 'stream', function (err, res) {
 		callbacks.get++;
 		assert.ifError(err);
+		
 		assert.ok(res instanceof Stream);
+		res.resume();
+		
 		s3.del(path, function (err) {
 			callbacks.del++;
 			assert.ifError(err);
