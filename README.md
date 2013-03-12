@@ -31,6 +31,8 @@ aws2js prefers libxml-to-js and mime-magic for various reasons. Under Windows, t
  * Higher level clients for specific work flows
  * Proper documentation
 
+The HTTPS support isn't working as intended due to lack of proper node.js support till v0.8.5, therefore the usage of previous node.js versions is deprecated. The host based addressing for S3 buckets must be changed in order to avoid [the situation presented into the documentation](https://github.com/SaltwaterC/aws2js/wiki/Bucket-Name).
+
 ## Supported Amazon Web Services
 
  * [Amazon EC2](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client) (Elastic Compute Cloud)
