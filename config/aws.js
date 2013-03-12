@@ -70,7 +70,7 @@ exports.clients = {
 	ec2: {
 		prefix: 'ec2',
 		query: {
-			Version: '2012-12-01',
+			Version: '2013-02-01',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 	    }
@@ -78,7 +78,7 @@ exports.clients = {
 	rds: {
 		prefix: 'rds',
 		query: {
-			Version: '2013-01-10',
+			Version: '2013-02-12',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
 		}

@@ -1,6 +1,8 @@
 ## v0.8.2
  * Deprecates the usage of node.js v0.8.4 and below due to lack of proper SSL validation support for HTTPS.
  * Workaround for host based buckets that have dot in their name in order to enable their usage for node.js v0.10+ at the cost of disabling the SSL validation for that case. Refactoring the internals to use the path based addressing is the solution for proper HTTPS support.
+ * Updates the EC2 API client to default to version 2013-02-01.
+ * Updates the RDS API client to default to version 2013-02-12.
 
 ## v0.8.1
  * Fixes the do not silently return early if both content-type and content-length is specified issue [#79](https://github.com/SaltwaterC/aws2js/pull/78).
