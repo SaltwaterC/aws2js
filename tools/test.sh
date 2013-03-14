@@ -5,6 +5,8 @@ FAIL=0
 SUCCESS=0
 TOTAL=0
 
+echo "Running tests on node.js "$($NODE_BIN -v)
+
 cd tests
 
 for TEST in $(ls ./*.js)

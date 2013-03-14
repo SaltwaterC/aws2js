@@ -1,3 +1,6 @@
+## v0.8.3
+ * Changes the internal buffering concatenation to a much faster implementation: Buffer.concat by using the buffer-concat module for node.js v0.6.
+
 ## v0.8.2
  * Deprecates the usage of node.js v0.8.4 and below due to lack of proper SSL validation support for HTTPS.
  * Workaround for host based buckets that have dot in their name in order to enable their usage for node.js v0.10+ at the cost of disabling the SSL validation for that case. Refactoring the internals to use the path based addressing is the solution for proper HTTPS support.
