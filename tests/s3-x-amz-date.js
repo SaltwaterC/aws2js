@@ -18,7 +18,7 @@ s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 s3.putFile(path, './data/foo.png', false, {'x-amz-date': new Date().toUTCString()}, function (err, res) {
 	callbacks.put++;
 	assert.ifError(err);
-	s3.head(path, function (err, res) {
+	s3.head(path, function (err) {
 		callbacks.head++;
 		assert.ifError(err);
 		assert.deepEqual(res['content-type'], 'image/png');

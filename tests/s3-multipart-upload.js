@@ -32,13 +32,13 @@ crypto.randomBytes(6291456, function (err, buf) {
 		assert.ifError(err);
 		util.log('wrote the random data file');
 		
-		s3.putFileMultipart(file, file, false, {}, 5242880, function (err, res) {
+		s3.putFileMultipart(file, file, false, {}, 5242880, function (err) {
 			assert.ifError(err);
 			callbacks.putFileMultipart++;
 			
 			util.log('uploaded the 6M.tmp file to S3');
 			
-			s3.get(file, {file: file}, function (err, res) {
+			s3.get(file, {file: file}, function (err) {
 				assert.ifError(err);
 				
 				util.log('got the file back from S3');
@@ -57,7 +57,7 @@ crypto.randomBytes(6291456, function (err, buf) {
 					fs.unlink(file, function (err) {
 						assert.ifError(err);
 						
-						s3.del(file, function (err, res) {
+						s3.del(file, function (err) {
 							assert.ifError(err);
 							util.log('cleaned up the S3 remote');
 						});

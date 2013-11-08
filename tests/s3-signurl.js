@@ -18,7 +18,7 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putFile(path, './data/foo.png', false, {}, function (err, res) {
+s3.putFile(path, './data/foo.png', false, {}, function (err) {
 	callbacks.put++;
 	assert.ifError(err);
 	console.log('s3.putFile');
@@ -34,7 +34,7 @@ s3.putFile(path, './data/foo.png', false, {}, function (err, res) {
 		
 		assert.deepEqual(res.headers['content-type'], 'image/png');
 		
-		http.head({url: 'https://s3.amazonaws.com' + '/' + s3.getBucket() + '/' + path}, function (err, res) {
+		http.head({url: 'https://s3.amazonaws.com' + '/' + s3.getBucket() + '/' + path}, function (err) {
 			callbacks.headFail++;
 			assert.ok(err instanceof Error);
 			assert.deepEqual(err.code, 403);

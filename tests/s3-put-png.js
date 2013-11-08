@@ -15,7 +15,7 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putFile(path, './data/foo.png', false, {}, function (err, res) {
+s3.putFile(path, './data/foo.png', false, {}, function (err) {
 	callbacks.put++;
 	assert.ifError(err);
 	s3.head(path, function (err, res) {
