@@ -1,21 +1,16 @@
 {
   "name": "aws2js",
   "main": "./lib/aws.js",
-  "version": "0.8.3",
+  "version": "0.9.0-dev",
   "description": "AWS (Amazon Web Services) APIs client implementation for node.js",
   "dependencies": {
     "lodash": ">=0.6.x",
     "semver": ">=1.0.x",
-    "buffer-concat": ">=0.0.1"
-  },
-  "optionalDependencies": {
-    "libxml-to-js": ">=0.3.10",
-    "mime-magic": ">=0.4.1",
-    "xml2js": ">=0.2.2",
-    "mime": ">=1.2.9"
+    "http-request": ">= 0.6.0",
+    "libxml-to-js": ">=0.3.10"
   },
   "devDependencies": {
-    "http-get": ">=0.4.0"
+    "mocha": ">= 1.14.0"
   },
   "scripts": {
     "test": "tools/test.sh"

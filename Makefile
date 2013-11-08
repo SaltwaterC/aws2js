@@ -16,3 +16,6 @@ simpletest: lint
 tests: test
 check: test
 test: all simpletest
+
+clean:
+	rm -rf node_modules
