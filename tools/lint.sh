@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
+dos2unix ./node_modules/jslint/bin/jslint.js > /dev/null 2>&1
+
 function lint
 {
-	jslint=$(which jslint)
-	if [ -z "$jslint" ]
-	then
-		npm -g install jslint
-	fi
-	output=$(find $1 -name "*.js" -print0 | xargs -0 jslint --plusplus --white --var --goodparts --todo --node | grep -v "is OK." | grep '[^[:space:]]')
+	output=$(find $1 -name "*.js" -print0 | xargs -0 ./node_modules/.bin/jslint --plusplus --white --var --node | grep -v "is OK." | grep '[^[:space:]]')
 	exit=$?
-	echo "$output"
+	
+	echo "$output" | grep "[[:space:]]"
+	
 	if [ $exit -eq 0 ]
 	then
 		exit 1
@@ -18,4 +17,4 @@ function lint
 
 lint config
 lint lib
-lint tests
+lint test

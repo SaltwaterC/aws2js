@@ -4,7 +4,7 @@
 
 // Checks the AWS docs for newer API versions
 
-var http = require('http-get');
+var http = require('http-request');
 
 var docs = {
 	ec2: 'http://docs.amazonwebservices.com/AWSEC2/latest/APIReference/Welcome.html',
@@ -24,17 +24,16 @@ var docs = {
 	emr: 'http://docs.amazonwebservices.com/ElasticMapReduce/latest/API/Welcome.html'
 };
 
-var config = require('../config/aws.js');
+var versions = require('../config/versions.json');
+
+// TODO: fix this to wrap the versions config file
 
 var check = function(service, url, current) {
-	http.get({
-		url: url,
-		bufferType: 'buffer'
-	}, function(err, res) {
+	http.get(url, function(err, res) {
 		if (err) {
 			console.error('The %s service returned error: %s', service, err.message);
 		} else {
-			var version = res.buffer.toString('utf8').match(/API Version (\d{4}-\d{2}-\d{2})/);
+			var version = res.buffer.toString().match(/API Version (\d{4}-\d{2}-\d{2})/);
 			if (version && version[1]) {
 				if (version[1] != current) {
 					console.log('%s has a newer version: %s', service, version[1]);

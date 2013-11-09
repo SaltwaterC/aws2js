@@ -1,23 +1,23 @@
 {
 	"name": "aws2js",
-	"main": "./lib/aws.js",
+	"main": "./lib/load.js",
 	"version": "0.9.0-dev",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
-		"lodash": ">=0.6.x",
-		"semver": ">=1.0.x",
 		"http-request": ">= 0.6.0",
 		"libxml-to-js": ">=0.3.10"
 	},
 	"devDependencies": {
-		"mocha": ">= 1.14.0"
+		"jslint": ">= 0.1.9",
+		"js-beautify": ">= 0.4.2",
+		"mocha": ">= 1.14.0",
+		"chai": ">= 1.8.1"
 	},
 	"scripts": {
-		"test": "tools/test.sh"
+		"test": "make test"
 	},
 	"engines": {
-		"node": ">=0.6.0",
-		"npm": ">=1.1.x"
+		"node": ">= 0.8.5"
 	},
 	"homepage": "https://github.com/SaltwaterC/aws2js",
 	"author": {

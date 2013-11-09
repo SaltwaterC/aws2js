@@ -11,7 +11,7 @@ var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 // define the service clients
 var EC2 = require('../lib/ec2.js');
 
-describe('REMOTE tests', function() {
+describe('Tests executed on AWS', function() {
 
 	// EC2
 
