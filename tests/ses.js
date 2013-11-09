@@ -19,17 +19,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var sesProcessResponse = function (err, res) {
+var sesProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.ListVerifiedEmailAddressesResult.VerifiedEmailAddresses);
 };
 
-ses.request('ListVerifiedEmailAddresses', {}, function (err, res) {
+ses.request('ListVerifiedEmailAddresses', {}, function(err, res) {
 	callbacks.request++;
 	sesProcessResponse(err, res);
 });
 
-ses.request('ListVerifiedEmailAddresses', function (err, res) {
+ses.request('ListVerifiedEmailAddresses', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	sesProcessResponse(err, res);
 });

@@ -13,17 +13,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var emrProcessResponse = function (err, res) {
+var emrProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeJobFlowsResult.JobFlows);
 };
 
-emr.request('DescribeJobFlows', {}, function (err, res) {
+emr.request('DescribeJobFlows', {}, function(err, res) {
 	callbacks.request++;
 	emrProcessResponse(err, res);
 });
 
-emr.request('DescribeJobFlows', function (err, res) {
+emr.request('DescribeJobFlows', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	emrProcessResponse(err, res);
 });

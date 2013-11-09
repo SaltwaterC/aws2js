@@ -18,17 +18,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var iamProcessResponse = function (err, res) {
+var iamProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.ListUsersResult.Users);
 };
 
-iam.request('ListUsers', {}, function (err, res) {
+iam.request('ListUsers', {}, function(err, res) {
 	callbacks.request++;
 	iamProcessResponse(err, res);
 });
 
-iam.request('ListUsers', function (err, res) {
+iam.request('ListUsers', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	iamProcessResponse(err, res);
 });

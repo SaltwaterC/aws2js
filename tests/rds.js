@@ -15,22 +15,24 @@ var callbacks = {
 	requestWithQuery: 0
 };
 
-var rdsProcessResponse = function (err, res) {
+var rdsProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeDBInstancesResult.DBInstances);
 };
 
-rds.request('DescribeDBInstances', {}, function (err, res) {
+rds.request('DescribeDBInstances', {}, function(err, res) {
 	callbacks.request++;
 	rdsProcessResponse(err, res);
 });
 
-rds.request('DescribeDBInstances', function (err, res) {
+rds.request('DescribeDBInstances', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	rdsProcessResponse(err, res);
 });
 
-rds.request('DescribeDBInstances', {MaxRecords: 20}, function (err, res) {
+rds.request('DescribeDBInstances', {
+	MaxRecords: 20
+}, function(err, res) {
 	callbacks.requestWithQuery++;
 	rdsProcessResponse(err, res);
 });

@@ -7,9 +7,9 @@ var assert = require('assert');
  * The test teardown method
  * @param {Object} callbacks
  */
-exports.teardown = function (callbacks) {
+exports.teardown = function(callbacks) {
 	assert.ok(callbacks instanceof Object);
-	process.on('exit', function (code) {
+	process.on('exit', function(code) {
 		var i;
 		for (i in callbacks) {
 			if (callbacks.hasOwnProperty(i)) {

@@ -14,17 +14,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var sqsProcessResponse = function (err, res) {
+var sqsProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.ListQueuesResult.QueueUrl);
 };
 
-sqs.request('ListQueues', {}, function (err, res) {
+sqs.request('ListQueues', {}, function(err, res) {
 	callbacks.request++;
 	sqsProcessResponse(err, res);
 });
 
-sqs.request('ListQueues', function (err, res) {
+sqs.request('ListQueues', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	sqsProcessResponse(err, res);
 });

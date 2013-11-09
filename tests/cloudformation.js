@@ -14,17 +14,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var cloudformationProcessResponse = function (err, res) {
+var cloudformationProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeStacksResult.Stacks);
 };
 
-cloudformation.request('DescribeStacks', {}, function (err, res) {
+cloudformation.request('DescribeStacks', {}, function(err, res) {
 	callbacks.request++;
 	cloudformationProcessResponse(err, res);
 });
 
-cloudformation.request('DescribeStacks', function (err, res) {
+cloudformation.request('DescribeStacks', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	cloudformationProcessResponse(err, res);
 });

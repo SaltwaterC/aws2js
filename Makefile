@@ -19,3 +19,6 @@ test: all simpletest
 
 clean:
 	rm -rf node_modules
+
+beautify:
+	@tools/beautify.sh

@@ -33,19 +33,19 @@ try {
 	process.exit(1);
 }
 
-var testXml = function (lib) {
+var testXml = function(lib) {
 	util.log('testing the XML library ' + lib);
-	
+
 	var parser = require(lib);
 	if (lib === 'xml2js') {
 		parser = new parser.Parser(config.xml2jsConfig).parseString;
 	}
-	
-	fs.readFile('data/ec2-describeimages.xml', function (err, data) {
+
+	fs.readFile('data/ec2-describeimages.xml', function(err, data) {
 		assert.ifError(err);
-		
+
 		var xml = new Buffer(data).toString();
-		parser(xml, function (err, res) {
+		parser(xml, function(err, res) {
 			callbacks[lib]++;
 			assert.ifError(err);
 			assert.equal(res.imagesSet.item[0].imageId, 'ami-be3adfd7');

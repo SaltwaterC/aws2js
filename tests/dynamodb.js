@@ -19,19 +19,19 @@ var callbacks = {
 	requestWithoutBody: 0
 };
 
-sts.request('GetSessionToken', function (err, res) {
+sts.request('GetSessionToken', function(err, res) {
 	assert.ifError(err);
-	
+
 	var credentials = res.GetSessionTokenResult.Credentials;
 	dynamodb.setCredentials(credentials.AccessKeyId, credentials.SecretAccessKey, credentials.SessionToken);
-	
-	dynamodb.request('ListTables', function (err, res) {
+
+	dynamodb.request('ListTables', function(err, res) {
 		callbacks.requestWithoutBody++;
 		assert.ifError(err);
 		assert.ok(res.TableNames);
 	});
-	
-	dynamodb.request('ListTables', {}, function (err, res) {
+
+	dynamodb.request('ListTables', {}, function(err, res) {
 		callbacks.request++;
 		assert.ifError(err);
 		assert.ok(res.TableNames);

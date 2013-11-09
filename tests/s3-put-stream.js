@@ -17,15 +17,18 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putStream(path, stream, false, {'content-length': 4, 'content-type': 'text/plain'}, function (err) {
+s3.putStream(path, stream, false, {
+	'content-length': 4,
+	'content-type': 'text/plain'
+}, function(err) {
 	callbacks.put++;
 	assert.ifError(err);
-	s3.get(path, 'buffer', function (err, res) {
+	s3.get(path, 'buffer', function(err, res) {
 		callbacks.get++;
 		assert.ifError(err);
 		assert.deepEqual(res.headers['content-type'], 'text/plain');
 		assert.deepEqual(res.buffer.toString(), 'bar\n');
-		s3.del(path, function (err) {
+		s3.del(path, function(err) {
 			callbacks.del++;
 			assert.ifError(err);
 		});

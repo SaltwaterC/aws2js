@@ -18,17 +18,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var elasticacheProcessResponse = function (err, res) {
+var elasticacheProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeCacheClustersResult.CacheClusters);
 };
 
-elasticache.request('DescribeCacheClusters', {}, function (err, res) {
+elasticache.request('DescribeCacheClusters', {}, function(err, res) {
 	callbacks.request++;
 	elasticacheProcessResponse(err, res);
 });
 
-elasticache.request('DescribeCacheClusters', function (err, res) {
+elasticache.request('DescribeCacheClusters', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	elasticacheProcessResponse(err, res);
 });

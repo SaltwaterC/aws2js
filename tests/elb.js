@@ -14,17 +14,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var elbProcessResponse = function (err, res) {
+var elbProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeLoadBalancersResult.LoadBalancerDescriptions);
 };
 
-elb.request('DescribeLoadBalancers', {}, function (err, res) {
+elb.request('DescribeLoadBalancers', {}, function(err, res) {
 	callbacks.request++;
 	elbProcessResponse(err, res);
 });
 
-elb.request('DescribeLoadBalancers', function (err, res) {
+elb.request('DescribeLoadBalancers', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	elbProcessResponse(err, res);
 });

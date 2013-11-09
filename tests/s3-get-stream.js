@@ -16,17 +16,17 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putFile(path, './data/foo.txt', false, {}, function (err) {
+s3.putFile(path, './data/foo.txt', false, {}, function(err) {
 	callbacks.put++;
 	assert.ifError(err);
-	s3.get(path, 'stream', function (err, res) {
+	s3.get(path, 'stream', function(err, res) {
 		callbacks.get++;
 		assert.ifError(err);
-		
+
 		assert.ok(res instanceof Stream);
 		res.resume();
-		
-		s3.del(path, function (err) {
+
+		s3.del(path, function(err) {
 			callbacks.del++;
 			assert.ifError(err);
 		});

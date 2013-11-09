@@ -11,13 +11,13 @@ var callbacks = {
 	get: 0
 };
 
-sts.request('GetSessionToken', function (err, res) {
+sts.request('GetSessionToken', function(err, res) {
 	var credentials = res.GetSessionTokenResult.Credentials;
 	assert.ifError(err);
-	
+
 	s3.setCredentials(credentials.AccessKeyId, credentials.SecretAccessKey, credentials.SessionToken);
-	
-	s3.get('/', 'xml', function (err, res) {
+
+	s3.get('/', 'xml', function(err, res) {
 		callbacks.get++;
 		assert.ifError(err);
 		assert.ok(res.Buckets);

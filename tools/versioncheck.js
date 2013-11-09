@@ -26,8 +26,11 @@ var docs = {
 
 var config = require('../config/aws.js');
 
-var check = function (service, url, current) {
-	http.get({url: url, bufferType: 'buffer'}, function (err, res) {
+var check = function(service, url, current) {
+	http.get({
+		url: url,
+		bufferType: 'buffer'
+	}, function(err, res) {
 		if (err) {
 			console.error('The %s service returned error: %s', service, err.message);
 		} else {

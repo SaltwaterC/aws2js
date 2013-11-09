@@ -13,17 +13,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var autoscalingProcessResponse = function (err, res) {
+var autoscalingProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeScalingActivitiesResult.Activities);
 };
 
-autoscaling.request('DescribeScalingActivities', {}, function (err, res) {
+autoscaling.request('DescribeScalingActivities', {}, function(err, res) {
 	callbacks.request++;
 	autoscalingProcessResponse(err, res);
 });
 
-autoscaling.request('DescribeScalingActivities', function (err, res) {
+autoscaling.request('DescribeScalingActivities', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	autoscalingProcessResponse(err, res);
 });

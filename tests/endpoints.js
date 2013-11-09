@@ -3,7 +3,7 @@
 var assert = require('assert');
 var aws = require('../');
 var config = require('../config/aws.js');
-var suffix = config.suffix; 
+var suffix = config.suffix;
 
 var clients = {
 	ec2: config.clients.ec2.prefix,

@@ -13,17 +13,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var cloudwatchProcessResponse = function (err, res) {
+var cloudwatchProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.DescribeAlarmsResult.MetricAlarms);
 };
 
-cloudwatch.request('DescribeAlarms', {}, function (err, res) {
+cloudwatch.request('DescribeAlarms', {}, function(err, res) {
 	callbacks.request++;
 	cloudwatchProcessResponse(err, res);
 });
 
-cloudwatch.request('DescribeAlarms', function (err, res) {
+cloudwatch.request('DescribeAlarms', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	cloudwatchProcessResponse(err, res);
 });

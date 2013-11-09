@@ -18,33 +18,37 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putFile(path, './data/foo.png', false, {}, function (err) {
+s3.putFile(path, './data/foo.png', false, {}, function(err) {
 	callbacks.put++;
 	assert.ifError(err);
 	console.log('s3.putFile');
-	
+
 	var time = new Date();
 	time.setMinutes(time.getMinutes() + 60);
-	
+
 	var url = s3.signUrl('https', 'HEAD', path, time);
-	http.head({url: url}, function (err, res) {
+	http.head({
+		url: url
+	}, function(err, res) {
 		callbacks.headSign++;
 		assert.ifError(err);
 		console.log('s3.head + s3.signUrl');
-		
+
 		assert.deepEqual(res.headers['content-type'], 'image/png');
-		
-		http.head({url: 'https://s3.amazonaws.com' + '/' + s3.getBucket() + '/' + path}, function (err) {
+
+		http.head({
+			url: 'https://s3.amazonaws.com' + '/' + s3.getBucket() + '/' + path
+		}, function(err) {
 			callbacks.headFail++;
 			assert.ok(err instanceof Error);
 			assert.deepEqual(err.code, 403);
-			
+
 			console.log('s3.head + fail url');
-			
-			s3.del(path, function (err) {
+
+			s3.del(path, function(err) {
 				callbacks.del++;
 				assert.ifError(err);
-				
+
 				console.log('s3.del');
 			});
 		});

@@ -13,23 +13,28 @@ var callbacks = {
 
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-var s3ProcessResponse = function (err, res) {
+var s3ProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.deepEqual(res.Bucket, process.env.AWS2JS_S3_BUCKET);
 	assert.equal(res.MaxUploads, 1);
 };
 
-s3.get('?uploads', {'max-uploads': 1}, 'xml', function (err, res) {
+s3.get('?uploads', {
+	'max-uploads': 1
+}, 'xml', function(err, res) {
 	callbacks.query++;
 	s3ProcessResponse(err, res);
 });
 
-s3.get('?uploads&max-uploads=1', 'xml', function (err, res) {
+s3.get('?uploads&max-uploads=1', 'xml', function(err, res) {
 	callbacks.path++;
 	s3ProcessResponse(err, res);
 });
 
-s3.get('/', {uploads: null, 'max-uploads': 1}, 'xml', function (err, res) {
+s3.get('/', {
+	uploads: null,
+	'max-uploads': 1
+}, 'xml', function(err, res) {
 	callbacks.queryOnly++;
 	s3ProcessResponse(err, res);
 });

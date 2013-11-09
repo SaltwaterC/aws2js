@@ -55,12 +55,12 @@ exports.subResource = {
  * Canned ACLs
  */
 exports.cannedAcls = {
-	'private' : null,
-	'public-read' : null,
-	'public-read-write' : null,
-	'authenticated-read' : null,
-	'bucket-owner-read' : null,
-	'bucket-owner-full-control' : null
+	'private': null,
+	'public-read': null,
+	'public-read-write': null,
+	'authenticated-read': null,
+	'bucket-owner-read': null,
+	'bucket-owner-full-control': null
 };
 
 /**
@@ -73,7 +73,7 @@ exports.clients = {
 			Version: '2013-02-01',
 			SignatureMethod: 'HmacSHA256',
 			SignatureVersion: '2'
-	    }
+		}
 	},
 	rds: {
 		prefix: 'rds',
@@ -146,7 +146,7 @@ exports.clients = {
 			SignatureVersion: '2'
 		}
 	},
-	cloudformation : {
+	cloudformation: {
 		prefix: 'cloudformation',
 		host: 'cloudformation.us-east-1.amazonaws.com',
 		query: {

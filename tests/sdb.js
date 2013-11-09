@@ -22,37 +22,41 @@ var callbacks = {
 	requestWestWithQuery: 0
 };
 
-var sdbProcessResponse = function (err, res) {
+var sdbProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.ListDomainsResult);
 };
 
-sdbEast.request('ListDomains', {}, function (err, res) {
+sdbEast.request('ListDomains', {}, function(err, res) {
 	callbacks.requestEast++;
 	sdbProcessResponse(err, res);
 });
 
-sdbEast.request('ListDomains', function (err, res) {
+sdbEast.request('ListDomains', function(err, res) {
 	callbacks.requestEastWithoutQuery++;
 	sdbProcessResponse(err, res);
 });
 
-sdbEast.request('ListDomains', {MaxNumberOfDomains: 10}, function (err, res) {
+sdbEast.request('ListDomains', {
+	MaxNumberOfDomains: 10
+}, function(err, res) {
 	callbacks.requestEastWithQuery++;
 	sdbProcessResponse(err, res);
 });
 
-sdbWest.request('ListDomains', {}, function (err, res) {
+sdbWest.request('ListDomains', {}, function(err, res) {
 	callbacks.requestWest++;
 	sdbProcessResponse(err, res);
 });
 
-sdbWest.request('ListDomains', function (err, res) {
+sdbWest.request('ListDomains', function(err, res) {
 	callbacks.requestWestWithoutQuery++;
 	sdbProcessResponse(err, res);
 });
 
-sdbWest.request('ListDomains', {MaxNumberOfDomains: 10}, function (err, res) {
+sdbWest.request('ListDomains', {
+	MaxNumberOfDomains: 10
+}, function(err, res) {
 	callbacks.requestWestWithQuery++;
 	sdbProcessResponse(err, res);
 });

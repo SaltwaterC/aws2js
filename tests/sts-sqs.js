@@ -12,24 +12,24 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var sqsProcessResponse = function (err, res) {
+var sqsProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.ListQueuesResult.QueueUrl);
 };
 
-sts.request('GetSessionToken', function (err, res) {
+sts.request('GetSessionToken', function(err, res) {
 	assert.ifError(err);
-	
+
 	var credentials = res.GetSessionTokenResult.Credentials;
 	sqs.setCredentials(credentials.AccessKeyId, credentials.SecretAccessKey, credentials.SessionToken);
 	sqs.setRegion('us-east-1');
-	
-	sqs.request('ListQueues', {}, function (err, res) {
+
+	sqs.request('ListQueues', {}, function(err, res) {
 		callbacks.request++;
 		sqsProcessResponse(err, res);
 	});
-	
-	sqs.request('ListQueues', function (err, res) {
+
+	sqs.request('ListQueues', function(err, res) {
 		callbacks.requestWithoutQuery++;
 		sqsProcessResponse(err, res);
 	});

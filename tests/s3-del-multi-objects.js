@@ -18,37 +18,34 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putFile(path1, './data/foo.png', false, {}, function (err) {
+s3.putFile(path1, './data/foo.png', false, {}, function(err) {
 	callbacks.put1++;
 	assert.ifError(err);
-	
-	s3.head(path1, function (err, res) {
+
+	s3.head(path1, function(err, res) {
 		callbacks.head1++;
 		assert.ifError(err);
 		assert.deepEqual(res['content-type'], 'image/png');
-		
-		s3.putFile(path2, './data/foo.png', false, {}, function (err) {
+
+		s3.putFile(path2, './data/foo.png', false, {}, function(err) {
 			callbacks.put2++;
 			assert.ifError(err);
-			
-			s3.head(path2, function (err, res) {
+
+			s3.head(path2, function(err, res) {
 				callbacks.head2++;
 				assert.ifError(err);
 				assert.deepEqual(res['content-type'], 'image/png');
-				
-				var objects = [
-					{
-						key: path1
-					},
-					{
-						key: path2
-					}
-				];
-				
-				s3.delMultiObjects(objects, function (err, res) {
+
+				var objects = [{
+					key: path1
+				}, {
+					key: path2
+				}];
+
+				s3.delMultiObjects(objects, function(err, res) {
 					callbacks.del++;
 					assert.ifError(err);
-					
+
 					assert.ok(res.Deleted);
 					assert.ok(res.Deleted[0]);
 					assert.ok(res.Deleted[1]);

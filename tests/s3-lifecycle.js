@@ -13,7 +13,7 @@ var callbacks = {
 
 var timestamp = new Date().getTime();
 
-var showError = function (err) {
+var showError = function(err) {
 	if (err) {
 		console.error(err);
 	}
@@ -22,23 +22,23 @@ var showError = function (err) {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.delLifeCycle(function (error) {
+s3.delLifeCycle(function(error) {
 	callbacks.delLifeCycle++;
-	
+
 	console.log('s3.delLifeCycle');
 	showError(error);
 	assert.ifError(error);
-	
-	s3.putLifeCycleRule('id', 'prefix-' + timestamp, 5, function (error) {
+
+	s3.putLifeCycleRule('id', 'prefix-' + timestamp, 5, function(error) {
 		callbacks.putLifeCycleRule++;
-		
+
 		console.log('s3.putLifeCycleRule: id, prefix-' + timestamp);
 		showError(error);
 		assert.ifError(error);
-		
+
 		s3.delLifeCycleRule('id', function(error) {
 			callbacks.delLifeCycleRule++;
-			
+
 			console.log('s3.delLifeCycleRule: id');
 			showError(error);
 			assert.ifError(error);

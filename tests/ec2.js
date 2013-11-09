@@ -14,22 +14,25 @@ var callbacks = {
 	requestWithFilter: 0
 };
 
-var ec2ProcessResponse = function (err, res) {
+var ec2ProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.reservationSet);
 };
 
-ec2.request('DescribeInstances', {}, function (err, res) {
+ec2.request('DescribeInstances', {}, function(err, res) {
 	callbacks.request++;
 	ec2ProcessResponse(err, res);
 });
 
-ec2.request('DescribeInstances', function (err, res) {
+ec2.request('DescribeInstances', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	ec2ProcessResponse(err, res);
 });
 
-ec2.request('DescribeInstances', {'Filter.1.Name': 'architecture', 'Filter.1.Value.1': 'i386'}, function (err, res) {
+ec2.request('DescribeInstances', {
+	'Filter.1.Name': 'architecture',
+	'Filter.1.Value.1': 'i386'
+}, function(err, res) {
 	callbacks.requestWithFilter++;
 	ec2ProcessResponse(err, res);
 });

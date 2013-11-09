@@ -14,17 +14,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var snsProcessResponse = function (err, res) {
+var snsProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.ListSubscriptionsResult.Subscriptions);
 };
 
-sns.request('ListSubscriptions', {}, function (err, res) {
+sns.request('ListSubscriptions', {}, function(err, res) {
 	callbacks.request++;
 	snsProcessResponse(err, res);
 });
 
-sns.request('ListSubscriptions', function (err, res) {
+sns.request('ListSubscriptions', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	snsProcessResponse(err, res);
 });

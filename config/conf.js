@@ -1,3 +1,8 @@
+'use strict';
+
+// this file contains dynamic configuration options
+// the static configuration is in json files
+
 var pack = require('../package.json');
 
 module.exports = {

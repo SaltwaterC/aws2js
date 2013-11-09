@@ -18,17 +18,17 @@ var callbacks = {
 	requestWithoutQuery: 0
 };
 
-var stsProcessResponse = function (err, res) {
+var stsProcessResponse = function(err, res) {
 	assert.ifError(err);
 	assert.ok(res.GetSessionTokenResult.Credentials);
 };
 
-sts.request('GetSessionToken', {}, function (err, res) {
+sts.request('GetSessionToken', {}, function(err, res) {
 	callbacks.request++;
 	stsProcessResponse(err, res);
 });
 
-sts.request('GetSessionToken', function (err, res) {
+sts.request('GetSessionToken', function(err, res) {
 	callbacks.requestWithoutQuery++;
 	stsProcessResponse(err, res);
 });
