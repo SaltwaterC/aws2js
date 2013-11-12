@@ -18,3 +18,4 @@ function lint
 lint config
 lint lib
 lint test
+lint tools

@@ -88,21 +88,21 @@ describe('Tests executed on local machine', function() {
 			done();
 		});
 	});
-	
-	describe('LOCAL ec2.js', function () {
+
+	describe('LOCAL ec2.js', function() {
 		it('shoud pass all the checks', function(done) {
 			var EC2 = require('../lib/ec2.js');
 			var versions = require('../config/versions.json');
-			
+
 			var ec2 = new EC2(
 				'12345678901234567890',
 				'1234567890123456789012345678901234567890',
 				'foo'
 			);
-			
+
 			assert.strictEqual(ec2.getEndPoint(), 'ec2.foo.amazonaws.com');
 			assert.strictEqual(ec2.getApiVersion(), versions.EC2);
-			
+
 			done();
 		});
 	});

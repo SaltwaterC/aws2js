@@ -24,3 +24,6 @@ clean:
 
 beautify:
 	@tools/beautify.sh
+
+versions:
+	@tools/versions.js
