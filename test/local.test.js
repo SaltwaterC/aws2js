@@ -97,11 +97,14 @@ describe('Tests executed on local machine', function() {
 			var ec2 = new EC2(
 				'12345678901234567890',
 				'1234567890123456789012345678901234567890',
-				'foo'
+				'xy-abcd-1'
 			);
 
-			assert.strictEqual(ec2.getEndPoint(), 'ec2.foo.amazonaws.com');
+			assert.strictEqual(ec2.getEndPoint(), 'ec2.xy-abcd-1.amazonaws.com');
 			assert.strictEqual(ec2.getApiVersion(), versions.EC2);
+			
+			ec2.setRegion('ab-wxyz-2');
+			assert.strictEqual(ec2.getEndPoint(), 'ec2.ab-wxyz-2.amazonaws.com');
 
 			done();
 		});

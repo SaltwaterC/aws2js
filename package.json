@@ -5,13 +5,14 @@
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
 		"http-request": ">= 0.6.0",
-		"libxml-to-js": ">=0.3.10"
+		"libxml-to-js": ">= 0.3.10",
+		"ring": ">= 2.0.0-beta.1"
 	},
 	"devDependencies": {
-		"jslint": ">= 0.1.9",
-		"js-beautify": ">= 0.4.2",
-		"mocha": ">= 1.14.0",
-		"chai": ">= 1.8.1"
+		"jslint": "*",
+		"js-beautify": "*",
+		"mocha": "*",
+		"chai": "*"
 	},
 	"scripts": {
 		"test": "make test"

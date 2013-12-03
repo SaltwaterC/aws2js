@@ -3,9 +3,11 @@
 var common = require('./includes/common.js');
 
 var assert = require('assert');
-var ec2 = require('../').load('ec2');
 
-ec2.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
+assert.ok(process.env.AWS_ACCEESS_KEY_ID);
+assert.ok(process.env.AWS_SECRET_ACCESS_KEY);
+
+var ec2 = require('../').load('ec2', process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 ec2.setRegion('us-east-1');
 
 var callbacks = {

@@ -30,7 +30,7 @@ describe('Tests executed on AWS', function() {
 		});
 	});
 
-	describe('REMOTE ec2 test with empty query argument', function() {
+	describe('REMOTE EC2 test with empty query argument', function() {
 		it('should make a succesful EC2 request', function(done) {
 			var ec2 = new EC2(accessKeyId, secretAccessKey);
 
@@ -45,7 +45,7 @@ describe('Tests executed on AWS', function() {
 		});
 	});
 
-	describe('REMOTE ec2 test with query object', function() {
+	describe('REMOTE EC2 test with query object', function() {
 		it('should make a succesful EC2 request', function(done) {
 			var ec2 = new EC2(accessKeyId, secretAccessKey);
 

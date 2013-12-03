@@ -6,7 +6,7 @@ all:
 	@/usr/bin/env npm install
 
 lint:
-	@tools/lint.sh
+	@tools/lint.sh config lib test tools
 
 publish:
 	@/usr/bin/env npm publish

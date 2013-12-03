@@ -36,3 +36,19 @@ Amazon Web Services node.js client.
  * [Amazon SNS](https://github.com/SaltwaterC/aws2js/wiki/SNS-Client) (Simple Notification Service)
  * [Amazon EMR](https://github.com/SaltwaterC/aws2js/wiki/EMR-Client) (Elastic MapReduce)
  * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
+
+## Examples
+
+```javascript
+var EC2 = require('aws2js').EC2;
+var ec2 = new EC2('accessKeyId', 'secretAccessKey');
+
+ec2.request('DescribeInstances', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(results);
+});
+```
