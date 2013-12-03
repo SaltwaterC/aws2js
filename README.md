@@ -31,6 +31,7 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
  * Proper error reporting
  * Simple to write clients for a specific AWS service (abstracts most of the low level plumbing)
+ * Modular design
  * Simple to use AWS API calls
  * Higher level clients for specific work flows
  * Proper documentation
