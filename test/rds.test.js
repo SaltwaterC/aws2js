@@ -9,7 +9,7 @@ var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
 // define the service client
-var RDS = require('../lib/rds.js');
+var RDS = require('../lib/load.js').RDS;
 var rds = new RDS(accessKeyId, secretAccessKey);
 
 describe('Tests executed on RDS', function() {

@@ -9,7 +9,7 @@ var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
 // define the service client
-var EC2 = require('../lib/ec2.js');
+var EC2 = require('../lib/load.js').EC2;
 var ec2 = new EC2(accessKeyId, secretAccessKey);
 
 describe('Tests executed on EC2', function() {

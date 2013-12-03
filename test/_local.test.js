@@ -4,7 +4,9 @@
 
 var assert = require('chai').assert;
 
-var map = require('../config/map.json');
+var versions = require('../config/versions.json');
+
+var lib = require('../lib/load.js');
 
 describe('Tests executed on local machine', function() {
 
@@ -94,8 +96,7 @@ describe('Tests executed on local machine', function() {
 	var testQueryClient = function(client) {
 		describe('LOCAL ' + client + '.js', function() {
 			it('shoud pass all the checks', function(done) {
-				var Client = require('../lib/' + client + '.js');
-				var versions = require('../config/versions.json');
+				var Client = lib[client];
 
 				var instance = new Client(
 					'12345678901234567890',
@@ -103,17 +104,37 @@ describe('Tests executed on local machine', function() {
 					'xy-abcd-1'
 				);
 
-				assert.strictEqual(instance.getEndPoint(), client + '.xy-abcd-1.amazonaws.com');
-				assert.strictEqual(instance.getApiVersion(), versions[map[client]]);
+				assert.strictEqual(instance.getEndPoint(), client.toLowerCase() + '.xy-abcd-1.amazonaws.com');
+				assert.strictEqual(instance.getApiVersion(), versions[client]);
 
 				instance.setRegion('ab-wxyz-2');
-				assert.strictEqual(instance.getEndPoint(), client + '.ab-wxyz-2.amazonaws.com');
+				assert.strictEqual(instance.getEndPoint(), client.toLowerCase() + '.ab-wxyz-2.amazonaws.com');
 
 				done();
 			});
 		});
 	};
 
-	testQueryClient('ec2');
-	testQueryClient('rds');
+	testQueryClient('EC2');
+	testQueryClient('RDS');
+
+	var testQueryClientNoRegion = function(client, endPoint) {
+		describe('LOCAL ' + client + '.js', function() {
+			it('shoud pass all the checks', function(done) {
+				var Client = lib[client];
+
+				var instance = new Client(
+					'12345678901234567890',
+					'1234567890123456789012345678901234567890'
+				);
+
+				assert.strictEqual(instance.getEndPoint(), endPoint);
+				assert.strictEqual(instance.getApiVersion(), versions[client]);
+
+				done();
+			});
+		});
+	};
+
+	testQueryClientNoRegion('SES', 'email.us-east-1.amazonaws.com');
 });
