@@ -8,12 +8,10 @@ var assert = require('chai').assert;
 var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
-// define the service clients
+// define the service client
 var EC2 = require('../lib/ec2.js');
 
-describe('Tests executed on AWS', function() {
-
-	// EC2
+describe('Tests executed on EC2', function() {
 
 	describe('REMOTE EC2 test without query argument', function() {
 		it('should make a succesful EC2 request', function(done) {

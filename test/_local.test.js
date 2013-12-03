@@ -4,6 +4,8 @@
 
 var assert = require('chai').assert;
 
+var map = require('../config/map.json');
+
 describe('Tests executed on local machine', function() {
 
 	describe('LOCAL tools.js', function() {
@@ -89,25 +91,29 @@ describe('Tests executed on local machine', function() {
 		});
 	});
 
-	describe('LOCAL ec2.js', function() {
-		it('shoud pass all the checks', function(done) {
-			var EC2 = require('../lib/ec2.js');
-			var versions = require('../config/versions.json');
+	var testQueryClient = function(client) {
+		describe('LOCAL ' + client + '.js', function() {
+			it('shoud pass all the checks', function(done) {
+				var Client = require('../lib/' + client + '.js');
+				var versions = require('../config/versions.json');
 
-			var ec2 = new EC2(
-				'12345678901234567890',
-				'1234567890123456789012345678901234567890',
-				'xy-abcd-1'
-			);
+				var instance = new Client(
+					'12345678901234567890',
+					'1234567890123456789012345678901234567890',
+					'xy-abcd-1'
+				);
 
-			assert.strictEqual(ec2.getEndPoint(), 'ec2.xy-abcd-1.amazonaws.com');
-			assert.strictEqual(ec2.getApiVersion(), versions.EC2);
-			
-			ec2.setRegion('ab-wxyz-2');
-			assert.strictEqual(ec2.getEndPoint(), 'ec2.ab-wxyz-2.amazonaws.com');
+				assert.strictEqual(instance.getEndPoint(), client + '.xy-abcd-1.amazonaws.com');
+				assert.strictEqual(instance.getApiVersion(), versions[map[client]]);
 
-			done();
+				instance.setRegion('ab-wxyz-2');
+				assert.strictEqual(instance.getEndPoint(), client + '.ab-wxyz-2.amazonaws.com');
+
+				done();
+			});
 		});
-	});
+	};
 
+	testQueryClient('ec2');
+	testQueryClient('rds');
 });
