@@ -57,7 +57,9 @@ The presence of the AWS credentials is now checked when the client is instantiat
 ## Examples
 
 ```javascript
-var EC2 = require('aws2js').EC2;
+var aws = require('aws2js');
+
+var EC2 = aws.EC2;
 var ec2 = new EC2('accessKeyId', 'secretAccessKey');
 
 ec2.request('DescribeInstances', function (error, result) {
@@ -66,6 +68,30 @@ ec2.request('DescribeInstances', function (error, result) {
 		return;
 	}
 	
-	console.log(results);
+	console.log(result);
+});
+
+var RDS = aws.RDS;
+var rds = new RDS('accessKeyId', 'secretAccessKey');
+
+rds.request('DescribeDBInstances', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
+
+var SES = aws.SES;
+var ses = new SES('accessKeyId', 'secretAccessKey');
+
+ses.request('ListVerifiedEmailAddresses', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
 });
 ```
