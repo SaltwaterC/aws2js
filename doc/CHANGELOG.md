@@ -1,9 +1,10 @@
 ## v0.9.0
+ * node.js 0.8.5+ support due to improper HTTPS support in node.js on previous versions. This is a goal, not an after thought, but node.js wasn't there when work started on aws2js.
  * Client rewritten almost from scratch. Built on top of [http-request](https://github.com/SaltwaterC/http-request).
- * Modular design based on object hierarchy. Each service has its own constructor, therefore adding methods to it is a simple matter of defining new prototypes.
+ * Modular design based on object hierarchy. Each service has its own constructor, therefore adding methods to it is a simple matter of defining new properties. The class hierarchy is built using [Ring.js](http://ringjs.neoname.eu), therefore the object itself is specified as dictionary.
  * No more MIME support within aws2js. http-request uses mmmagic for PUT requests. Deal with it.
  * Only the [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) library is supported as XML parser. Having optional dependencies was one of the worst ideas for this library.
- * Deprecated the library loader. Its design is not very flexible.
+ * Deprecated the library loader. Its design is not very flexible. Slightly incompatible with the previous implementation.
  * The services require to define the accessKeyId and the secretAccessKey beforehand. This includes the deprecated library loader. This change breaks some legacy code, but the refactoring is trivial.
  * Moved to mocha + chai as testing framework. Introduced the local unit tests that check the validity of the implementation without issuing AWS requests.
  * The region names are validated against a match instead of actual region names. This makes the library to be forward compatible with most of the cases.
