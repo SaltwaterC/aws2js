@@ -9,6 +9,23 @@ Amazon Web Services node.js client.
 
 > npm install aws2js
 
+## Migrating from pre 0.9
+
+The library loader from aws2js up to 0.9 is deprecated. Creating a new instance for each service is the preffered way. Creating a new client without specifying the AWS credentials is not allowed, therefore the loader doesn't support this style anymore:
+
+```javascript
+var ec2 = require('aws2js').load('ec2');
+ec2.setCredentials('AKIAccessKeyId', 'SecretAccessKey');
+```
+
+You have to add the credentials to the load call even for the deprecated mode:
+
+```javascript
+var ec2 = require('aws2js').load('ec2', 'AKIAccessKeyId', 'SecretAccessKey');
+```
+
+The presence of the AWS credentials is now checked when the client is instantiated instead of checking that with each AWS request. It is the right thing to do at the cost of backward incompatibility.
+
 ## Project and Design goals
 
  * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
