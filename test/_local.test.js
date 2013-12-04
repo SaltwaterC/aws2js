@@ -12,7 +12,7 @@ describe('Tests executed on local machine', function() {
 
 	describe('LOCAL tools.js', function() {
 		it('should pass all the checks', function(done) {
-			var tools = require('../lib/tools.js');
+			var tools = require('../lib/core/tools.js');
 
 			assert.strictEqual(tools.absInt('a'), 0);
 			assert.strictEqual(tools.absInt({}), 0);
@@ -36,7 +36,7 @@ describe('Tests executed on local machine', function() {
 	describe('LOCAL aws.js', function() {
 		it('should pass all the checks', function(done) {
 			var http = require('http');
-			var AWS = require('../lib/aws.js');
+			var AWS = require('../lib/core/aws.js');
 
 			var aws = new AWS(0, 12345678901234567890, "1234567890123456789012345678901234567890");
 
@@ -72,7 +72,7 @@ describe('Tests executed on local machine', function() {
 
 	describe('LOCAL query.js', function() {
 		it('should pass all the checks', function(done) {
-			var Query = require('../lib/query.js');
+			var Query = require('../lib/core/query.js');
 
 			var query = new Query({
 				endPoint: 'foo',
