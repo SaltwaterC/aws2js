@@ -38,14 +38,14 @@ The presence of the AWS credentials is now checked when the client is instantiat
 
 ## Supported Amazon Web Services
 
- * [Amazon EC2](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client) (Elastic Compute Cloud)
- * [Amazon RDS](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client) (Relational Database Service)
- * [Amazon SES](https://github.com/SaltwaterC/aws2js/wiki/SES-Client) (Simple Email Service)
- * [Amazon ELB](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client) (Elastic Load Balancing)
- * [Amazon IAM](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client) (Identity and Access Management)
- * [Amazon AS](https://github.com/SaltwaterC/aws2js/wiki/AS-Client) (Auto Scaling)
- * [Amazon CW](https://github.com/SaltwaterC/aws2js/wiki/CW-Client) (CloudWatch)
- * [Amazon EC](https://github.com/SaltwaterC/aws2js/wiki/EC-Client) (ElastiCache)
+ * [EC2](https://github.com/SaltwaterC/aws2js/wiki/EC2-Client) (Elastic Compute Cloud)
+ * [RDS](https://github.com/SaltwaterC/aws2js/wiki/RDS-Client) (Relational Database Service)
+ * [SES](https://github.com/SaltwaterC/aws2js/wiki/SES-Client) (Simple Email Service)
+ * [ELB](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client) (Elastic Load Balancing)
+ * [IAM](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client) (Identity and Access Management)
+ * [AS](https://github.com/SaltwaterC/aws2js/wiki/AS-Client) (Auto Scaling)
+ * [CW](https://github.com/SaltwaterC/aws2js/wiki/CW-Client) (CloudWatch)
+ * [EC](https://github.com/SaltwaterC/aws2js/wiki/EC-Client) (ElastiCache)
  * ===
  * [Amazon SQS](https://github.com/SaltwaterC/aws2js/wiki/SQS-Client) (Simple Queue Service)
  * [Amazon CloudFormation](https://github.com/SaltwaterC/aws2js/wiki/CloudFormation-Client)
