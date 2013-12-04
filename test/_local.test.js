@@ -112,6 +112,14 @@ describe('Tests executed on local machine', function() {
 				}
 			}
 
+			/* // this shows the deprecation warning
+			var throws = function () {
+				load.load('ec3');
+			};
+
+			assert.throws(throws, Error, 'Invalid AWS client.');
+			*/
+
 			done();
 		});
 	});
