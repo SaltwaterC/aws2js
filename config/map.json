@@ -4,5 +4,6 @@
 	"ses": "SES",
 	"elb": "ELB",
 	"iam": "IAM",
-	"autoscaling": "AS"
+	"autoscaling": "AS",
+	"cloudwatch": "CW"
 }
