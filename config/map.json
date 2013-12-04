@@ -1,5 +1,6 @@
 {
 	"ec2": "EC2",
 	"rds": "RDS",
-	"ses": "SES"
+	"ses": "SES",
+	"elb": "ELB"
 }
