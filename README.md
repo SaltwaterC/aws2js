@@ -43,7 +43,7 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [Amazon SES](https://github.com/SaltwaterC/aws2js/wiki/SES-Client) (Simple Email Service)
  * [Amazon ELB](https://github.com/SaltwaterC/aws2js/wiki/ELB-Client) (Elastic Load Balancing)
  * [Amazon IAM](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client) (Identity and Access Management)
- * [Amazon Auto Scaling](https://github.com/SaltwaterC/aws2js/wiki/Auto-Scaling-Client)
+ * [Amazon AS](https://github.com/SaltwaterC/aws2js/wiki/AS-Client) (Auto Scaling)
  * [Amazon CloudWatch](https://github.com/SaltwaterC/aws2js/wiki/CloudWatch-Client)
  * [Amazon ElastiCache](https://github.com/SaltwaterC/aws2js/wiki/ElastiCache-Client)
  * [Amazon SQS](https://github.com/SaltwaterC/aws2js/wiki/SQS-Client) (Simple Queue Service)
@@ -61,7 +61,7 @@ The presence of the AWS credentials is now checked when the client is instantiat
 var aws = require('aws2js');
 
 var EC2 = aws.EC2;
-var ec2 = new EC2('accessKeyId', 'secretAccessKey');
+var ec2 = new EC2('accessKeyId', 'secretAccessKey'); // Elastic Compute Cloud
 
 ec2.request('DescribeInstances', function (error, result) {
 	if (error) {
@@ -73,7 +73,7 @@ ec2.request('DescribeInstances', function (error, result) {
 });
 
 var RDS = aws.RDS;
-var rds = new RDS('accessKeyId', 'secretAccessKey');
+var rds = new RDS('accessKeyId', 'secretAccessKey'); // Relational Database Service
 
 rds.request('DescribeDBInstances', function (error, result) {
 	if (error) {
@@ -85,7 +85,7 @@ rds.request('DescribeDBInstances', function (error, result) {
 });
 
 var SES = aws.SES;
-var ses = new SES('accessKeyId', 'secretAccessKey');
+var ses = new SES('accessKeyId', 'secretAccessKey'); // Simple Email Service
 
 ses.request('ListVerifiedEmailAddresses', function (error, result) {
 	if (error) {
@@ -97,7 +97,7 @@ ses.request('ListVerifiedEmailAddresses', function (error, result) {
 });
 
 var ELB = aws.ELB;
-var elb = new ELB('accessKeyId', 'secretAccessKey');
+var elb = new ELB('accessKeyId', 'secretAccessKey'); // Elastic Load Balancing
 
 ses.request('DescribeLoadBalancers', function (error, result) {
 	if (error) {
@@ -109,9 +109,21 @@ ses.request('DescribeLoadBalancers', function (error, result) {
 });
 
 var IAM = aws.IAM;
-var iam = new IAM('accessKeyId', 'secretAccessKey');
+var iam = new IAM('accessKeyId', 'secretAccessKey'); // Identity and Access Management
 
 iam.request('ListUsers', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
+
+var AS = aws.AS;
+var as = new AS('accessKeyId', 'secretAccessKey'); // Auto Scaling
+
+as.request('DescribeScalingActivities', function (error, result) {
 	if (error) {
 		console.error(error);
 		return;
