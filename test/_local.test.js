@@ -142,4 +142,5 @@ describe('Tests executed on local machine', function() {
 	};
 
 	testQueryClientNoRegion('SES', 'email.us-east-1.amazonaws.com');
+	testQueryClientNoRegion('IAM', 'iam.amazonaws.com');
 });

@@ -4,15 +4,12 @@
 
 var assert = require('chai').assert;
 
-// read the credentials from the environment
-var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
-var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
-
-// define the service client
-var SES = require('../lib/load.js').SES;
-var ses = new SES(accessKeyId, secretAccessKey);
-
 describe('Tests executed on SES', function() {
+	// define the credentials & service class
+	var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
+	var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+	var SES = require('../lib/load.js').SES;
+	
 	var handleResponse = function(err, res, done) {
 		assert.ifError(err);
 
@@ -24,6 +21,7 @@ describe('Tests executed on SES', function() {
 
 	describe('REMOTE SES test without query argument', function() {
 		it('should make a succesful SES request', function(done) {
+			var ses = new SES(accessKeyId, secretAccessKey);
 			ses.request('ListVerifiedEmailAddresses', function(err, res) {
 				handleResponse(err, res, done);
 			});
@@ -32,6 +30,7 @@ describe('Tests executed on SES', function() {
 
 	describe('REMOTE SES test with empty query argument', function() {
 		it('should make a succesful SES request', function(done) {
+			var ses = new SES(accessKeyId, secretAccessKey);
 			ses.request('ListVerifiedEmailAddresses', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});

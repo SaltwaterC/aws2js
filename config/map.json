@@ -2,5 +2,6 @@
 	"ec2": "EC2",
 	"rds": "RDS",
 	"ses": "SES",
-	"elb": "ELB"
+	"elb": "ELB",
+	"iam": "IAM"
 }
