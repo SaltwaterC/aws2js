@@ -107,4 +107,16 @@ ses.request('DescribeLoadBalancers', function (error, result) {
 	
 	console.log(result);
 });
+
+var IAM = aws.IAM;
+var iam = new IAM('accessKeyId', 'secretAccessKey');
+
+iam.request('ListUsers', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
 ```
