@@ -1,4 +1,4 @@
-## About
+## About ![build status](https://secure.travis-ci.org/SaltwaterC/aws2js.png?branch=next)
 
 Amazon Web Services node.js client.
 
