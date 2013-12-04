@@ -9,7 +9,7 @@ describe('Tests executed on SES', function() {
 	var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 	var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 	var SES = require('../lib/load.js').SES;
-	
+
 	var handleResponse = function(err, res, done) {
 		assert.ifError(err);
 

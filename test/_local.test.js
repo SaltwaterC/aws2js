@@ -122,6 +122,7 @@ describe('Tests executed on local machine', function() {
 	testQueryClient('EC2');
 	testQueryClient('RDS');
 	testQueryClient('ELB', 'elasticloadbalancing');
+	testQueryClient('AS', 'autoscaling');
 
 	var testQueryClientNoRegion = function(client, endPoint) {
 		describe('LOCAL ' + client.toLowerCase() + '.js', function() {

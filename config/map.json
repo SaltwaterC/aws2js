@@ -3,5 +3,6 @@
 	"rds": "RDS",
 	"ses": "SES",
 	"elb": "ELB",
-	"iam": "IAM"
+	"iam": "IAM",
+	"autoscaling": "AS"
 }

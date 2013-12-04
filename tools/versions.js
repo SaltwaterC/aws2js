@@ -17,7 +17,7 @@ var docs = {
 	SES: 'http://docs.amazonwebservices.com/ses/latest/APIReference/Welcome.html',
 	ELB: 'http://docs.amazonwebservices.com/ElasticLoadBalancing/latest/APIReference/Welcome.html',
 	IAM: 'http://docs.amazonwebservices.com/IAM/latest/APIReference/Welcome.html',
-	AutoScaling: 'http://docs.amazonwebservices.com/AutoScaling/latest/APIReference/Welcome.html',
+	AS: 'http://docs.amazonwebservices.com/AutoScaling/latest/APIReference/Welcome.html',
 	CloudWatch: 'http://docs.amazonwebservices.com/AmazonCloudWatch/latest/APIReference/Welcome.html',
 	ElastiCache: 'http://docs.amazonwebservices.com/AmazonElastiCache/latest/APIReference/Welcome.html',
 	SQS: 'http://docs.amazonwebservices.com/AWSSimpleQueueService/latest/APIReference/Welcome.html',
