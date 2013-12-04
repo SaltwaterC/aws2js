@@ -31,7 +31,7 @@ describe('Tests executed on RDS', function() {
 	});
 
 	describe('REMOTE RDS test with empty query argument', function() {
-		it('should make a succesful rds request', function(done) {
+		it('should make a succesful RDS request', function(done) {
 			rds.request('DescribeDBInstances', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});
@@ -39,7 +39,7 @@ describe('Tests executed on RDS', function() {
 	});
 
 	describe('REMOTE RDS test with query object', function() {
-		it('should make a succesful rds request', function(done) {
+		it('should make a succesful RDS request', function(done) {
 			rds.request('DescribeDBInstances', {
 				MaxRecords: 20
 			}, function(err, res) {

@@ -93,8 +93,12 @@ describe('Tests executed on local machine', function() {
 		});
 	});
 
-	var testQueryClient = function(client) {
-		describe('LOCAL ' + client + '.js', function() {
+	var testQueryClient = function(client, host) {
+		if (!host) {
+			host = client.toLowerCase();
+		}
+
+		describe('LOCAL ' + client.toLowerCase() + '.js', function() {
 			it('shoud pass all the checks', function(done) {
 				var Client = lib[client];
 
@@ -104,11 +108,11 @@ describe('Tests executed on local machine', function() {
 					'xy-abcd-1'
 				);
 
-				assert.strictEqual(instance.getEndPoint(), client.toLowerCase() + '.xy-abcd-1.amazonaws.com');
+				assert.strictEqual(instance.getEndPoint(), host + '.xy-abcd-1.amazonaws.com');
 				assert.strictEqual(instance.getApiVersion(), versions[client]);
 
 				instance.setRegion('ab-wxyz-2');
-				assert.strictEqual(instance.getEndPoint(), client.toLowerCase() + '.ab-wxyz-2.amazonaws.com');
+				assert.strictEqual(instance.getEndPoint(), host + '.ab-wxyz-2.amazonaws.com');
 
 				done();
 			});
@@ -117,9 +121,10 @@ describe('Tests executed on local machine', function() {
 
 	testQueryClient('EC2');
 	testQueryClient('RDS');
+	testQueryClient('ELB', 'elasticloadbalancing');
 
 	var testQueryClientNoRegion = function(client, endPoint) {
-		describe('LOCAL ' + client + '.js', function() {
+		describe('LOCAL ' + client.toLowerCase() + '.js', function() {
 			it('shoud pass all the checks', function(done) {
 				var Client = lib[client];
 

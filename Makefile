@@ -17,7 +17,7 @@ test: all lint
 	@./node_modules/.bin/mocha --reporter $(REPORTER) -g LOCAL
 
 fulltest:
-	@./node_modules/.bin/mocha --reporter $(REPORTER)	
+	@./node_modules/.bin/mocha --reporter $(REPORTER) -t 10000
 
 clean:
 	rm -rf node_modules
