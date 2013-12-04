@@ -93,6 +93,29 @@ describe('Tests executed on local machine', function() {
 		});
 	});
 
+	describe('LOCAL load.js', function() {
+		it('should pass all the checks', function(done) {
+			var idx, load = require('../lib/load.js');
+			var found, idx2, map = require('../config/map.json');
+
+			for (idx in load) {
+				if (load.hasOwnProperty(idx) && idx !== 'load') {
+					found = false;
+
+					for (idx2 in map) {
+						if (map.hasOwnProperty(idx2) && idx === map[idx2]) {
+							found = true;
+						}
+					}
+
+					assert.ok(found);
+				}
+			}
+
+			done();
+		});
+	});
+
 	var testQueryClient = function(client, host) {
 		if (!host) {
 			host = client.toLowerCase();
