@@ -1,0 +1,18 @@
+{
+	"acl": null,
+	"lifecycle": null,
+	"location": null,
+	"logging": null,
+	"notification": null,
+	"partNumber": null,
+	"policy": null,
+	"requestPayment": null,
+	"torrent": null,
+	"uploadId": null,
+	"uploads": null,
+	"versionId": null,
+	"versioning": null,
+	"versions": null,
+	"website": null,
+	"delete": null
+}

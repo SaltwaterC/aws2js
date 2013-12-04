@@ -14,10 +14,10 @@ publish:
 tests: test
 check: test
 test: all lint
-	@./node_modules/.bin/mocha --reporter $(REPORTER) -g LOCAL
+	@./node_modules/.bin/mocha --reporter $(REPORTER) --grep LOCAL
 
 fulltest:
-	@./node_modules/.bin/mocha --reporter $(REPORTER) -t 10000
+	@./node_modules/.bin/mocha --reporter $(REPORTER) --timeout 10000
 
 clean:
 	rm -rf node_modules
