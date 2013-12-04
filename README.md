@@ -45,8 +45,8 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [Amazon IAM](https://github.com/SaltwaterC/aws2js/wiki/IAM-Client) (Identity and Access Management)
  * [Amazon AS](https://github.com/SaltwaterC/aws2js/wiki/AS-Client) (Auto Scaling)
  * [Amazon CW](https://github.com/SaltwaterC/aws2js/wiki/CW-Client) (CloudWatch)
+ * [Amazon EC](https://github.com/SaltwaterC/aws2js/wiki/EC-Client) (ElastiCache)
  * ===
- * [Amazon ElastiCache](https://github.com/SaltwaterC/aws2js/wiki/ElastiCache-Client)
  * [Amazon SQS](https://github.com/SaltwaterC/aws2js/wiki/SQS-Client) (Simple Queue Service)
  * [Amazon CloudFormation](https://github.com/SaltwaterC/aws2js/wiki/CloudFormation-Client)
  * [Amazon SDB](https://github.com/SaltwaterC/aws2js/wiki/SDB-Client) (SimpleDB)
@@ -137,6 +137,18 @@ var CW = aws.CW;
 var cw = new CW('accessKeyId', 'secretAccessKey'); // CloudWatch
 
 cw.request('DescribeAlarms', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
+
+var EC = aws.EC;
+var ec = new EC('accessKeyId', 'secretAccessKey'); // ElastiCache
+
+ec.request('DescribeCacheClusters', function (error, result) {
 	if (error) {
 		console.error(error);
 		return;
