@@ -95,4 +95,16 @@ ses.request('ListVerifiedEmailAddresses', function (error, result) {
 	
 	console.log(result);
 });
+
+var ELB = aws.ELB;
+var elb = new ELB('accessKeyId', 'secretAccessKey');
+
+ses.request('DescribeLoadBalancers', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
 ```
