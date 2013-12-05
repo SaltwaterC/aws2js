@@ -8,5 +8,6 @@
 	"cloudwatch": "CW",
 	"elasticache": "EC",
 	"sqs": "SQS",
-	"cloudformation": "CFo"
+	"cloudformation": "CFo",
+	"sdb": "SDB"
 }
