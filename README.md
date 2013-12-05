@@ -156,4 +156,16 @@ ec.request('DescribeCacheClusters', function (error, result) {
 	
 	console.log(result);
 });
+
+var SQS = aws.SQS;
+var sqs = new SQS('accessKeyId', 'secretAccessKey'); // Simple Queue Service
+
+sqs.request('ListQueues', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
 ```
