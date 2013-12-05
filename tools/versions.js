@@ -9,7 +9,7 @@ var fs = require('fs');
 var http = require('http-request');
 var beautify = require('js-beautify').js_beautify;
 
-var tools = require('../lib/tools.js');
+var tools = require('../lib/core/tools.js');
 
 var docs = {
 	EC2: 'http://docs.amazonwebservices.com/AWSEC2/latest/APIReference/Welcome.html',
@@ -21,7 +21,7 @@ var docs = {
 	CW: 'http://docs.amazonwebservices.com/AmazonCloudWatch/latest/APIReference/Welcome.html',
 	EC: 'http://docs.amazonwebservices.com/AmazonElastiCache/latest/APIReference/Welcome.html',
 	SQS: 'http://docs.amazonwebservices.com/AWSSimpleQueueService/latest/APIReference/Welcome.html',
-	CF: 'http://docs.amazonwebservices.com/AWSCloudFormation/latest/APIReference/Welcome.html',
+	CFo: 'http://docs.amazonwebservices.com/AWSCloudFormation/latest/APIReference/Welcome.html',
 	SDB: 'http://docs.amazonwebservices.com/AmazonSimpleDB/latest/DeveloperGuide/Welcome.html',
 	STS: 'http://docs.amazonwebservices.com/STS/latest/APIReference/Welcome.html',
 	DDB: 'http://docs.amazonwebservices.com/amazondynamodb/latest/developerguide/Introduction.html',

@@ -7,5 +7,6 @@
 	"autoscaling": "AS",
 	"cloudwatch": "CW",
 	"elasticache": "EC",
-	"sqs": "SQS"
+	"sqs": "SQS",
+	"cloudformation": "CFo"
 }
