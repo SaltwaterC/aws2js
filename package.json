@@ -4,8 +4,8 @@
 	"version": "0.9.0-dev",
 	"description": "AWS (Amazon Web Services) APIs client implementation for node.js",
 	"dependencies": {
-		"http-request": ">= 0.6.0",
-		"libxml-to-js": ">= 0.3.10",
+		"http-request": "~ 0.6.1",
+		"libxml-to-js": "~ 0.3.10",
 		"ring": ">= 2.0.0-beta.1"
 	},
 	"devDependencies": {

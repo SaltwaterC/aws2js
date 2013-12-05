@@ -11,11 +11,10 @@ describe('Tests executed on SQS', function() {
 	var SQS = require('../lib/load.js').SQS;
 
 	var handleResponse = function(err, res, done) {
-		console.log(err.document.toString());
 		assert.ifError(err);
 
-		assert.ok(res.requestId);
-		assert.ok(res.reservationSet);
+		assert.ok(res.ResponseMetadata);
+		assert.ok(res.ListQueuesResult);
 
 		done();
 	};
