@@ -6,5 +6,6 @@
 	"iam": "IAM",
 	"autoscaling": "AS",
 	"cloudwatch": "CW",
-	"elasticache": "EC"
+	"elasticache": "EC",
+	"sqs": "SQS"
 }
