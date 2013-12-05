@@ -37,4 +37,19 @@ describe('Tests executed on SQS', function() {
 		});
 	});
 
+	describe('REMOTE SQS test with setQueue', function() {
+		it('should make a succesful SQS request', function(done) {
+			var sqs = new SQS(accessKeyId, secretAccessKey);
+			sqs.setQueue(process.env.AWS2JS_SQS_QUEUE);
+			sqs.request('GetQueueAttributes', function(err, res) {
+				assert.ifError(err);
+
+				assert.ok(res.ResponseMetadata);
+				assert.ok(res.GetQueueAttributesResult);
+
+				done();
+			});
+		});
+	});
+
 });
