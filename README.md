@@ -47,7 +47,7 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [CW](https://github.com/SaltwaterC/aws2js/wiki/CW-Client) (CloudWatch)
  * [EC](https://github.com/SaltwaterC/aws2js/wiki/EC-Client) (ElastiCache)
  * [SQS](https://github.com/SaltwaterC/aws2js/wiki/SQS-Client) (Simple Queue Service)
- * [CFo](https://github.com/SaltwaterC/aws2js/wiki/CF-Client) (CloudFormation)
+ * [CFo](https://github.com/SaltwaterC/aws2js/wiki/CFo-Client) (CloudFormation)
  * [SDB](https://github.com/SaltwaterC/aws2js/wiki/SDB-Client) (SimpleDB)
  * ===
  * [Amazon STS](https://github.com/SaltwaterC/aws2js/wiki/STS-Client) (Security Token Service)
