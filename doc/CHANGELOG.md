@@ -8,6 +8,7 @@
  * The services require to define the accessKeyId and the secretAccessKey beforehand. This includes the deprecated library loader. This change breaks some legacy code, but the refactoring is trivial.
  * Moved to mocha + chai as testing framework. Introduced the local unit tests that check the validity of the implementation without issuing AWS requests.
  * The region names are validated against a match instead of actual region names. This makes the library to be forward compatible with most of the cases.
+ * Deprecated the passing of STS session token to setCredentials. Use setSessionToken instead.
 
 ## v0.8.3
  * Changes the internal buffering concatenation to a much faster implementation: Buffer.concat by using the buffer-concat module for node.js v0.6.

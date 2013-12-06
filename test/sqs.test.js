@@ -9,6 +9,7 @@ describe('Tests executed on SQS', function() {
 	var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 	var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 	var SQS = require('../lib/load.js').SQS;
+	var STS = require('../lib/load.js').STS;
 
 	var handleResponse = function(err, res, done) {
 		assert.ifError(err);
@@ -18,15 +19,6 @@ describe('Tests executed on SQS', function() {
 
 		done();
 	};
-
-	describe('REMOTE SQS test without query argument', function() {
-		it('should make a succesful SQS request', function(done) {
-			var sqs = new SQS(accessKeyId, secretAccessKey);
-			sqs.request('ListQueues', function(err, res) {
-				handleResponse(err, res, done);
-			});
-		});
-	});
 
 	describe('REMOTE SQS test with empty query argument', function() {
 		it('should make a succesful SQS request', function(done) {
@@ -48,6 +40,23 @@ describe('Tests executed on SQS', function() {
 				assert.ok(res.GetQueueAttributesResult);
 
 				done();
+			});
+		});
+	});
+
+	describe('REMOTE SQS test with STS credentials', function() {
+		it('should make a succesful SQS request', function(done) {
+			var sts = new STS(accessKeyId, secretAccessKey);
+			sts.request('GetSessionToken', function(err, res) {
+				assert.ifError(err);
+
+				var credentials = res.GetSessionTokenResult.Credentials;
+				var sqs = new SQS(credentials.AccessKeyId, credentials.SecretAccessKey);
+				sqs.setSessionToken(credentials.SessionToken);
+
+				sqs.request('ListQueues', function(err, res) {
+					handleResponse(err, res, done);
+				});
 			});
 		});
 	});

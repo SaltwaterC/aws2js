@@ -12,7 +12,7 @@ describe('Tests executed on SDB', function() {
 
 	var handleResponse = function(err, res, done) {
 		assert.ifError(err);
-		
+
 		assert.ok(res.ResponseMetadata);
 		assert.ok(res.ListDomainsResult);
 
@@ -36,7 +36,7 @@ describe('Tests executed on SDB', function() {
 			});
 		});
 	});
-	
+
 	describe('REMOTE SDB test with explicit us-east-1', function() {
 		it('should make a succesful SDB request', function(done) {
 			var sdb = new SDB(accessKeyId, secretAccessKey, 'us-east-1');
@@ -45,7 +45,7 @@ describe('Tests executed on SDB', function() {
 			});
 		});
 	});
-	
+
 	describe('REMOTE SDB test with us-west-1', function() {
 		it('should make a succesful SDB request', function(done) {
 			var sdb = new SDB(accessKeyId, secretAccessKey, 'us-west-1');
@@ -54,7 +54,7 @@ describe('Tests executed on SDB', function() {
 			});
 		});
 	});
-	
+
 	describe('REMOTE SDB test with setRegion us-east-1', function() {
 		it('should make a succesful SDB request', function(done) {
 			var sdb = new SDB(accessKeyId, secretAccessKey);
@@ -64,7 +64,7 @@ describe('Tests executed on SDB', function() {
 			});
 		});
 	});
-	
+
 	describe('REMOTE SDB test with setRegion us-west-1', function() {
 		it('should make a succesful SDB request', function(done) {
 			var sdb = new SDB(accessKeyId, secretAccessKey);

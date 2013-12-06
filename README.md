@@ -47,10 +47,10 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [CW](https://github.com/SaltwaterC/aws2js/wiki/CW-Client) (CloudWatch)
  * [EC](https://github.com/SaltwaterC/aws2js/wiki/EC-Client) (ElastiCache)
  * [SQS](https://github.com/SaltwaterC/aws2js/wiki/SQS-Client) (Simple Queue Service)
- * [CFo](https://github.com/SaltwaterC/aws2js/wiki/CFo-Client) (CloudFormation)
+ * [CFN](https://github.com/SaltwaterC/aws2js/wiki/CFN-Client) (CloudFormation)
  * [SDB](https://github.com/SaltwaterC/aws2js/wiki/SDB-Client) (SimpleDB)
+ * [STS](https://github.com/SaltwaterC/aws2js/wiki/STS-Client) (Security Token Service)
  * ===
- * [Amazon STS](https://github.com/SaltwaterC/aws2js/wiki/STS-Client) (Security Token Service)
  * [Amazon DynamoDB](https://github.com/SaltwaterC/aws2js/wiki/DynamoDB-Client)
  * [Amazon SNS](https://github.com/SaltwaterC/aws2js/wiki/SNS-Client) (Simple Notification Service)
  * [Amazon EMR](https://github.com/SaltwaterC/aws2js/wiki/EMR-Client) (Elastic MapReduce)
@@ -169,10 +169,10 @@ sqs.request('ListQueues', function (error, result) {
 	console.log(result);
 });
 
-var CFo = aws.CFo;
-var cfo = new CFo('accessKeyId', 'secretAccessKey'); // CloudFormation
+var CFN = aws.CFN;
+var cfn = new CFN('accessKeyId', 'secretAccessKey'); // CloudFormation
 
-sqs.request('DescribeStacks', function (error, result) {
+cfn.request('DescribeStacks', function (error, result) {
 	if (error) {
 		console.error(error);
 		return;
@@ -185,6 +185,18 @@ var SDB = aws.SDB;
 var sdb = new SDB('accessKeyId', 'secretAccessKey'); // SimpleDB
 
 sdb.request('ListDomains', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
+});
+
+var STS = aws.sts;
+var sts = new STS('accessKeyId', 'secretAccessKey'); // Security Token Service
+
+sts.request('GetSessionToken', function (error, result) {
 	if (error) {
 		console.error(error);
 		return;

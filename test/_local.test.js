@@ -157,7 +157,7 @@ describe('Tests executed on local machine', function() {
 	testQueryClient('CW', 'monitoring');
 	testQueryClient('EC', 'elasticache');
 	testQueryClient('SQS');
-	testQueryClient('CFo', 'cloudformation');
+	testQueryClient('CFN', 'cloudformation');
 	testQueryClient('SDB');
 
 	var testQueryClientNoRegion = function(client, endPoint) {
@@ -180,4 +180,5 @@ describe('Tests executed on local machine', function() {
 
 	testQueryClientNoRegion('SES', 'email.us-east-1.amazonaws.com');
 	testQueryClientNoRegion('IAM', 'iam.amazonaws.com');
+	testQueryClientNoRegion('STS', 'sts.amazonaws.com');
 });

@@ -9,6 +9,7 @@ describe('Tests executed on EC2', function() {
 	var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 	var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 	var EC2 = require('../lib/load.js').EC2;
+	var STS = require('../lib/load.js').STS;
 
 	var handleResponse = function(err, res, done) {
 		assert.ifError(err);
@@ -18,15 +19,6 @@ describe('Tests executed on EC2', function() {
 
 		done();
 	};
-
-	describe('REMOTE EC2 test without query argument', function() {
-		it('should make a succesful EC2 request', function(done) {
-			var ec2 = new EC2(accessKeyId, secretAccessKey);
-			ec2.request('DescribeInstances', function(err, res) {
-				handleResponse(err, res, done);
-			});
-		});
-	});
 
 	describe('REMOTE EC2 test with empty query argument', function() {
 		it('should make a succesful EC2 request', function(done) {
@@ -45,6 +37,23 @@ describe('Tests executed on EC2', function() {
 				'Filter.1.Name': 'architecture',
 			}, function(err, res) {
 				handleResponse(err, res, done);
+			});
+		});
+	});
+
+	describe('REMOTE EC2 test with STS credentials', function() {
+		it('should make a succesful EC2 request', function(done) {
+			var sts = new STS(accessKeyId, secretAccessKey);
+			sts.request('GetSessionToken', function(err, res) {
+				assert.ifError(err);
+
+				var credentials = res.GetSessionTokenResult.Credentials;
+				var ec2 = new EC2(credentials.AccessKeyId, credentials.SecretAccessKey);
+				ec2.setSessionToken(credentials.SessionToken);
+
+				ec2.request('DescribeInstances', function(err, res) {
+					handleResponse(err, res, done);
+				});
 			});
 		});
 	});
