@@ -50,8 +50,8 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [CFN](https://github.com/SaltwaterC/aws2js/wiki/CFN-Client) (CloudFormation)
  * [SDB](https://github.com/SaltwaterC/aws2js/wiki/SDB-Client) (SimpleDB)
  * [STS](https://github.com/SaltwaterC/aws2js/wiki/STS-Client) (Security Token Service)
+ * [DDB](https://github.com/SaltwaterC/aws2js/wiki/DDB-Client) (DynamoDB)
  * ===
- * [Amazon DynamoDB](https://github.com/SaltwaterC/aws2js/wiki/DynamoDB-Client)
  * [Amazon SNS](https://github.com/SaltwaterC/aws2js/wiki/SNS-Client) (Simple Notification Service)
  * [Amazon EMR](https://github.com/SaltwaterC/aws2js/wiki/EMR-Client) (Elastic MapReduce)
  * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
@@ -202,6 +202,17 @@ sts.request('GetSessionToken', function (error, result) {
 		return;
 	}
 	
-	console.log(result);
+	var credentials = result.GetSessionTokenResult.Credentials;
+	
+	var DDB = aws.DDB;
+	var ddb = new DDB(credentials.AccessKeyId, credentials.SecretAccessKey, credentials.SessionToken); // DynamoDB
+	ddb.request('ListTables', function (err, res) {
+		if (err) {
+			console.error(err);
+			return;
+		}
+		
+		console.log(res);
+	});
 });
 ```

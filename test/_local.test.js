@@ -10,6 +10,152 @@ var lib = require('../lib/load.js');
 
 describe('Tests executed on local machine', function() {
 
+	describe('LOCAL aws.js', function() {
+		it('should pass all the checks', function(done) {
+			var http = require('http');
+			var AWS = require('../lib/core/aws.js');
+
+			var aws = new AWS(0, 12345678901234567890, "1234567890123456789012345678901234567890");
+
+			var throwAccessKeyId = function() {
+				var a = new AWS(0, '');
+				assert.isDefined(a); // just to make jslint STFU
+			};
+
+			var throwSecretAccessKey = function() {
+				var a = new AWS(0, 12345678901234567890);
+				assert.isDefined(a);
+			};
+
+			assert.isString(aws.getEndPoint());
+			assert.isString(aws.getAccessKeyId());
+			assert.isString(aws.getSecretAccessKey());
+
+			assert.throws(throwAccessKeyId, Error, 'The accessKeyId is expected to have a length of 20.');
+			assert.throws(throwSecretAccessKey, Error, 'The secretAccessKey is expected to have a length of 40.');
+
+			aws.setEndPoint('foo');
+			assert.strictEqual(aws.getEndPoint(), 'foo');
+
+			aws.setMaxSockets('foo');
+			assert.strictEqual(http.Agent.defaultMaxSockets, 5);
+
+			aws.setMaxSockets(10);
+			assert.strictEqual(http.Agent.defaultMaxSockets, 10);
+
+			aws.setPath('/foo');
+			assert.strictEqual(aws.getPath(), '/foo');
+
+			assert.strictEqual(aws.getRegion(), 'us-east-1');
+
+			aws.setPrefix('foo');
+			assert.strictEqual(aws.getPrefix(), 'foo');
+
+			aws.setSessionToken('foo');
+			assert.strictEqual(aws.getSessionToken(), 'foo');
+
+			done();
+		});
+	});
+
+	describe('LOCAL query.js', function() {
+		it('should pass all the checks', function(done) {
+			var Query = require('../lib/core/query.js');
+
+			var query = new Query({
+				endPoint: 'foo',
+				accessKeyId: '12345678901234567890',
+				secretAccessKey: '1234567890123456789012345678901234567890',
+				apiVersion: 0
+			});
+
+			assert.isString(query.getApiVersion());
+			assert.strictEqual(query.getApiVersion(), '0');
+
+			done();
+		});
+	});
+
+	describe('LOCAL region.js', function() {
+		it('should pass all checks', function(done) {
+			var Region = require('../lib/core/region.js');
+			var region = new Region();
+			region.setRegion('abc-def-1');
+
+			// mock the aws.js stuff
+			region.getRegion = function() {
+				return this.region;
+			};
+
+			assert.strictEqual(region.getRegion(), 'abc-def-1');
+
+			var throws = function() {
+				region.setRegion('invalid-region-pattern');
+			};
+
+			assert.throws(throws, Error, 'The region name doesn\'t match the region pattern.');
+
+			done();
+		});
+	});
+
+	describe('LOCAL signv2.js', function() {
+		it('should pass all the checks', function(done) {
+			var SignV2 = require('../lib/core/signv2.js');
+			var signature = new SignV2();
+
+			// mock the aws.js stuff
+			signature.getEndPoint = function() {
+				return 'foo';
+			};
+
+			signature.getPath = function() {
+				return '/';
+			};
+
+			signature.getSecretAccessKey = function() {
+				return '1234567890123456789012345678901234567890';
+			};
+			// end mock
+
+			assert.strictEqual(signature.sign({
+				foo: 'bar',
+				baz: 'qux',
+				wibble: 'wobble'
+			}), '2dkzUIzAADIDmV783umsfVvngsq0usKmgOjGXwTsbnE=');
+
+			done();
+		});
+	});
+
+	describe('LOCAL signv3.js', function() {
+		it('should pass all the checks', function(done) {
+			var SignV3 = require('../lib/core/signv3.js');
+			var signature = new SignV3();
+			var timestamp = 'Mon, 09 Dec 2013 15:12:24 GMT';
+
+			// mock the aws.js stuff
+			signature.getAccessKeyId = function() {
+				return '12345678901234567890';
+			};
+
+			signature.getSecretAccessKey = function() {
+				return '1234567890123456789012345678901234567890';
+			};
+			
+			assert.strictEqual(signature.sign(timestamp), 'AWS3-HTTPS AWSAccessKeyId=12345678901234567890,Algorithm=HmacSHA256,Signature=HkeyJCXYsuH2LoBFYb5Cjl4Gxi/cQZsihBE8ZNthadQ=');
+
+			done();
+		});
+	});
+	
+	describe('LOCAL signv4.js', function () {
+		it('should pass all the checks', function (done) {
+			// XXX
+			done();
+		});
+	});
+
 	describe('LOCAL tools.js', function() {
 		it('should pass all the checks', function(done) {
 			var tools = require('../lib/core/tools.js');
@@ -33,66 +179,6 @@ describe('Tests executed on local machine', function() {
 		});
 	});
 
-	describe('LOCAL aws.js', function() {
-		it('should pass all the checks', function(done) {
-			var http = require('http');
-			var AWS = require('../lib/core/aws.js');
-
-			var aws = new AWS(0, 12345678901234567890, "1234567890123456789012345678901234567890");
-
-			var throwAccessKeyId = function() {
-				var a = new AWS(0, '');
-				assert.isDefined(a); // just to make jslint STFU
-			};
-
-			var throwSecretAccessKey = function() {
-				var a = new AWS(0, 12345678901234567890);
-				assert.isDefined(a);
-			};
-
-			assert.isString(aws.endPoint);
-			assert.isString(aws.accessKeyId);
-			assert.isString(aws.secretAccessKey);
-
-			assert.throws(throwAccessKeyId, Error, 'The accessKeyId is expected to have a length of 20.');
-			assert.throws(throwSecretAccessKey, Error, 'The secretAccessKey is expected to have a length of 40.');
-
-			aws.setEndPoint('foo');
-			assert.strictEqual(aws.getEndPoint(), 'foo');
-
-			aws.setMaxSockets('foo');
-			assert.strictEqual(http.Agent.defaultMaxSockets, 5);
-
-			aws.setMaxSockets(10);
-			assert.strictEqual(http.Agent.defaultMaxSockets, 10);
-
-			done();
-		});
-	});
-
-	describe('LOCAL query.js', function() {
-		it('should pass all the checks', function(done) {
-			var Query = require('../lib/core/query.js');
-
-			var query = new Query({
-				endPoint: 'foo',
-				accessKeyId: '12345678901234567890',
-				secretAccessKey: '1234567890123456789012345678901234567890',
-				apiVersion: 0
-			});
-
-			assert.isString(query.apiVersion);
-			assert.strictEqual(query.getApiVersion(), '0');
-			assert.strictEqual(query.sign({
-				foo: 'bar',
-				baz: 'qux',
-				wibble: 'wobble'
-			}), '2dkzUIzAADIDmV783umsfVvngsq0usKmgOjGXwTsbnE=');
-
-			done();
-		});
-	});
-
 	describe('LOCAL load.js', function() {
 		it('should pass all the checks', function(done) {
 			var idx, load = require('../lib/load.js');
@@ -111,14 +197,6 @@ describe('Tests executed on local machine', function() {
 					assert.ok(found);
 				}
 			}
-
-			/* // this shows the deprecation warning
-			var throws = function () {
-				load.load('ec3');
-			};
-
-			assert.throws(throws, Error, 'Invalid AWS client.');
-			*/
 
 			done();
 		});
