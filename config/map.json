@@ -10,5 +10,6 @@
 	"sqs": "SQS",
 	"cloudformation": "CFN",
 	"sdb": "SDB",
-	"sts": "STS"
+	"sts": "STS",
+	"dynamodb": "DDB"
 }

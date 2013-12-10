@@ -315,4 +315,33 @@ describe('Tests executed on local machine', function() {
 	testQueryClientNoRegion('SES', 'email.us-east-1.amazonaws.com');
 	testQueryClientNoRegion('IAM', 'iam.amazonaws.com');
 	testQueryClientNoRegion('STS', 'sts.amazonaws.com');
+
+	var testQueryClientSTS = function(client, host) {
+		if (!host) {
+			host = client.toLowerCase();
+		}
+
+		describe('LOCAL ' + client.toLowerCase() + '.js', function() {
+			it('shoud pass all the checks', function(done) {
+				var Client = lib[client];
+
+				var instance = new Client(
+					'12345678901234567890',
+					'1234567890123456789012345678901234567890',
+					'mockSessionToken',
+					'xy-abcd-1'
+				);
+
+				assert.strictEqual(instance.getEndPoint(), host + '.xy-abcd-1.amazonaws.com');
+				assert.strictEqual(instance.getApiVersion(), versions[client]);
+
+				instance.setRegion('ab-wxyz-2');
+				assert.strictEqual(instance.getEndPoint(), host + '.ab-wxyz-2.amazonaws.com');
+
+				done();
+			});
+		});
+	};
+
+	testQueryClientSTS('DDB', 'dynamodb');
 });
