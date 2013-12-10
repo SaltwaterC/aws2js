@@ -205,7 +205,7 @@ describe('Tests executed on local machine', function() {
 			assert.strictEqual(signature.stringToSign(credentialScope, headers, body, date, timestamp), 'AWS4-HMAC-SHA256\n20110909T233600Z\n20110909/us-east-1/iam/aws4_request\n3511de7e95d28ecd39e9513b642aee07e54f4941150d8df8bf94b328ef7e55e2');
 
 			// Task 3: Calculate the AWS Signature Version 4
-			assert.deepEqual(signature.signingKey(date), new Buffer([152, 241, 216, 137, 254, 196, 244, 66, 26, 220, 82, 43, 171, 12, 225, 248, 46, 105, 41, 194, 98, 237, 21, 229, 169, 76, 144, 239, 209, 227, 176, 231]));
+			assert.deepEqual(new Buffer(signature.signingKey(date), 'binary'), new Buffer([152, 241, 216, 137, 254, 196, 244, 66, 26, 220, 82, 43, 171, 12, 225, 248, 46, 105, 41, 194, 98, 237, 21, 229, 169, 76, 144, 239, 209, 227, 176, 231]));
 			assert.strictEqual(signature.signature(credentialScope, headers, body, date, timestamp), 'ced6826de92d2bdeed8f846f0bf508e8559e98e4b0199114b84c54174deb456c');
 
 			done();
