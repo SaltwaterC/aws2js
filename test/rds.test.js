@@ -9,6 +9,7 @@ describe('Tests executed on RDS', function() {
 	var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 	var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 	var RDS = require('../lib/load.js').RDS;
+	var STS = require('../lib/load.js').STS;
 
 	var handleResponse = function(err, res, done) {
 		assert.ifError(err);
@@ -18,15 +19,6 @@ describe('Tests executed on RDS', function() {
 
 		done();
 	};
-
-	describe('REMOTE RDS test without query argument', function() {
-		it('should make a succesful RDS request', function(done) {
-			var rds = new RDS(accessKeyId, secretAccessKey);
-			rds.request('DescribeDBInstances', function(err, res) {
-				handleResponse(err, res, done);
-			});
-		});
-	});
 
 	describe('REMOTE RDS test with empty query argument', function() {
 		it('should make a succesful RDS request', function(done) {
@@ -44,6 +36,23 @@ describe('Tests executed on RDS', function() {
 				MaxRecords: 20
 			}, function(err, res) {
 				handleResponse(err, res, done);
+			});
+		});
+	});
+
+	describe('REMOTE RDS test with STS credentials', function() {
+		it('should make a succesful RDS request', function(done) {
+			var sts = new STS(accessKeyId, secretAccessKey);
+			sts.request('GetSessionToken', function(err, res) {
+				assert.ifError(err);
+
+				var credentials = res.GetSessionTokenResult.Credentials;
+				var rds = new RDS(credentials.AccessKeyId, credentials.SecretAccessKey);
+				rds.setSessionToken(credentials.SessionToken);
+
+				rds.request('DescribeDBInstances', function(err, res) {
+					handleResponse(err, res, done);
+				});
 			});
 		});
 	});
