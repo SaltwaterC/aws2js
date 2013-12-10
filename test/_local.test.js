@@ -194,19 +194,17 @@ describe('Tests executed on local machine', function() {
 			assert.strictEqual(hashedCanonicalRequest, '3511de7e95d28ecd39e9513b642aee07e54f4941150d8df8bf94b328ef7e55e2');
 
 			// Task 2: Create a String to Sign for Signature Version 4
-			var timestamp = new Date('Fri, 09 Sep 2011 23:36:00 GMT'); // 2011 09 09 T 23 36 00 Z
-			var date = signature.date(timestamp);
+			var timestamp = new Date('Fri, 09 Sep 2011 23:36:00 GMT'); // 20110909T233600Z
+			assert.strictEqual(signature.date(timestamp), '20110909');
 
-			assert.strictEqual(date, '20110909');
-
-			var credentialScope = signature.credentialScope(date);
+			var credentialScope = signature.credentialScope(timestamp);
 			assert.strictEqual(credentialScope, '20110909/us-east-1/iam/aws4_request');
-			assert.strictEqual(signature.iso8601Basic(date, timestamp), '20110909T233600Z');
-			assert.strictEqual(signature.stringToSign(credentialScope, headers, body, date, timestamp), 'AWS4-HMAC-SHA256\n20110909T233600Z\n20110909/us-east-1/iam/aws4_request\n3511de7e95d28ecd39e9513b642aee07e54f4941150d8df8bf94b328ef7e55e2');
+			assert.strictEqual(signature.iso8601Basic(timestamp), '20110909T233600Z');
+			assert.strictEqual(signature.stringToSign(credentialScope, headers, body, timestamp), 'AWS4-HMAC-SHA256\n20110909T233600Z\n20110909/us-east-1/iam/aws4_request\n3511de7e95d28ecd39e9513b642aee07e54f4941150d8df8bf94b328ef7e55e2');
 
 			// Task 3: Calculate the AWS Signature Version 4
-			assert.deepEqual(new Buffer(signature.signingKey(date), 'binary'), new Buffer([152, 241, 216, 137, 254, 196, 244, 66, 26, 220, 82, 43, 171, 12, 225, 248, 46, 105, 41, 194, 98, 237, 21, 229, 169, 76, 144, 239, 209, 227, 176, 231]));
-			assert.strictEqual(signature.signature(credentialScope, headers, body, date, timestamp), 'ced6826de92d2bdeed8f846f0bf508e8559e98e4b0199114b84c54174deb456c');
+			assert.deepEqual(new Buffer(signature.signingKey(timestamp), 'binary'), new Buffer([152, 241, 216, 137, 254, 196, 244, 66, 26, 220, 82, 43, 171, 12, 225, 248, 46, 105, 41, 194, 98, 237, 21, 229, 169, 76, 144, 239, 209, 227, 176, 231]));
+			assert.strictEqual(signature.signature(credentialScope, headers, body, timestamp), 'ced6826de92d2bdeed8f846f0bf508e8559e98e4b0199114b84c54174deb456c');
 
 			done();
 		});
