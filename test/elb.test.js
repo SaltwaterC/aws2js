@@ -20,10 +20,10 @@ describe('Tests executed on ELB', function() {
 		done();
 	};
 
-	describe('REMOTE ELB test without query argument', function() {
+	describe('REMOTE ELB test with empty query argument', function() {
 		it('should make a succesful ELB request', function(done) {
 			var elb = new ELB(accessKeyId, secretAccessKey);
-			elb.request('DescribeLoadBalancers', function(err, res) {
+			elb.request('DescribeLoadBalancers', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});
 		});

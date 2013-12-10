@@ -66,7 +66,7 @@ describe('Tests executed on SDB', function() {
 			});
 		});
 	});
-	
+
 	describe('REMOTE SDB test with STS credentials', function() {
 		it('should make a succesful SDB request', function(done) {
 			var sts = new STS(accessKeyId, secretAccessKey);

@@ -20,10 +20,10 @@ describe('Tests executed on AS', function() {
 		done();
 	};
 
-	describe('REMOTE AS test without query argument', function() {
+	describe('REMOTE AS test with empty query argument', function() {
 		it('should make a succesful AS request', function(done) {
 			var as = new AS(accessKeyId, secretAccessKey);
-			as.request('DescribeAutoScalingGroups', function(err, res) {
+			as.request('DescribeAutoScalingGroups', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});
 		});

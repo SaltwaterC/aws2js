@@ -20,10 +20,10 @@ describe('Tests executed on EC', function() {
 		done();
 	};
 
-	describe('REMOTE EC test without query argument', function() {
+	describe('REMOTE EC test with empty query argument', function() {
 		it('should make a succesful EC request', function(done) {
 			var ec = new EC(accessKeyId, secretAccessKey);
-			ec.request('DescribeCacheClusters', function(err, res) {
+			ec.request('DescribeCacheClusters', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});
 		});

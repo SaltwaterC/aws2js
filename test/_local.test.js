@@ -258,9 +258,9 @@ describe('Tests executed on local machine', function() {
 		});
 	});
 
-	var testQueryClient = function(client, host) {
-		if (!host) {
-			host = client.toLowerCase();
+	var testQueryClient = function(client, prefix) {
+		if (!prefix) {
+			prefix = client.toLowerCase();
 		}
 
 		describe('LOCAL ' + client.toLowerCase() + '.js', function() {
@@ -273,11 +273,11 @@ describe('Tests executed on local machine', function() {
 					'xy-abcd-1'
 				);
 
-				assert.strictEqual(instance.getEndPoint(), host + '.xy-abcd-1.amazonaws.com');
+				assert.strictEqual(instance.getEndPoint(), prefix + '.xy-abcd-1.amazonaws.com');
 				assert.strictEqual(instance.getApiVersion(), versions[client]);
 
 				instance.setRegion('ab-wxyz-2');
-				assert.strictEqual(instance.getEndPoint(), host + '.ab-wxyz-2.amazonaws.com');
+				assert.strictEqual(instance.getEndPoint(), prefix + '.ab-wxyz-2.amazonaws.com');
 
 				done();
 			});
@@ -294,6 +294,7 @@ describe('Tests executed on local machine', function() {
 	testQueryClient('CFN', 'cloudformation');
 	testQueryClient('SDB');
 	testQueryClient('SNS');
+	testQueryClient('EMR', 'elasticmapreduce');
 
 	var testQueryClientNoRegion = function(client, endPoint) {
 		describe('LOCAL ' + client.toLowerCase() + '.js', function() {

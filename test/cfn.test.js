@@ -20,10 +20,10 @@ describe('Tests executed on CFN', function() {
 		done();
 	};
 
-	describe('REMOTE CFN test without query argument', function() {
+	describe('REMOTE CFN test with empty query argument', function() {
 		it('should make a succesful CFN request', function(done) {
 			var cfn = new CFN(accessKeyId, secretAccessKey);
-			cfn.request('DescribeStacks', function(err, res) {
+			cfn.request('DescribeStacks', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});
 		});

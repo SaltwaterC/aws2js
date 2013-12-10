@@ -20,10 +20,10 @@ describe('Tests executed on CW', function() {
 		done();
 	};
 
-	describe('REMOTE CW test without query argument', function() {
+	describe('REMOTE CW test with empty query argument', function() {
 		it('should make a succesful CW request', function(done) {
 			var cw = new CW(accessKeyId, secretAccessKey);
-			cw.request('DescribeAlarms', function(err, res) {
+			cw.request('DescribeAlarms', {}, function(err, res) {
 				handleResponse(err, res, done);
 			});
 		});
