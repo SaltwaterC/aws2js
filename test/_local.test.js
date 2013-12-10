@@ -293,6 +293,7 @@ describe('Tests executed on local machine', function() {
 	testQueryClient('SQS');
 	testQueryClient('CFN', 'cloudformation');
 	testQueryClient('SDB');
+	testQueryClient('SNS');
 
 	var testQueryClientNoRegion = function(client, endPoint) {
 		describe('LOCAL ' + client.toLowerCase() + '.js', function() {

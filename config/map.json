@@ -11,5 +11,6 @@
 	"cloudformation": "CFN",
 	"sdb": "SDB",
 	"sts": "STS",
-	"dynamodb": "DDB"
+	"dynamodb": "DDB",
+	"sns": "SNS"
 }

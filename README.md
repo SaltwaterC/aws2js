@@ -51,8 +51,8 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [SDB](https://github.com/SaltwaterC/aws2js/wiki/SDB-Client) (SimpleDB)
  * [STS](https://github.com/SaltwaterC/aws2js/wiki/STS-Client) (Security Token Service)
  * [DDB](https://github.com/SaltwaterC/aws2js/wiki/DDB-Client) (DynamoDB)
+ * [SNS](https://github.com/SaltwaterC/aws2js/wiki/SNS-Client) (Simple Notification Service)
  * ===
- * [Amazon SNS](https://github.com/SaltwaterC/aws2js/wiki/SNS-Client) (Simple Notification Service)
  * [Amazon EMR](https://github.com/SaltwaterC/aws2js/wiki/EMR-Client) (Elastic MapReduce)
  * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
 
@@ -214,5 +214,17 @@ sts.request('GetSessionToken', function (error, result) {
 		
 		console.log(res);
 	});
+});
+
+var SNS = aws.SNS;
+var sns = new SNS('accessKeyId', 'secretAccessKey'); // Simple Notification Service
+
+sns.request('ListSubscriptions', function (error, result) {
+	if (error) {
+		console.error(error);
+		return;
+	}
+	
+	console.log(result);
 });
 ```
