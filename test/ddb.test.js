@@ -12,11 +12,8 @@ describe('Tests executed on DDB', function() {
 	var DDB = require('../lib/load.js').DDB;
 
 	var handleResponse = function(err, res, done) {
-		console.log(err);
-		
 		assert.ifError(err);
 
-		assert.ok(res.ResponseMetadata);
 		assert.ok(res.TableNames);
 
 		done();
@@ -26,6 +23,7 @@ describe('Tests executed on DDB', function() {
 		it('should make a succesful DDB request', function(done) {
 			var sts = new STS(accessKeyId, secretAccessKey);
 			sts.request('GetSessionToken', function(err, res) {
+				assert.ifError(err);
 				var credentials = res.GetSessionTokenResult.Credentials;
 				var ddb = new DDB(
 					credentials.AccessKeyId,
@@ -33,7 +31,7 @@ describe('Tests executed on DDB', function() {
 					credentials.SessionToken
 				);
 				ddb.request('ListTables', function(err, res) {
-					handleResponse(err, res);
+					handleResponse(err, res, done);
 				});
 			});
 		});
@@ -43,6 +41,7 @@ describe('Tests executed on DDB', function() {
 		it('should make a succesful DDB request', function(done) {
 			var sts = new STS(accessKeyId, secretAccessKey);
 			sts.request('GetSessionToken', {}, function(err, res) {
+				assert.ifError(err);
 				var credentials = res.GetSessionTokenResult.Credentials;
 				var ddb = new DDB(
 					credentials.AccessKeyId,
@@ -50,7 +49,7 @@ describe('Tests executed on DDB', function() {
 					credentials.SessionToken
 				);
 				ddb.request('ListTables', {}, function(err, res) {
-					handleResponse(err, res);
+					handleResponse(err, res, done);
 				});
 			});
 		});
