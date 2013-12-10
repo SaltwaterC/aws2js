@@ -142,16 +142,72 @@ describe('Tests executed on local machine', function() {
 			signature.getSecretAccessKey = function() {
 				return '1234567890123456789012345678901234567890';
 			};
-			
+
 			assert.strictEqual(signature.sign(timestamp), 'AWS3-HTTPS AWSAccessKeyId=12345678901234567890,Algorithm=HmacSHA256,Signature=HkeyJCXYsuH2LoBFYb5Cjl4Gxi/cQZsihBE8ZNthadQ=');
 
 			done();
 		});
 	});
-	
-	describe('LOCAL signv4.js', function () {
-		it('should pass all the checks', function (done) {
-			// XXX
+
+	describe('LOCAL signv4.js', function() {
+		it('should pass all the checks', function(done) {
+			// reproduce the Signature V4 conditions from the AWS docs
+			// there's no working implementation to test against
+			var SignV4 = require('../lib/core/signv4.js');
+			var signature = new SignV4();
+
+			// mock the aws.js stuff
+			signature.getPath = function() {
+				return '/';
+			};
+
+			signature.getRegion = function() {
+				return 'us-east-1';
+			};
+
+			signature.getPrefix = function() {
+				return 'iam';
+			};
+
+			signature.getSecretAccessKey = function() {
+				return 'wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY';
+			};
+
+			signature.getAccessKeyId = function() {
+				return 'AKIAIOSFODNN7EXAMPLE';
+			};
+
+			// Task 1: Create a Canonical Request For Signature Version 4
+			var headers = {
+				host: 'iam.amazonaws.com',
+				'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+				'x-amz-date': '20110909T233600Z'
+			};
+
+			var body = 'Action=ListUsers&Version=2010-05-08';
+
+			assert.strictEqual(signature.canonicalHeaders(headers), 'content-type:application/x-www-form-urlencoded; charset=utf-8\nhost:iam.amazonaws.com\nx-amz-date:20110909T233600Z\n');
+			assert.strictEqual(signature.signedHeaders(headers), 'content-type;host;x-amz-date');
+			assert.strictEqual(signature.requestPayload(body), 'b6359072c78d70ebee1e81adcbab4f01bf2c23245fa365ef83fe8f1f955085e2');
+
+			var hashedCanonicalRequest = signature.hashedCanonicalRequest(headers, 'Action=ListUsers&Version=2010-05-08');
+			assert.strictEqual(hashedCanonicalRequest, '3511de7e95d28ecd39e9513b642aee07e54f4941150d8df8bf94b328ef7e55e2');
+
+			// Task 2: Create a String to Sign for Signature Version 4
+			var timestamp = new Date('Fri, 09 Sep 2011 23:36:00 GMT'); // 2011 09 09 T 23 36 00 Z
+			var date = signature.date(timestamp);
+
+			assert.strictEqual(date, '20110909');
+
+			var credentialScope = signature.credentialScope(date);
+			assert.strictEqual(credentialScope, '20110909/us-east-1/iam/aws4_request');
+			assert.strictEqual(signature.iso8601Basic(date, timestamp), '20110909T233600Z');
+			assert.strictEqual(signature.stringToSign(credentialScope, headers, body, date, timestamp), 'AWS4-HMAC-SHA256\n20110909T233600Z\n20110909/us-east-1/iam/aws4_request\n3511de7e95d28ecd39e9513b642aee07e54f4941150d8df8bf94b328ef7e55e2');
+
+			// Task 3: Calculate the AWS Signature Version 4
+			assert.deepEqual(signature.signingKey(date), new Buffer([152, 241, 216, 137, 254, 196, 244, 66, 26, 220, 82, 43, 171, 12, 225, 248, 46, 105, 41, 194, 98, 237, 21, 229, 169, 76, 144, 239, 209, 227, 176, 231]));
+			assert.strictEqual(signature.signature(credentialScope, headers, body, date, timestamp), 'ced6826de92d2bdeed8f846f0bf508e8559e98e4b0199114b84c54174deb456c');
+
 			done();
 		});
 	});
@@ -174,6 +230,8 @@ describe('Tests executed on local machine', function() {
 				foo: 'bar',
 				wibble: 'wobble'
 			});
+
+			assert.strictEqual(tools.padInt(9, 2), '09');
 
 			done();
 		});
