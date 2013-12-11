@@ -2,6 +2,7 @@
 
 /*global describe: true, it: true, before: true, after: true*/
 
+var ring = require('ring');
 var assert = require('chai').assert;
 
 var versions = require('../config/versions.json');
@@ -15,7 +16,7 @@ describe('Tests executed on local machine', function() {
 			var http = require('http');
 			var AWS = require('../lib/core/aws.js');
 
-			var aws = new AWS(0, 12345678901234567890, "1234567890123456789012345678901234567890");
+			var aws = new AWS(0, '12345678901234567890', '1234567890123456789012345678901234567890');
 
 			var throwAccessKeyId = function() {
 				var a = new AWS(0, '');
@@ -27,32 +28,45 @@ describe('Tests executed on local machine', function() {
 				assert.isDefined(a);
 			};
 
-			assert.isString(aws.getEndPoint());
-			assert.isString(aws.getAccessKeyId());
-			assert.isString(aws.getSecretAccessKey());
+			assert.strictEqual(aws.getEndPoint(), '0');
+			assert.strictEqual(aws.getAccessKeyId(), '12345678901234567890');
+			assert.strictEqual(aws.getSecretAccessKey(), '1234567890123456789012345678901234567890');
 
 			assert.throws(throwAccessKeyId, Error, 'The accessKeyId is expected to have a length of 20.');
 			assert.throws(throwSecretAccessKey, Error, 'The secretAccessKey is expected to have a length of 40.');
 
-			aws.setEndPoint('foo');
+			assert.ok(ring.instance(aws.setEndPoint('foo'), AWS));
 			assert.strictEqual(aws.getEndPoint(), 'foo');
 
-			aws.setMaxSockets('foo');
+			assert.ok(ring.instance(aws.setMaxSockets('foo'), AWS));
 			assert.strictEqual(http.Agent.defaultMaxSockets, 5);
 
-			aws.setMaxSockets(10);
+			assert.ok(ring.instance(aws.setMaxSockets(10), AWS));
 			assert.strictEqual(http.Agent.defaultMaxSockets, 10);
 
-			aws.setPath('/foo');
+			assert.ok(ring.instance(aws.setPath('/foo'), AWS));
 			assert.strictEqual(aws.getPath(), '/foo');
 
 			assert.strictEqual(aws.getRegion(), 'us-east-1');
 
-			aws.setPrefix('foo');
+			assert.ok(ring.instance(aws.setPrefix('foo'), AWS));
 			assert.strictEqual(aws.getPrefix(), 'foo');
 
-			aws.setSessionToken('foo');
+			assert.ok(ring.instance(aws.setSessionToken('foo'), AWS));
 			assert.strictEqual(aws.getSessionToken(), 'foo');
+
+			assert.ok(ring.instance(aws.setCredentials('09876543210987654321', '0987654321098765432109876543210987654321'), AWS));
+			assert.strictEqual(aws.getAccessKeyId(), '09876543210987654321');
+			assert.strictEqual(aws.getSecretAccessKey(), '0987654321098765432109876543210987654321');
+
+			var throws = function() {
+				aws.setApiVersion(0);
+			};
+
+			assert.throws(throws, Error, 'The API version doesn\'t match the API version pattern.');
+
+			assert.ok(ring.instance(aws.setApiVersion('2000-02-02'), AWS));
+			assert.strictEqual(aws.getApiVersion(), '2000-02-02');
 
 			done();
 		});
@@ -66,11 +80,9 @@ describe('Tests executed on local machine', function() {
 				endPoint: 'foo',
 				accessKeyId: '12345678901234567890',
 				secretAccessKey: '1234567890123456789012345678901234567890',
-				apiVersion: 0
+				apiVersion: '1000-01-01'
 			});
-
-			assert.isString(query.getApiVersion());
-			assert.strictEqual(query.getApiVersion(), '0');
+			assert.strictEqual(query.getApiVersion(), '1000-01-01');
 
 			done();
 		});
@@ -80,7 +92,8 @@ describe('Tests executed on local machine', function() {
 		it('should pass all checks', function(done) {
 			var Region = require('../lib/core/region.js');
 			var region = new Region();
-			region.setRegion('abc-def-1');
+
+			assert.ok(ring.instance(region.setRegion('abc-def-1'), Region));
 
 			// mock the aws.js stuff
 			region.getRegion = function() {
@@ -94,6 +107,35 @@ describe('Tests executed on local machine', function() {
 			};
 
 			assert.throws(throws, Error, 'The region name doesn\'t match the region pattern.');
+
+			done();
+		});
+	});
+
+	describe('LOCAL signs3.js', function() {
+		it('should pass all the checks', function(done) {
+			var SignS3 = require('../lib/core/signs3.js');
+			var signs3 = new SignS3();
+
+			// mock the aws.js stuff
+			signs3.getAccessKeyId = function() {
+				return '44CF9590006BF252F707';
+			};
+
+			signs3.getSecretAccessKey = function() {
+				return 'OtxrzxIsfpFjA7SwPzILwy8Bw21TLhquhboDYROV';
+			};
+
+			signs3.getBucket = function() {
+				return 'quotes';
+			};
+
+			assert.strictEqual(signs3.createHmacSha1('foo'), 'EsUVJ7fKvKNfAd7Kd+AIXdc0SJ0=');
+			assert.strictEqual(signs3.sign('GET', {
+				'content-md5': 'c8fdb181845a4ca6b8fec737b3581d76',
+				'content-type': 'text/html',
+				date: 0
+			}, 'nelson'), 'YDFA8uNbMUHNJuFAYvyysEmIjL4=');
 
 			done();
 		});
@@ -276,7 +318,7 @@ describe('Tests executed on local machine', function() {
 				assert.strictEqual(instance.getEndPoint(), prefix + '.xy-abcd-1.amazonaws.com');
 				assert.strictEqual(instance.getApiVersion(), versions[client]);
 
-				instance.setRegion('ab-wxyz-2');
+				assert.ok(ring.instance(instance.setRegion('ab-wxyz-2'), Client));
 				assert.strictEqual(instance.getEndPoint(), prefix + '.ab-wxyz-2.amazonaws.com');
 
 				done();
@@ -346,4 +388,26 @@ describe('Tests executed on local machine', function() {
 	};
 
 	testQueryClientSTS('DDB', 'dynamodb');
+
+	describe('LOCAL s3.js', function() {
+		it('should pass all the checks', function(done) {
+			var S3 = lib.S3;
+			var s3 = new S3('12345678901234567890', '1234567890123456789012345678901234567890');
+
+			assert.strictEqual(s3.getEndPoint(), 's3.amazonaws.com');
+			assert.strictEqual(s3.getRegion(), 'us-east-1');
+
+			assert.ok(ring.instance(s3.setRegion('ab-cdef-1'), S3));
+			assert.strictEqual(s3.getRegion(), 'ab-cdef-1');
+
+			assert.ok(ring.instance(s3.setBucket('foo'), S3));
+			assert.strictEqual(s3.getBucket(), 'foo');
+
+			// if this changes ...
+			assert.strictEqual(s3.getApiVersion(), '2006-03-01');
+
+			done();
+		});
+	});
+
 });

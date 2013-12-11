@@ -26,7 +26,8 @@ var docs = {
 	STS: 'http://docs.amazonwebservices.com/STS/latest/APIReference/Welcome.html',
 	DDB: 'http://docs.amazonwebservices.com/amazondynamodb/latest/developerguide/Introduction.html',
 	SNS: 'http://docs.amazonwebservices.com/sns/latest/api/Welcome.html',
-	EMR: 'http://docs.amazonwebservices.com/ElasticMapReduce/latest/API/Welcome.html'
+	EMR: 'http://docs.amazonwebservices.com/ElasticMapReduce/latest/API/Welcome.html',
+	S3: 'http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html'
 };
 
 var idx, count = 0,

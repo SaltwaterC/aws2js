@@ -13,5 +13,6 @@
 	"sts": "STS",
 	"dynamodb": "DDB",
 	"sns": "SNS",
-	"emr": "EMR"
+	"emr": "EMR",
+	"s3": "S3"
 }

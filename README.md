@@ -53,8 +53,7 @@ The presence of the AWS credentials is now checked when the client is instantiat
  * [DDB](https://github.com/SaltwaterC/aws2js/wiki/DDB-Client) (DynamoDB)
  * [SNS](https://github.com/SaltwaterC/aws2js/wiki/SNS-Client) (Simple Notification Service)
  * [EMR](https://github.com/SaltwaterC/aws2js/wiki/EMR-Client) (Elastic MapReduce)
- * ===
- * [Amazon S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
+ * [S3](https://github.com/SaltwaterC/aws2js/wiki/S3-Client) (Simple Storage Service)
 
 ## Examples
 

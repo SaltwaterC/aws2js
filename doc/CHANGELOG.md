@@ -2,7 +2,7 @@
  * node.js 0.8.5+ support due to improper HTTPS support in node.js on previous versions. This is a goal, not an after thought, but node.js wasn't there when work started on aws2js.
  * Client rewritten almost from scratch. Built on top of [http-request](https://github.com/SaltwaterC/http-request).
  * Modular design based on object hierarchy. Each service has its own constructor, therefore adding methods to it is a simple matter of defining new properties. The class hierarchy is built using [Ring.js](http://ringjs.neoname.eu), therefore the object itself is specified as dictionary.
- * Pluggable request signing support. There's three versions supported: V2, V3, V4.
+ * Pluggable request signing support. There's three versions supported: V2, V3, V4. Migrated the clients which supports Signature V4 from V2 and V3.
  * No more MIME support within aws2js. http-request uses mmmagic for PUT requests. Deal with it.
  * Only the [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js) library is supported as XML parser. Having optional dependencies was one of the worst ideas for this library.
  * Deprecated the library loader. Its design is not very flexible. Slightly incompatible with the previous implementation.
