@@ -16,7 +16,7 @@ describe('Tests executed on local machine', function() {
 			var http = require('http');
 			var AWS = require('../lib/core/aws.js');
 
-			var aws = new AWS(0, '12345678901234567890', '1234567890123456789012345678901234567890');
+			var aws = new AWS(0, '12345678901234567890', '1234567890123456789012345678901234567890', '0000-00-00');
 
 			var throwAccessKeyId = function() {
 				var a = new AWS(0, '');
@@ -72,34 +72,21 @@ describe('Tests executed on local machine', function() {
 		});
 	});
 
-	describe('LOCAL query.js', function() {
-		it('should pass all the checks', function(done) {
-			var Query = require('../lib/core/query.js');
-
-			var query = new Query({
-				endPoint: 'foo',
-				accessKeyId: '12345678901234567890',
-				secretAccessKey: '1234567890123456789012345678901234567890',
-				apiVersion: '1000-01-01'
-			});
-			assert.strictEqual(query.getApiVersion(), '1000-01-01');
-
-			done();
-		});
-	});
-
 	describe('LOCAL region.js', function() {
 		it('should pass all checks', function(done) {
 			var Region = require('../lib/core/region.js');
 			var region = new Region();
-
-			assert.ok(ring.instance(region.setRegion('abc-def-1'), Region));
 
 			// mock the aws.js stuff
 			region.getRegion = function() {
 				return this.region;
 			};
 
+			region.getPrefix = function() {
+				return null;
+			};
+
+			assert.ok(ring.instance(region.setRegion('abc-def-1'), Region));
 			assert.strictEqual(region.getRegion(), 'abc-def-1');
 
 			var throws = function() {
