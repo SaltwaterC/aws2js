@@ -122,7 +122,7 @@ describe('Tests executed on local machine', function() {
 				'content-md5': 'c8fdb181845a4ca6b8fec737b3581d76',
 				'content-type': 'text/html',
 				date: 0
-			}, 'nelson'), 'YDFA8uNbMUHNJuFAYvyysEmIjL4=');
+			}, '/quotes/nelson'), 'OkJ8NOvcXny4+AaSJmPV6xsIpG4=');
 
 			done();
 		});
