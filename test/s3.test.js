@@ -3,6 +3,7 @@
 /*global describe: true, it: true, before: true, after: true*/
 
 var http = require('http-request');
+var coreHttp = require('http');
 var xmlParser = require('libxml-to-js');
 var assert = require('chai').assert;
 
@@ -104,6 +105,52 @@ describe('Tests executed on S3', function() {
 				assert.ok(res.Owner.DisplayName);
 				assert.ok(res.AccessControlList);
 
+				done();
+			});
+		});
+	});
+
+	describe('REMOTE S3 test with get subresource and query arguments', function() {
+		it('should issue succesful requests to various ways of expressing a subresource call and their query arguments', function(done) {
+			var handleResponse = function(err, res) {
+				assert.ifError(err);
+
+				assert.strictEqual(res.Bucket, bucket);
+				assert.strictEqual(res.MaxUploads, '1');
+			};
+
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.setBucket(bucket);
+			s3.get('?uploads', {
+				'max-uploads': 1
+			}, 'xml', function(err, res) {
+				handleResponse(err, res);
+				s3.get('?uploads&max-uploads=1', 'xml', function(err, res) {
+					handleResponse(err, res);
+					s3.get('/', {
+						uploads: null,
+						'max-uploads': 1
+					}, 'xml', function(err, res) {
+						handleResponse(err, res);
+						done();
+					});
+				});
+			});
+		});
+	});
+	
+	describe('REMOTE S3 test get with stream handler', function () {
+		it('should return an IncomingMessage object', function(done) {
+			var IncomingMessage = coreHttp.IncomingMessage;;
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.get('/', 'stream', function (err, res) {
+				assert.ifError(err);
+				
+				assert.strictEqual(res.statusCode, 200);
+				assert.strictEqual(res.headers['content-type'], 'application/xml');
+				assert.strictEqual(res.headers.server, 'AmazonS3');
+				assert.instanceOf(res, IncomingMessage);
+				
 				done();
 			});
 		});
