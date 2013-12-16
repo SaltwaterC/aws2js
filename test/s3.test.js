@@ -138,19 +138,34 @@ describe('Tests executed on S3', function() {
 			});
 		});
 	});
-	
-	describe('REMOTE S3 test get with stream handler', function () {
+
+	describe('REMOTE S3 test get with stream handler', function() {
 		it('should return an IncomingMessage object', function(done) {
-			var IncomingMessage = coreHttp.IncomingMessage;;
+			var IncomingMessage = coreHttp.IncomingMessage;
 			var s3 = new S3(accessKeyId, secretAccessKey);
-			s3.get('/', 'stream', function (err, res) {
+			s3.get('/', 'stream', function(err, res) {
 				assert.ifError(err);
-				
+
 				assert.strictEqual(res.statusCode, 200);
 				assert.strictEqual(res.headers['content-type'], 'application/xml');
 				assert.strictEqual(res.headers.server, 'AmazonS3');
 				assert.instanceOf(res, IncomingMessage);
-				
+
+				done();
+			});
+		});
+	});
+
+	describe('REMOTE S3 test head', function() {
+		it('should sent a succesful signed HEAD request', function(done) {
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.setBucket(bucket);
+			s3.head('/', function(err, res) {
+				assert.ifError(err);
+
+				assert.strictEqual(res['content-type'], 'application/xml');
+				assert.strictEqual(res.server, 'AmazonS3');
+
 				done();
 			});
 		});
