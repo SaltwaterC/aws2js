@@ -12,8 +12,10 @@ describe('Tests executed on S3', function() {
 	var accessKeyId = process.env.AWS_ACCEESS_KEY_ID;
 	var secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 	var bucket = process.env.AWS2JS_S3_BUCKET;
-	var S3 = require('../lib/load.js').S3;
-	var STS = require('../lib/load.js').STS; // not enabled, yet
+
+	var aws = require('../lib/load.js');
+	var S3 = aws.S3;
+	var STS = aws.STS;
 
 	describe('REMOTE S3 test for signUrl', function() {
 		it('should generate a signed URL, test it with http-request', function(done) {
@@ -164,6 +166,21 @@ describe('Tests executed on S3', function() {
 				assert.ifError(err);
 
 				assert.strictEqual(res['content-type'], 'application/xml');
+				assert.strictEqual(res.server, 'AmazonS3');
+
+				done();
+			});
+		});
+	});
+
+	describe('REMOTE S3 test delete non existent file', function() {
+		it('should return an error', function(done) {
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.setBucket(bucket);
+			s3.delete('/i-do-not-exist', function(err, res) {
+				assert.ifError(err);
+
+				assert.ok(res.date);
 				assert.strictEqual(res.server, 'AmazonS3');
 
 				done();
