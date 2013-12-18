@@ -9,9 +9,26 @@ Amazon Web Services node.js client.
 
 > npm install aws2js
 
+Requires these libraries:
+
+ * [http-request](https://github.com/SaltwaterC/http-request)
+ * [libxml-to-js](https://github.com/SaltwaterC/libxml-to-js)
+ * [ring](https://github.com/nicolas-van/ring.js)
+ * [lodash.isempty](https://github.com/lodash/lodash-node)
+
+## Project and Design goals
+
+ * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
+ * Proper error reporting
+ * Simple to write clients for a specific AWS service (abstracts most of the low level plumbing)
+ * Modular design
+ * Simple to use AWS API calls
+ * Higher level clients for specific work flows
+ * Proper documentation
+
 ## Migrating from pre 0.9
 
-The library loader from aws2js up to 0.9 is deprecated. Creating a new instance for each service is the preffered way. Creating a new client without specifying the AWS credentials is not allowed, therefore the loader doesn't support this style anymore:
+The library loader used by aws2js from v0.3 up to v0.8 is deprecated. Creating a new instance for each service is the preferred way. Creating a new client without specifying the AWS credentials is not allowed, therefore the loader doesn't support this style anymore:
 
 ```javascript
 var ec2 = require('aws2js').load('ec2');
@@ -26,15 +43,11 @@ var ec2 = require('aws2js').load('ec2', 'AKIAccessKeyId', 'SecretAccessKey');
 
 The presence of the AWS credentials is now checked when the client is instantiated instead of checking that with each AWS request. It is the right thing to do at the cost of backward incompatibility.
 
-## Project and Design goals
+The String Request Body Handler is removed. http-request was implemented without String support for PUT/POST request bodies, which is a deliberate decision. Use a Buffer instance instead. It can be created from a String:
 
- * HTTPS-only APIs communication (exceptions allowed for HTTP-only APIs)
- * Proper error reporting
- * Simple to write clients for a specific AWS service (abstracts most of the low level plumbing)
- * Modular design
- * Simple to use AWS API calls
- * Higher level clients for specific work flows
- * Proper documentation
+```javascript
+var body = new Buffer('string to use as buffer');
+```
 
 ## Supported Amazon Web Services
 

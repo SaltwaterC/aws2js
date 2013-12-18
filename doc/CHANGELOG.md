@@ -1,5 +1,6 @@
 ## v0.9.0
  * node.js 0.8.5+ support due to improper HTTPS support in node.js on previous versions. This is a goal, not an after thought, but node.js wasn't there when work started on aws2js.
+ * Removed the String Request Body Handler. The only affected method is s3.put() which used this. Use a Buffer instance instead which can be created from a String.
  * Client rewritten almost from scratch. Built on top of [http-request](https://github.com/SaltwaterC/http-request).
  * Modular design based on object hierarchy. Each service has its own constructor, therefore adding methods to it is a simple matter of defining new properties. The class hierarchy is built using [Ring.js](http://ringjs.neoname.eu), therefore the object itself is specified as dictionary.
  * Pluggable request signing support. There's three versions supported: V2, V3, V4. Migrated the clients which supports Signature V4 from V2 and V3.
@@ -10,6 +11,7 @@
  * Moved to mocha + chai as testing framework. Introduced the local unit tests that check the validity of the implementation without issuing AWS requests.
  * The region names are validated against a match instead of actual region names. This makes the library to be forward compatible with most of the cases.
  * Deprecated the passing of STS session token to setCredentials. Use setSessionToken instead.
+ * Deprecated the s3.del() method. Use s3.delete() instead for keeping things consistent. The reserved keyword isn't an issue for having an object method with the same name.
 
 ## v0.8.3
  * Changes the internal buffering concatenation to a much faster implementation: Buffer.concat by using the buffer-concat module for node.js v0.6.

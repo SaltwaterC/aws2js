@@ -20,6 +20,7 @@ s3.putFile(path, './data/foo.png', false, {
 }, function(err, res) {
 	callbacks.put++;
 	assert.ifError(err);
+
 	s3.head(path, function(err) {
 		callbacks.head++;
 		assert.ifError(err);
