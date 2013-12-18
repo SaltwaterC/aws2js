@@ -393,6 +393,8 @@ describe('Tests executed on local machine', function() {
 			// if this changes ...
 			assert.strictEqual(s3.getApiVersion(), '2006-03-01');
 
+			// TODO: offline test expires, mergePath, getHeaders, checkAcl, signUrl
+
 			done();
 		});
 	});

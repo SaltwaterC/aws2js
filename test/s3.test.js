@@ -196,7 +196,8 @@ describe('Tests executed on S3', function() {
 			s3.put('put', new Buffer(buf), function(err, res) {
 				assert.ifError(err);
 
-				assert.deepEqual(res, {});
+				assert.strictEqual(res['content-length'], '0');
+				assert.strictEqual(res.server, 'AmazonS3');
 				s3.get('put', 'buffer', function(err, res) {
 					assert.ifError(err);
 
@@ -224,7 +225,8 @@ describe('Tests executed on S3', function() {
 			}, new Buffer(buf), function(err, res) {
 				assert.ifError(err);
 
-				assert.deepEqual(res, {});
+				assert.strictEqual(res['content-length'], '0');
+				assert.strictEqual(res.server, 'AmazonS3');
 				s3.get('put', 'buffer', function(err, res) {
 					assert.ifError(err);
 
@@ -238,6 +240,34 @@ describe('Tests executed on S3', function() {
 						done();
 					});
 				});
+			});
+		});
+	});
+
+	describe('REMOTE S3 test create existing bucket', function() {
+		it('should make a succesful request, even though the target already exists', function(done) {
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.createBucket(bucket, 'private', function(err, res) {
+				assert.ifError(err);
+
+				assert.strictEqual(res['content-length'], '0');
+				assert.strictEqual(res.server, 'AmazonS3');
+
+				done();
+			});
+		});
+	});
+
+	describe('REMOTE S3 test setBucketAcl', function() {
+		it('should make a succesful S3 request', function(done) {
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.setBucketAcl(bucket, 'private', function(err, res) {
+				assert.ifError(err);
+
+				assert.strictEqual(res['content-length'], '0');
+				assert.strictEqual(res.server, 'AmazonS3');
+
+				done();
 			});
 		});
 	});
