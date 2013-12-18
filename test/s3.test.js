@@ -213,9 +213,9 @@ describe('Tests executed on S3', function() {
 			});
 		});
 	});
-	
-	describe('REMOTE S3 test put buffer with specified x-amz-date', function () {
-		it('should upload a file to S3', function (done) {
+
+	describe('REMOTE S3 test put buffer with specified x-amz-date', function() {
+		it('should upload a file to S3', function(done) {
 			var buf = 'S3 PUT test x-amz-date';
 			var s3 = new S3(accessKeyId, secretAccessKey);
 			s3.setBucket(bucket);
