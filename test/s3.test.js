@@ -188,12 +188,40 @@ describe('Tests executed on S3', function() {
 		});
 	});
 
-	describe('REMOTE S3 test put file', function() {
+	describe('REMOTE S3 test put buffer', function() {
 		it('should upload a file to S3', function(done) {
 			var buf = 'S3 PUT test';
 			var s3 = new S3(accessKeyId, secretAccessKey);
 			s3.setBucket(bucket);
 			s3.put('put', new Buffer(buf), function(err, res) {
+				assert.ifError(err);
+
+				assert.deepEqual(res, {});
+				s3.get('put', 'buffer', function(err, res) {
+					assert.ifError(err);
+
+					assert.deepEqual(res, new Buffer(buf));
+					s3.delete('put', function(err, res) {
+						assert.ifError(err);
+
+						assert.strictEqual(res.connection, 'close');
+						assert.strictEqual(res.server, 'AmazonS3');
+
+						done();
+					});
+				});
+			});
+		});
+	});
+	
+	describe('REMOTE S3 test put buffer with specified x-amz-date', function () {
+		it('should upload a file to S3', function (done) {
+			var buf = 'S3 PUT test x-amz-date';
+			var s3 = new S3(accessKeyId, secretAccessKey);
+			s3.setBucket(bucket);
+			s3.put('put', {
+				'X-amz-Date': new Date().toUTCString()
+			}, new Buffer(buf), function(err, res) {
 				assert.ifError(err);
 
 				assert.deepEqual(res, {});
