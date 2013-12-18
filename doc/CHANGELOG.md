@@ -13,6 +13,9 @@
  * Deprecated the passing of STS session token to setCredentials. Use setSessionToken instead.
  * Deprecated the s3.del() method. Use s3.delete() instead for keeping things consistent. The reserved keyword isn't an issue for having an object method with the same name.
  * Passing an invalid canned ACL now throws an error. It is an user error which wont change the state of the request unless the value is changed.
+ * Removed the deprecated s3.putObject() method.
+ * Removed the deprecated Query.call() method of the Query clients.
+ * Removed the deprecated s3.renameObject() method since its superseeded by s3.moveObject().
 
 ## v0.8.3
  * Changes the internal buffering concatenation to a much faster implementation: Buffer.concat by using the buffer-concat module for node.js v0.6.
