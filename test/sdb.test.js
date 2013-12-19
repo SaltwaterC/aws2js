@@ -1,6 +1,6 @@
 'use strict';
 
-/*global describe: true, it: true, before: true, after: true*/
+/*global describe: true, it: true*/
 
 var assert = require('chai').assert;
 

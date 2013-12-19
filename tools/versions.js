@@ -7,7 +7,9 @@
 var fs = require('fs');
 
 var http = require('http-request');
+/*jshint camelcase:false*/
 var beautify = require('js-beautify').js_beautify;
+/*jshint camelcase:true*/
 
 var tools = require('../lib/core/tools.js');
 
@@ -46,9 +48,11 @@ var collectVersions = function(service, version) {
 	if (count === 0) {
 		results = tools.sortObject(results);
 
+		/*jshint camelcase:false*/
 		var beautified = beautify(JSON.stringify(results), {
 			indent_with_tabs: true
 		});
+		/*jshint camelcase:true*/
 
 		fs.writeFile(process.cwd() + '/config/versions.json', beautified, function(err) {
 			if (err) {

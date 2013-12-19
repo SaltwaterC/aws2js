@@ -10,7 +10,7 @@
 		"lodash.isempty": "~ 2.4.1"
 	},
 	"devDependencies": {
-		"jslint": "*",
+		"jshint": "*",
 		"js-beautify": "*",
 		"mocha": "*",
 		"chai": "*"
