@@ -378,6 +378,8 @@ describe('Tests executed on local machine', function() {
 
 	describe('LOCAL s3.js', function() {
 		it('should pass all the checks', function(done) {
+			var bucket = 'bucket';
+
 			var S3 = lib.S3;
 			var s3 = new S3('12345678901234567890', '1234567890123456789012345678901234567890');
 
@@ -387,13 +389,39 @@ describe('Tests executed on local machine', function() {
 			assert.ok(ring.instance(s3.setRegion('ab-cdef-1'), S3));
 			assert.strictEqual(s3.getRegion(), 'ab-cdef-1');
 
-			assert.ok(ring.instance(s3.setBucket('foo'), S3));
-			assert.strictEqual(s3.getBucket(), 'foo');
+			assert.ok(ring.instance(s3.setBucket(bucket), S3));
+			assert.strictEqual(s3.getBucket(), bucket);
 
 			// if this changes ...
 			assert.strictEqual(s3.getApiVersion(), '2006-03-01');
 
-			// TODO: offline test expires, mergePath, getHeaders, checkAcl, signUrl
+			var timestamp = new Date();
+			// this may fail in rare circumstances when the difference between the Date calls are greater than 1 ms
+			assert.deepEqual(s3.expires(0), timestamp);
+
+			assert.strictEqual(s3.mergePath('foo', {
+				bar: 'baz'
+			}), '/' + s3.getBucket() + '/foo?bar=baz');
+
+			var headers = s3.getHeaders('GET', '/');
+			assert.ok(headers.authorization);
+			assert.ok(headers.date);
+			delete(headers.authorization);
+			delete(headers.date);
+
+			assert.deepEqual(headers, {
+				expect: '100-continue',
+				'content-type': 'text/plain'
+			});
+
+			var throws = function() {
+				s3.checkAcl('foo');
+			};
+			assert.throws(throws, Error, 'Invalid canned ACL.');
+			assert.strictEqual(s3.checkAcl('private'), true);
+
+			var signedUrl = s3.signUrl('https', 'get', '/', new Date('Fri, 09 Sep 2011 23:36:00 GMT'));
+			assert.strictEqual(signedUrl, 'https://' + s3.getEndPoint() + '/' + s3.getBucket() + '/?AWSAccessKeyId=' + s3.getAccessKeyId() + '&Expires=1315611360&Signature=Wl0NXdh%2FtwwO%2F%2B7WrDdI5gDqA5w%3D');
 
 			done();
 		});
