@@ -1,4 +1,4 @@
-## About ![build status](https://secure.travis-ci.org/SaltwaterC/aws2js.png?branch=next)
+## About ![build status](https://secure.travis-ci.org/SaltwaterC/aws2js.png?branch=next) [![NPM version](https://badge.fury.io/js/aws2js.png)](http://badge.fury.io/js/aws2js)
 
 Amazon Web Services node.js client.
 
