@@ -12,7 +12,8 @@ exports.regions = {
 	'us-east-1': '', // N. Virginia aka US Standard
 	'us-west-1': 'us-west-1', // N. California
 	'us-west-2': 'us-west-2', // Oregon
-	'eu-west-1': 'EU', // Ireland
+	'eu-west-1': 'eu-west-1', // EU (Ireland)
+	'eu-central-1': 'eu-central-1', // EU (Frankfurt)
 	'ap-southeast-1': 'ap-southeast-1', // Singapore
 	'ap-northeast-1': 'ap-northeast-1', // Tokyo
 	'sa-east-1': 'sa-east-1', // Sao Paulo
