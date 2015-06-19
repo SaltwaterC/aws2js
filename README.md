@@ -1,4 +1,4 @@
-## About
+## [UNMAINTAINED] About
 
 **WARNING:** aws2js is deprecated. Use [aws-sdk](http://aws.amazon.com/sdk-for-node-js/) instead.
 
