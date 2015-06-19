@@ -17,7 +17,7 @@ s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
 s3.putFile(path, './data/foo.png', false, {
 	'content-type': 'image/png'
-}, function (err, res) {
+}, function (err) {
 	callbacks.put++;
 	assert.ifError(err);
 	s3.head(path, function (err, res) {

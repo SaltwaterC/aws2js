@@ -18,7 +18,7 @@ s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 s3.putFile(path, './data/foo.txt', false, {
 	'content-type': 'text/plain',
 	'content-length': 4
-}, function (err, res) {
+}, function (err) {
 	callbacks.put++;
 	assert.ifError(err);
 	s3.get(path, 'buffer', function (err, res) {

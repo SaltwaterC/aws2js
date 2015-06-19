@@ -13,11 +13,11 @@ var clients = {
 	sdb: config.clients.sdb.prefix
 };
 
-var client;
+var client, prefix, cl;
 for (client in clients) {
 	if (clients.hasOwnProperty(client)) {
-		var prefix = clients[client];
-		var cl = aws.load(client);
+		prefix = clients[client];
+		cl = aws.load(client);
 		assert.deepEqual(cl.getEndPoint(), prefix + suffix);
 		cl.setRegion('eu-west-1');
 		assert.deepEqual(cl.getEndPoint(), prefix + '.eu-west-1' + suffix);

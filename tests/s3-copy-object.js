@@ -18,11 +18,11 @@ var callbacks = {
 s3.setCredentials(process.env.AWS_ACCEESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
 s3.setBucket(process.env.AWS2JS_S3_BUCKET);
 
-s3.putFile(source, './data/foo.png', false, {}, function (err, res) {
+s3.putFile(source, './data/foo.png', false, {}, function (err) {
 	callbacks.putFile++;
 	assert.ifError(err);
 	
-	s3.copyObject(s3.getBucket() + '/' + source, destination, false, {}, function (err, res) {
+	s3.copyObject(s3.getBucket() + '/' + source, destination, false, {}, function (err) {
 		callbacks.copyObject++;
 		assert.ifError(err);
 		
@@ -31,12 +31,12 @@ s3.putFile(source, './data/foo.png', false, {}, function (err, res) {
 			assert.ifError(err);
 			assert.deepEqual(res['content-type'], 'image/png');
 			
-			s3.del(source, function (err, res) {
+			s3.del(source, function (err) {
 				callbacks.delSource++;
 				assert.ifError(err);
 			});
 			
-			s3.del(destination, function (err, res) {
+			s3.del(destination, function (err) {
 				callbacks.delDestination++;
 				assert.ifError(err);
 			});

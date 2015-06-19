@@ -28,7 +28,7 @@ var files = [
 	}
 ];
 
-s3.putFiles(files, false, {}, function (errors, results) {
+s3.putFiles(files, false, {}, function (errors) {
 	callbacks.put++;
 	
 	var idx;
@@ -50,7 +50,7 @@ s3.putFiles(files, false, {}, function (errors, results) {
 					key: 'm_foo.png'
 				}
 			];
-			s3.delMultiObjects(objects, function (err, res) {
+			s3.delMultiObjects(objects, function (err) {
 				assert.ifError(err);
 				callbacks.del++;
 			});
@@ -58,7 +58,7 @@ s3.putFiles(files, false, {}, function (errors, results) {
 	};
 	
 	files.forEach(function (element, index) {
-		s3.head(element.path, function (err, res) {
+		s3.head(element.path, function (err) {
 			callbacks['idx' + index]++;
 			assert.ifError(err);
 			headCount--;
