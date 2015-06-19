@@ -1,6 +1,6 @@
 ## About
 
-*WARNING:* aws2js is deprecated. Use [aws-sdk](http://aws.amazon.com/sdk-for-node-js/) instead.
+**WARNING:** aws2js is deprecated. Use [aws-sdk](http://aws.amazon.com/sdk-for-node-js/) instead.
 
 Amazon Web Services node.js module. Originally a fork of [aws-lib](https://github.com/livelycode/aws-lib/).
 
