@@ -6,7 +6,8 @@
   "dependencies": {
     "lodash": ">=0.6.x",
     "semver": ">=1.0.x",
-    "buffer-concat": ">=0.0.1"
+    "buffer-concat": ">=0.0.1",
+    "snyk": "^1.316.1"
   },
   "optionalDependencies": {
     "libxml-to-js": ">=0.3.10",
@@ -18,7 +19,9 @@
     "http-get": ">=0.4.0"
   },
   "scripts": {
-    "test": "tools/test.sh"
+    "test": "tools/test.sh",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": ">=0.6.0",
@@ -103,8 +106,8 @@
       "url": "http://stephen-veit.blogspot.com"
     },
     {
-       "name": "Marcus Westin",
-       "url": "http://marcuswest.in/"
+      "name": "Marcus Westin",
+      "url": "http://marcuswest.in/"
     }
   ],
   "repository": {
@@ -136,5 +139,6 @@
     "sns",
     "emr",
     "elastic mapreduce"
-  ]
+  ],
+  "snyk": true
 }
